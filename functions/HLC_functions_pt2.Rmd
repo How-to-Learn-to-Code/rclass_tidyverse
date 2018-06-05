@@ -53,7 +53,6 @@ set.seed(1234)
 Imagine you have a data set of primer sequences. You want to quickly find out information about this set of primers. Let's start by loading the list.
 
 ```{r}
-setwd("C:/Users/gdicecco/Desktop/git/rclass/")
 primers <- read.csv("primers.csv", header = F, stringsAsFactors = F)
 str(primers)
 ```
