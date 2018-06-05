@@ -1,0 +1,329 @@
+---
+title: 'Data Structures'
+author: "Amy Pomeroy, Dayne Filer, & Sara Taylor, Modified by Grace Di Cecco"
+date: "May 31, 2018"
+output:
+  pdf_document:
+    highlight: tango
+  html_document: null
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, collapse = TRUE)
+```
+
+<!-- Here we style out button a little bit -->
+<style>
+  .showopt {
+    background-color: #004c93;
+    color: #FFFFFF; 
+    width: 100px;
+    height: 20px;
+    text-align: center;
+    vertical-align: middle !important;
+    border-radius: 8px;
+    float:right;
+    }
+
+    .showopt:hover {
+    background-color: #dfe4f2;
+    color: #004c93;
+  }
+
+</style>
+
+<!--Include script for hiding output chunks-->
+<script src="hideOutput.js"></script>
+
+### Using this document
+
+* Code blocks and R code have a grey background (note, code nested in the text is not highlighted in the pdf version of this document but is a different font).
+* \# indicates a comment, and anything after a comment will not be evaluated in R
+* The comments beginning with \#\# under the code in the grey code boxes are the output from the code directly above; any comments added by us will start with a single \#
+* While you can copy and paste code into R, you will learn faster if you type out the commands yourself. 
+* Read through the document after class. This is meant to be a reference, and ideally, you should be able to understand every line of code. If there is something you do not understand please email us with questions or ask in the following class (you're probably not the only one with the same question!). 
+
+### Expectations
+1. Understand the basic R data structures (vector, matrix, list, data.frame)
+2. Know how to subset the four basic data structures
+
+### Introduction to data structures 
+
+#### Vectors
+
+The most simple data structure available in R is a vector. You can make vectors of numeric values, logical values, and character strings using the `c()` function. For example:
+
+```{r}
+c(1, 2, 3)
+c(TRUE, TRUE, FALSE)
+c("a", "b", "c")
+```
+
+You can also join to vectors using the `c()` function.
+
+```{r}
+x <- c(1, 2, 5)
+y <- c(3, 4, 6)
+z <- c(x, y)
+z
+```
+
+#### Matrices
+
+A matrix is a special kind of vector with two dimensions. Like a vector, a matrix can only have one data class. You can create matrices using the `matrix` function as shown below.
+
+```{r}
+matrix(data = 1:6, nrow = 2, ncol = 3)
+```
+
+As you can see this gives us a matrix of all numbers from 1 to 6 with two rows and three columns. The `data` parameter takes a vector of values, `nrow` specifies the number of rows in the matrix, and `ncol` specifies the number of columns. By convention the matrix is filled by column. The default behavior can be changed with the `byrow` parameter as shown below:
+
+```{r}
+matrix(data = 1:6, nrow = 2, ncol = 3, byrow = TRUE)
+```
+
+Matrices do not have to be numeric -- any vector can be transformed into a matrix. For example:
+
+```{r}
+matrix(data = c(TRUE, TRUE, TRUE, FALSE, FALSE, FALSE), nrow = 3, ncol = 2)
+matrix(data = c("a", "b", "c", "d", "e", "f"), nrow = 3, ncol = 2)
+```
+
+Like vectors matrices can be stored as variables and then called later. The rows and columns of a matrix can have names. You can look at these using the functions `rownames` and `colnames`. As shown below, the rows and columns don't initially have names, which is denoted by `NULL`. However, you can assign values to them.
+
+```{r}
+mat1 <- matrix(data = 1:6, nrow = 2, ncol = 3, byrow = TRUE)
+rownames(mat1)
+colnames(mat1)
+rownames(mat1) <- c("Row 1", "Row 2")
+colnames(mat1) <- c("Col 1", "Col 2", "Col 3")
+mat1
+```
+
+***It is important to note that similarly to vectors, matrices can only have one data type.*** If you try to specify a matrix with multiple data types the data will be coerced to the higher order data class.
+
+The `class`, `is`, and `as` functions can be used to check and coerce data structures in the same way they were used on the vectors in class 1. 
+
+```{r}
+class(mat1)
+is.matrix(mat1)
+as.vector(mat1)
+```
+
+#### Lists
+
+Lists allow users to store multiple elements (like vectors and matrices) under a single object. You can use the `list` function to create a list:
+
+```{r}
+l1 <- list(c(1, 2, 3), c("a", "b", "c"))
+l1
+```
+
+Notice the vectors that make up the above list are different classes. Lists allow users to group elements of different classes. Each element in a list can also have a name. List names are accessed by the `names` function, and are assigned in the same manner row and column names are assigned in a matrix.
+
+```{r}
+names(l1)
+names(l1) <- c("vector1", "vector2")
+l1
+```
+
+It is often easier and safer to declare the list names when creating the list object. 
+
+```{r}
+l2 <- list(vec = c(1, 3, 5, 7, 9),
+           mat = matrix(data = c(1, 2, 3), nrow = 3))
+l2
+names(l2)
+```
+
+Above the list has two elements, named "vec" and "mat," a vector and matrix, resepcively.
+
+#### Data frames
+
+Data frames are likely the data structure you will used most in your analyses. A data frame is a special kind of list that stores same-length vectors of different classes. You create data frames using the `data.frame` function. The example below shows this by combining a numeric and a character vector into a data frame. It uses the `:` operator, which will create a vector containing all integers from 1 to 3. 
+
+```{r}
+df1 <- data.frame(x = 1:3, y = c("a", "b", "c"))
+df1
+class(df1)
+```
+
+The benefit of data frame objects will be evident in the next section on subsetting objects. Data frame objects do not print with quotation marks, so the class of the columns is not always obvious.
+
+```{r}
+df2 <- data.frame(x = c("1", "2", "3"), y = c("a", "b", "c"))
+df2
+```
+
+Without further investigation, the "x" columns in `df1` and `df2` cannot be differentiated. The `str` function can be used to describe objects with more detail than class. 
+
+```{r}
+str(df1)
+str(df2)
+```
+
+Here you see that `df1` is a `data.frame` and has 3 observations of 2 variables, "x" and "y." Then you are told that "x" has the data type integer (not important for this class, but for our purposes it behaves like a numeric) and "y" is a factor with three levels. ***It is important to note that, by default, data frames coerce characters to factors.*** The default behavior can be changed with the `stringsAsFactors` parameter:
+
+```{r}
+df3 <- data.frame(x = 1:3, y = c("a", "b", "c"), stringsAsFactors = FALSE)
+str(df3)
+```
+
+Now the "y" column is a character. As mentioned above, each "column" of a data frame must have the same length. Trying to create a data.frame from vectors with different lengths will result in an error. (Try running `data.frame(x = 1:3, y = 1:4)` to see the resulting error.)
+
+Some additional functions to be aware of to manipulate objects include `sum` and `mean`, which can be used to calculate summary statistics on vectors (i.e. a column in a data frame), and functions to determine attributes of matrices and data.frames (`ncol`, `nrow`, and `colnames`). Take a look at the documentation for these functions.
+
+### Subsetting objects 
+
+We will discuss three subsetting operators: `[`, `[[`, and `$`.
+
+#### Vectors
+
+We will start with vectors, and the `[` operator. First create an example vector, then select the third element. 
+
+```{r}
+v1 <- c("a", "b", "c", "d")
+v1[3]
+```
+
+The `[` operator can also take a vector as the argument. For example you can select the first and third elements:
+
+```{r}
+v1 <- c("a", "b", "c", "d")
+v1[c(1, 3)]
+```
+
+#### Lists
+
+Similarly, you can use `[` to subset a list:
+
+```{r}
+l1
+l1[2]
+```
+
+Notice that the result of `l1[2]` is still a list. (Try running `class(l1[2])` or `str(l1[2])` to prove to yourself that the result is in fact list.) What if you want to select the vector the list contains? The `[` operator allows you to subset on elements of a list, as you would for a vector. The `[[` operator allows you to extract list elements. If you want to extract "vector1" you can either select it by the index (1, because it is the first element in the list) or, in a named list, you can subset by name.
+
+```{r}
+l1[[1]]
+l1[["vector1"]]
+```
+
+Note, you can also provide a vector of names to the `[` operator.
+
+#### Matrices 
+
+Now we can discuss how to subset on two-dimensional objects. For each dimension the `[` operator takes one argument. Vectors, being 1 dimension, take one argument. Matrices and data frames take two arguments, given as `[i, j]` where `i` is the the row and `j` is the column. Recall `mat1`:
+
+```{r}
+mat1
+mat1[2, 1]
+```
+
+You can see that an `i` value of `2` and a `j` value of `1` gave the number in the second row and the first column. You do not have to provide both an `i` and a `j` value, providing only one or the other returns the vector for the given row.
+
+```{r}
+mat1[ , 3]
+mat1[1, ]
+```
+
+Like with lists, the matrices can also be subset by name when the matrix has row or column names. 
+
+```{r}
+mat1[ , "Col 1"]
+```
+
+When subsetting, R attempts to simplify the data structure. As you see in the examples above, subsetting the matrices results in a vector. When you provide a vector to `i` or `j` the result does not *always* simplify to a vector, but may instead maintain the matrix structure. 
+
+```{r}
+mat1[c("Row 1"), c("Col 1", "Col 3")] ## Can be simplified to a vector
+mat1[1:2, 2:3] ## Cannot be simplified to a vector
+```
+
+The other subsetting operator you need to know for this course is `$`. The `$` operator allows you to select list elements by name. For example, consider `l1` again. `l1` has two elements, named "vector1" and "vector2," and you can select one or the other with the `$` operator.
+
+```{r}
+l1$vector1
+```
+
+Notice that you do not put quotes around the list names when providing them to the `$` operator, and the `$` operator can only take a single name. 
+
+#### Data frames
+
+Finally, let us discuss subsetting a data frame. Recall from earlier that a data frame is just a special list, so you can subset a data frame in all the same ways you subset a list. Consider `df3`:
+
+```{r}
+df3
+df3[1]
+df3[[2]]
+df3$x
+```
+
+Notice how using the `[` operator differs from `[[` and `$`. (You can think of `$` as shorthand for `[[` when you only want to select one element by name.) As we saw in the list subsetting, using `[` preserved the list structure (or in this case, the data frame structure), unlike the `[[` operator which attempts to simplify the data structure. 
+
+Unlike a list, you can also subset data frame like you would a two dimensional matrix using both an `i` and a `j` statement. 
+
+```{r}
+df3[1, 2]
+df3[2, ]
+df3[ , 1]
+```
+
+Notice how subsetting by `i` and `j` alone differ. Every column of a data frame is essentially a vector in a list. So when you select one column, the data structure is simplified to a vector. However, selecting 1 row does not simplify, because different columns may have different data classes and it does not make sense to coerce all of the columns to one data type.
+
+### Modifying a subset
+
+Recall how you changed the row and column names of the matrix above. Similarly, you can change the values in an object for just a subset using the assignment operator (`<-`). 
+
+For example, consider the following matrix.
+
+```{r}
+mat2 <- matrix(data = 1:10, nrow = 2)
+mat2
+```
+
+Now, change the 6 to 100.
+
+```{r}
+mat2[2, 3]
+mat2[2, 3] <- 100
+mat2
+```
+
+The last thing we will mention is that you can add elements to list obejcts using the `[[` and `$` operators. Consider `l2` from above. 
+
+```{r}
+str(l2)
+l2$new_element <- "hello"
+l2
+```
+
+### Coercing data types
+
+R contains functions that can be used to coerce data types and data structures (e.g. `as.numeric`, `as.character`, `as.data.frame`, etc.). Try out one of these functions on `df3`: change the first column from integers to characters. Use `str` or `class` to check the results.
+
+There is a lot of information about subsetting and modifying objects that we do not have time to cover in this course, so we encourage you to spend some time experimenting on your own. 
+
+__$\color{blue}{\text{Exercise 1}}$__
+
+Create a data frame with two columns: "col1" with the letters a to f, "col2" with the numbers 1 to 6, and "col3" with the alternating TRUE and FALSE values. Store the data frame as "mydf."
+
+__$\color{blue}{\text{Exercise 2}}$__
+
+Change the column names of `mydf` using `colnames`.
+
+__$\color{blue}{\text{Exercise 3}}$__
+
+Coerce `mydf` from exercise 1 to a matrix using the `as.matrix` function. Predict how the data will change. What class will the data be? Will there be column names? Row names?
+
+__$\color{blue}{\text{Exercise 4}}$__
+
+Subsetting can also be done with logical vectors the same length of the object or dimension you would like to subset. For example, if you have a list `l` with three elements, `l[c(TRUE, FALSE, TRUE)]` would return a list with elements one and three from `l`. Figure out how to use `mydf` to subset only to rows where 'col3' is `TRUE`. (You should attempt to think of a solution that only requires one line of code. Hint: you can pass elements of an obect to itself.)
+
+__$\color{blue}{\text{Exercise 5}}$__
+
+You can stack subsetting operators next to each other. Using `l2` from above, select the 7 from 'vec.' Now try to select the last two rows from 'mat'. (Again, you should attempt to think of a solution that only requires one line of code for each selection.)
+
+__$\color{blue}{\text{Exercise 6}}$__
+
+Recall how you added an element to `l2` using the `$` operator. Again, a data frame is just a special list. Add a column to `mydf` called "col4" with a vector of your choice. 
