@@ -1,10 +1,60 @@
 ---
 title: "Class Introduction"
 author: "Spencer Nystrom & Grace DiCecco"
-output: html_notebook
+output: github_document
 ---
 
-```{r}
+## Login to Github
 
+### Clone student repo to Rstudio.cloud
+ `install.packages("tidyverse")`
+ 
+### Terminal:
+  `git config --global user.name <User>`
+  
+  `git config --global user.email <user@email>`
+  
+### Create new folder for day1
+### Talk about working directories
+
+## Introduce markdown
+ - output: github_document
+ - knit
+
+## talk about commit and push 
+ - save, knit, and commit files to git
+ - push changes to github
+ - Check github to see output
+
+
+# Data in R
+
+```{r}
+titanic <- as.data.frame(Titanic)
+head(titanic)
+```
+
+```{r}
+library(ggplot2)
+```
+
+```{r}
+ggplot(data = titanic, aes(x = Class, y = Freq)) # create the plotting space
+```
+
+```{r}
+ggplot(data = titanic, aes(x = Class, y = Freq)) +
+    geom_col()
+```
+
+
+```{r}
+ggplot(titanic, aes(Class, Freq)) +
+    geom_col(aes(fill = Survived))
+```
+
+```{r}
+ggplot(titanic, aes(Class, Freq)) +
+    geom_col(aes(fill = Survived), position = "fill")
 ```
 
