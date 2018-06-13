@@ -1,0 +1,10 @@
+---
+title: "Class Introduction"
+author: "Spencer Nystrom & Grace DiCecco"
+output: html_notebook
+---
+
+```{r}
+
+```
+
