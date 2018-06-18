@@ -100,8 +100,9 @@ The structure of `ggplot` code relies on a specific grammar. Plots start out wit
 ```{r, fig.height = 5, fig.width = 5}
 
 # This plot subsets the gapminder data to just include the continent of Asia
-# Refer back to the Data Structures lesson to review this notation
-ggplot(data = gapminder[gapminder$country == "China", ], 
+# We'll use a filtering function from a package called dplyr, which we'll talk about more in the next lesson
+library(dplyr)
+ggplot(data = filter(gapminder, country == "China"), 
        mapping = aes(x = year, y = pop)) + 
   geom_point() +
   geom_line(color = "blue") # the color blue is only applied to the lines, not the points
@@ -120,7 +121,7 @@ Point type can be modified using `shape`, while linetype can be modified using `
 
 ```{r fig.height = 5, fig.width = 5}
 
-ggplot(data = gapminder[gapminder$country == "China", ], 
+ggplot(data = filter(gapminder, country == "China"), 
        mapping = aes(x = year, y = pop)) + 
   geom_point(shape = 1) + 
   geom_line(lty = 2)
@@ -131,7 +132,7 @@ X and Y axis labels default to the variable name, and can be changed using `xlab
 
 ```{r fig.height = 5, fig.width = 5}
 
-ggplot(data = gapminder[gapminder$country == "China", ], 
+ggplot(data = filter(gapminder, country == "China"), 
        mapping = aes(x = year, y = pop)) + 
   geom_point() + 
   geom_line(lty = 2) + 
@@ -139,12 +140,11 @@ ggplot(data = gapminder[gapminder$country == "China", ],
 
 ```
 
-
 Color, linetype, and shape can be assigned to individual `geoms` manually, or they can be mapped to a variable. By assigning color to the variable `country` in `aes`, `ggplot` will automatically assign a color to each value in the variable and create a legend:
 
 ```{r, fig.height = 5, fig.width = 10}
 
-ggplot(data = gapminder[gapminder$continent == "Asia", ], 
+ggplot(data = filter(gapminder, country == "China"), 
        mapping = aes(x = year, y = pop, color = country)) +
   geom_point() + 
   geom_line() +
@@ -155,7 +155,7 @@ ggplot(data = gapminder[gapminder$continent == "Asia", ],
 Color is used as an argument for points and lines, while fill is used to change the color in barplots:
 
 ```{r, fig.height = 5, fig.width = 8}
-ggplot(data = gapminder[gapminder$country == "China", ], 
+ggplot(data = filter(gapminder, country == "China"), 
        mapping = aes(x = year, y = pop)) + 
   geom_col(fill = "lightblue") + 
   xlab("Year") + ylab("Population")
@@ -173,10 +173,11 @@ Using the resources above or Google, find the arguments/functions used to do the
 1. Change the transparency of a point or a line.
 2. Change the y axis to a log scale
 3. Change the title of a legend using the function `guides`
+4. Read the documentation for `dplyr::filter` to find out how to filter by two criteria. Plot the population trends for countries in Asia with more than 100 million people.
 
 ```{r, fig.height = 5, fig.width = 10}
 
-ggplot(data = gapminder[gapminder$continent == "Asia", ], 
+ggplot(data = filter(gapminder, continent == "Asia"), 
        mapping = aes(x = year, y = pop, color = country)) + 
   geom_point() + geom_line() + xlab("Year") + ylab("Population")
 
@@ -184,10 +185,10 @@ ggplot(data = gapminder[gapminder$continent == "Asia", ],
 
 ### Factors in ggplot
 
-Recall that factors are a class of categorical data in R, and while they appear to us as character strings, they are encoded in R as numbers (called "levels"). Note that the columns `country` and `continent` in the `gapminder` are factors. `ggplot` will plot factors in the order of their numerical code. As a result, they are plotted in the arbitrary order they are listed in in the original dataset, which may not be very useful or pretty in plots.
+Factors are a class for truly categorical data in R. While they appear to us as character strings, they are encoded in R as numbers (called "levels"). Note that the columns `country` and `continent` in the `gapminder` are factors. `ggplot` will plot factors in the order of their numerical code. As a result, they are plotted in the arbitrary order they are listed in in the original dataset, which may not be very useful or pretty in plots.
 
 ```{r, fig.height = 5, fig.width = 10}
-ggplot(data = gapminder[gapminder$continent == "Asia" & gapminder$year == 2007, ], 
+ggplot(data = filter(gapminder, continent == "Asia", year == 2007), 
        mapping = aes(x = gdpPercap, y = country)) + 
   geom_point() + xlab("GDP per capita") + ylab("Country")
 ```
@@ -197,7 +198,7 @@ ggplot(data = gapminder[gapminder$continent == "Asia" & gapminder$year == 2007, 
 ```{r}
 library(forcats)
 
-ggplot(data = gapminder[gapminder$continent == "Asia" & gapminder$year == 2007, ], 
+ggplot(data = filter(gapminder, continent == "Asia", year == 2007), 
        mapping = aes(x = gdpPercap, y = fct_reorder(country, gdpPercap))) + 
   geom_point() + xlab("GDP per capita") + ylab("Country")
 ```
@@ -211,16 +212,18 @@ Referring to the help page for `forcats` and the [Stat 545 page](http://stat545.
 Facets produce plots for subsets of data in `ggplot`. `facet_wrap` is used to subset by one variable, while `facet_grid` is used to subset data by two variables. Variables used for subsetting should be discrete. The `~` is followed by the variable used to subset the data within the `facet_wrap` command. The number of rows or columns for the plots can also be specified in `facet_wrap`.
 
 ```{r, fig.height = 6, fig.width = 8}
-ggplot(gapminder[gapminder$year > 1995, ], aes(x = gdpPercap, y = lifeExp, color = continent)) +
+ggplot(filter(gapminder, year > 1995), aes(x = gdpPercap, y = lifeExp, color = continent)) +
   geom_point(alpha = 0.5) + 
   ylab("Life Expectancy") + xlab("Population") +
   facet_wrap(~ year, nrow = 2)
 ```
 
+Note that we've dropped the 'data =' and 'mapping =' from the first ggplot command above. As long as your data and aesthetics are in the right order, you don't need to label those arguments each time.
+
 To subset by two variables using `facet_grid`, the formula used is `var1 ~ var2`.  
 
 ```{r, fig.height = 6, fig.width = 9}
-ggplot(gapminder[gapminder$year > 1995, ], aes(x = gdpPercap, y = lifeExp, color = continent)) +
+ggplot(filter(gapminder, year > 1995), aes(x = gdpPercap, y = lifeExp, color = continent)) +
   geom_point(alpha = 0.5) + 
   ylab("Life Expectancy") + xlab("Population") +
   facet_grid(continent ~ year)

@@ -290,6 +290,16 @@ mat2[2, 3] <- 100
 mat2
 ```
 
+Another handy modification is pasting values together:
+
+```{r}
+df3
+df3$z <- paste(df3$x, df3$y, sep = "-") # what does the sep argument do?
+str(df3)
+```
+
+Notice what class the column `z` is - the `paste` function always outputs variables of the character class.
+
 The last thing we will mention is that you can add elements to list obejcts using the `[[` and `$` operators. Consider `l2` from above. 
 
 ```{r}
