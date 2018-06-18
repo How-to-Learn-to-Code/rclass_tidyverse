@@ -3,27 +3,6 @@ Intro to dplyr
 Grace Di Cecco
 June 5, 2018
 
-<!-- Here we style out button a little bit -->
-<style>
-  .showopt {
-    background-color: #004c93;
-    color: #FFFFFF; 
-    width: 100px;
-    height: 20px;
-    text-align: center;
-    vertical-align: middle !important;
-    border-radius: 8px;
-    float:right;
-    }
-
-    .showopt:hover {
-    background-color: #dfe4f2;
-    color: #004c93;
-  }
-
-</style>
-<!--Include script for hiding output chunks-->
-<script src="hideOutput.js"></script>
 ### Using this document
 
 -   Code blocks and R code have a grey background (note, code nested in the text is not highlighted in the pdf version of this document but is a different font).
@@ -125,7 +104,7 @@ ncSpecies <- filter(species, aou %in% counts$aou)
 logcounts <- mutate(counts, logN = log(speciestotal))
 ```
 
-$\\color{blue}{\\text{Exercise 1}}$
+*Exercise 1*
 
 The variable `stateroute` was created by a mutation of `statenum` and `route`. Replicate that mutation to create a new variable called `stateroute2`.
 
@@ -137,7 +116,7 @@ Joining data is a way to merge datasets by common variables. `dplyr` contains fu
 countsSpecies <- left_join(counts, species, by = "aou")
 ```
 
-$\\color{blue}{\\text{Exercise 2}}$
+*Exercise 2*
 
 Read the help documentation for joins in `dplyr`. What different types of joins can be supported? Try out one or two of them with `counts` and `species` to see what happens.
 
@@ -167,7 +146,7 @@ head(nSpp)
 ## 6 Charadriiformes    108
 ```
 
-$\\color{blue}{\\text{Exercise 3}}$
+*Exercise 3*
 
 For each year in `counts`, use `group_by` and `summarize` to find out how many routes were surveyed and the mean number of individuals observed per route.
 
@@ -196,7 +175,7 @@ Using pipes cleaned up our environment by eliminating all those intermediate out
 
 A good rule of thumb to follow: if you are saving the same variable with minor modifications sequentially (e.g. `df1`,`df2`, `df.subset`), you can probably pipe those lines together.
 
-$\\color{blue}{\\text{Exercise 4}}$
+*Exercise 4*
 
 Use pipes to do the following operation, producing just one output table:
 
@@ -204,7 +183,7 @@ For the year 2000, determine which three species (give their English common name
 
 Hint: to reorder the rows of your table by a variable, look at the help documentation for `arrange` from `dplyr`.
 
-$\\color{blue}{\\text{Exercise 5}}$
+*Exercise 5*
 
 For this exercise, you will go through a short analysis and workflow using BBS data. BBS observers record the weather conditions during their observations, since many birds are less active on days that are rainy or windy. Observations that meet survey quality standards are considered more reliable than those that don't. The BBS provides a weather dataset that contains data about whether observations (combinations of route and year) meet their quality standards.
 
