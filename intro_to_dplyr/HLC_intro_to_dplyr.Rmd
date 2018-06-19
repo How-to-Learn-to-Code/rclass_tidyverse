@@ -3,8 +3,7 @@ title: "Intro to dplyr"
 author: "Grace Di Cecco"
 date: "June 5, 2018"
 output:
-  pdf_document:
-    highlight: tango
+  github_document:
   html_document: null
   word_document: default
 ---
@@ -15,29 +14,6 @@ knitr::opts_chunk$set(echo = TRUE, collapse = TRUE)
 library(dplyr)
 library(ggplot2)
 ```
-
-<!-- Here we style out button a little bit -->
-<style>
-  .showopt {
-    background-color: #004c93;
-    color: #FFFFFF; 
-    width: 100px;
-    height: 20px;
-    text-align: center;
-    vertical-align: middle !important;
-    border-radius: 8px;
-    float:right;
-    }
-
-    .showopt:hover {
-    background-color: #dfe4f2;
-    color: #004c93;
-  }
-
-</style>
-
-<!--Include script for hiding output chunks-->
-<script src="hideOutput.js"></script>
 
 ### Using this document
 
@@ -54,10 +30,10 @@ library(ggplot2)
 
 ### Breeding Bird Survey
 
-For this lesson, we'll be using a dataset that comes from the Breeding Bird Survey, which is a long-term population monitoring program for birds in North America run in partnership between the US Geological Survey and the Canadian Wildlife Service that began in 1966 and now consists of over 4000 annual surveys (called "routes", which each consist of 50 point counts) across the US and Canada. The data are freely available online, and today we will make use of a subset of the data consisting of all observations in North Carolina from 2000 to 2017.
+For this lesson, we'll be using a dataset that comes from the Breeding Bird Survey. The BBS is a long-term population monitoring program for birds in North America run in partnership between the US Geological Survey and the Canadian Wildlife Service. It began in 1966 and now consists of over 4000 annual surveys (called "routes", which each consist of 50 point counts) across the US and Canada. The data are freely available online, and today we will make use of a subset of the data consisting of all observations in North Carolina from 2000 to 2017.
 
 ```{r nc map, fig.height = 5, fig.width = 8, echo = F, results = "hide"}
-routes <- read.csv("\\\\Bioark.bio.unc.edu\\hurlbertlab\\Databases\\BBS\\2017\\bbs_routes_20170712.csv") # fix this path
+routes <- read.csv("bbs_routes_20170712.csv") # fix this path
 
 routes$stateroute <- routes$statenum*1000 + routes$route
 
@@ -77,7 +53,7 @@ ncmap + geom_point(data = routes.nc, aes(longitude, latitude, fill = NULL, group
 
 ```
 
-Read in two data tables: one called `counts` containing the observations, and one called `species` containing common names of species. Species are coded in `counts` by a 4-digit identification code (the variable `aou` - these codes were created by the American Ornithologists' Union), and `species` links `aou` to the common name of the species.  
+Read in two data tables: one called `counts` containing the observations, and one called `species` containing common names of species. Species are coded in `counts` by a 4-digit identification code (the variable `aou` - these unique codes were created by the American Ornithologists' Union), and `species` links `aou` to the common name of the species.  
 
 ```{r data}
 counts <- read.csv("bbs_nc_2000-2017.csv", stringsAsFactors = F)
@@ -109,12 +85,12 @@ head(commonnames)
 
 #### Filter
 
-`filter` is similar to the base function `subset`. The first argument is the data, and then one or more criteria to filter by, using `==` or other operators. Additionally, you can filter by multiple criteria in the same line.
+Recall this function from the lesson on plotting. `filter` is similar to the base function `subset`. The first argument is the data, and then one or more criteria to filter by, using `==` or other logical operators. Additionally, you can filter by multiple criteria in the same line. Separating criteria with a comma operates like using `&`. 
 
 ```{r filter}
 counts2002 <- filter(counts, year == 2002)
 
-counts2010 <- filter(counts, year > 2010)
+counts2010 <- filter(counts, year == 2010 | year == 2015)
 
 woodwarblers <- filter(species, sporder == "Passeriformes", family == "Parulidae")
 ```
@@ -138,7 +114,7 @@ ncSpecies <- filter(species, aou %in% counts$aou)
 logcounts <- mutate(counts, logN = log(speciestotal))
 ```
 
-$\color{blue}{\text{Exercise 1}}$
+*Exercise 1*
 
 The variable `stateroute` was created by a mutation of `statenum` and `route`. Replicate that mutation to create a new variable called `stateroute2`.
 
@@ -150,13 +126,13 @@ Joining data is a way to merge datasets by common variables. `dplyr` contains fu
 countsSpecies <- left_join(counts, species, by = "aou")
 ```
 
-$\color{blue}{\text{Exercise 2}}$
+*Exercise 2*
 
-Read the help documentation for joins in `dplyr`. What different types of joins can be supported? Try out three of them with `counts` and `species` to see what happens.
+Read the help documentation for joins in `dplyr`. What different types of joins can be supported? Try out one or two of them with `counts` and `species` to see what happens.
 
 #### Group_by
 
-`group_by` will group a dataset by one or more variables. This doesn't change how the data looks, but changes how the data interacts with other `dplyr` functions and is useful for doing subsequent manipulation of the data, which will become apparent in the section on piping.
+`group_by` will group a dataset by one or more variables. This doesn't change how the data looks, but changes how the data interacts with other `dplyr` functions and is useful for doing subsequent manipulation of the data, which will become apparent in the next section and the section on piping.
 
 ```{r group by}
 groupedSpp <- group_by(species, sporder)
@@ -171,7 +147,7 @@ nSpp <- summarize(groupedSpp, total = n()) # this summary tells us how many spec
 head(nSpp)
 ```
 
-$\color{blue}{\text{Exercise 3}}$
+*Exercise 3*
 
 For each year in `counts`, use `group_by` and `summarize` to find out how many routes were surveyed and the mean number of individuals observed per route.
 
@@ -198,9 +174,9 @@ Note that we no longer had to enter the first argument (the dataset) for the `dp
 
 Using pipes cleaned up our environment by eliminating all those intermediate outputs, and the workflow is easy to read and understand quickly. 
 
-A good rule of thumb to follow: if you are saving the same variable with minor modifications sequentially (i.e. `df1`,`df2`, `df.subset`), you can probably pipe those lines together.
+A good rule of thumb to follow: if you are saving the same variable with minor modifications sequentially (e.g. `df1`,`df2`, `df.subset`), you can probably pipe those lines together.
 
-$\color{blue}{\text{Exercise 4}}$
+*Exercise 4*
 
 Use pipes to do the following operation, producing just one output table:
 
@@ -219,10 +195,9 @@ route.obs <- counts %>%
 head(route.obs) # Ans: Eastern Towhee, Indigo Bunting, Tufted Titmouse
 ```
 
+*Exercise 5*
 
-$\color{blue}{\text{Exercise 5}}$
-
-For this exercise, you will go through a short analysis and workflow using BBS data. BBS observers record the weather conditions during their observations, since many birds are less active during days that are rainy or windy. Observations that meet survey quality standards are considered more reliable than those that don't. The BBS provides a weather dataset that contains data about whether observations (combinations of route and year) meet their quality standards. 
+For this exercise, you will go through a short analysis and workflow using BBS data. BBS observers record the weather conditions during their observations, since many birds are less active on days that are rainy or windy. Observations that meet survey quality standards are considered more reliable than those that don't. The BBS provides a weather dataset that contains data about whether observations (combinations of route and year) meet their quality standards. 
 
 Read in the weather table, found in the lesson repo. Create a new column in `weather` for `stateroute`, so the observations can be matched to observations in `counts`. The quality standards variable is called `runtype` in `weather` (`runtype` = 1 indicates a good quality observation). Filter `weather` to remove observations that don't meet the BBS quality standards, and then remove those observations from `counts` as well. 
 

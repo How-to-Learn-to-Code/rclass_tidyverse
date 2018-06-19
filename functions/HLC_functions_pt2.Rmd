@@ -3,8 +3,7 @@ title: "Functions Part 2: Control Statements"
 author: "Amy Pomeroy, Dayne Filer, & Sara Taylor"
 date: "May 30, 2018"
 output: 
-  pdf_document:
-    highlight: tango
+  github_document:
   html_document: null
 ---
 
@@ -13,30 +12,6 @@ output:
 knitr::opts_chunk$set(echo = TRUE, collapse = TRUE)
 set.seed(1234)
 ```
-
-<!-- Here we style out button a little bit -->
-<style>
-  .showopt {
-    background-color: #004c93;
-    color: #FFFFFF; 
-    width: 100px;
-    height: 20px;
-    text-align: center;
-    vertical-align: middle !important;
-    border-radius: 8px;
-    float:right;
-    }
-
-    .showopt:hover {
-    background-color: #dfe4f2;
-    color: #004c93;
-  }
-
-</style>
-
-<!--Include script for hiding output chunks-->
-<script src="hideOutput.js"></script>
-
 
 ### Using this document
 * Code blocks and R code have a grey background (note, code nested in the text is not highlighted in the pdf version of this document but is a different font).
@@ -96,7 +71,8 @@ if (y < 100) {
 }
 ```
 
-__$\color{blue}{\text{Exercise 1}}$__
+*Exercise 1*
+
 Write a for loop that prints "primer is longer than 24 bases" if the primer is longer than 20 bases, "primer is exactly 24 bases" if the primer is 20 bases, and "primer is shorter than 24 bases" if the primer is shorter than 24 bases.
 
 ### Combining if/else statments
@@ -142,11 +118,13 @@ if (y < 100 && y > 10) {
 }
 ```
 
-__$\color{blue}{\text{Exercise 2}}$__
+*Exercise 2*
+
 Write a for loop that prints "primer is between 20 and 24 bases" if the primer has 20 or more bases and 24 or fewer bases. 
 
-__$\color{blue}{\text{Exercise 3}}$__
-Write a script that calculates the melting temperature (Tm) of each primer. For primers that are 13 bases or less the formula for Tm in Celcius is: $Tm= (A+T) * 2 + (G+C) * 4$, where A, T, G, and C represent the number of each base.  For primers that are 14 bases or more the formula for Tm in Celcius is: $Tm= 64.9 +41*(G+C-16.4)/(A+T+G+C)$. 
+*Exercse 3*
+
+Write a script that calculates the melting temperature (Tm) of each primer. For primers that are 13 bases or less the formula for Tm in Celcius is: Tm= 2(A+T) + 4(G+C), where A, T, G, and C represent the number of each base.  For primers that are 14 bases or more the formula for Tm in Celcius is: Tm= 64.9 + 41(G+C-16.4)/(A+T+G+C). 
 
 ### While statements
 The final control statement we will discuss are while statements. Although while statements are rarely used in R, they are often used in other languages and are good to understand. The while syntax in R is:
@@ -180,7 +158,8 @@ m <- matrix(rnorm(20), nrow = 4, ncol = 5)
 apply(m, MARGIN = 2, sum)
 ```
 
-__$\color{blue}{\text{Exercise 4}}$__
+*Exercse 4*
+
 Use `apply` to determine the length of each primer in the dataset `primers`. Try to find the function for counting the number of characters in a string on your own using the Help tab in RStudio or Google.
 
 ### Combining control statements
