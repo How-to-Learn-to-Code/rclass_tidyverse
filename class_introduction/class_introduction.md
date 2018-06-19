@@ -9,6 +9,10 @@ Login to Github
 
 `install.packages("tidyverse")`
 
+``` r
+install.packages("tidyverse")
+```
+
 ### Terminal:
 
 `git config --global user.name <User>`
@@ -56,25 +60,25 @@ library(ggplot2)
 ggplot(data = titanic, aes(x = Class, y = Freq)) # create the plotting space
 ```
 
-![](class_introduction_files/figure-markdown_github/unnamed-chunk-3-1.png)
+![](class_introduction_files/figure-markdown_github/unnamed-chunk-4-1.png)
 
 ``` r
 ggplot(data = titanic, aes(x = Class, y = Freq)) +
     geom_col()
 ```
 
-![](class_introduction_files/figure-markdown_github/unnamed-chunk-4-1.png)
+![](class_introduction_files/figure-markdown_github/unnamed-chunk-5-1.png)
 
 ``` r
 ggplot(titanic, aes(Class, Freq)) +
     geom_col(aes(fill = Survived))
 ```
 
-![](class_introduction_files/figure-markdown_github/unnamed-chunk-5-1.png)
+![](class_introduction_files/figure-markdown_github/unnamed-chunk-6-1.png)
 
 ``` r
 ggplot(titanic, aes(Class, Freq)) +
     geom_col(aes(fill = Survived), position = "fill")
 ```
 
-![](class_introduction_files/figure-markdown_github/unnamed-chunk-6-1.png)
+![](class_introduction_files/figure-markdown_github/unnamed-chunk-7-1.png)

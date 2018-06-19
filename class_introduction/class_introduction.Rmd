@@ -9,6 +9,11 @@ output: github_document
 ### Clone student repo to Rstudio.cloud
  `install.packages("tidyverse")`
  
+```{r, eval=F}
+install.packages("tidyverse")
+```
+
+ 
 ### Terminal:
   `git config --global user.name <User>`
   
@@ -26,9 +31,7 @@ output: github_document
  - push changes to github
  - Check github to see output
 
-
 # Data in R
-
 ```{r}
 titanic <- as.data.frame(Titanic)
 head(titanic)
