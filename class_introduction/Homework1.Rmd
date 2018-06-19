@@ -1,0 +1,43 @@
+---
+title: "Homework 1"
+output: html_notebook
+---
+
+## Read sections 3.1 - 3.4 of R for Data Science
+[Here](http://r4ds.had.co.nz/data-visualisation.html)
+
+## Complete Exercise 3.3.1
+
+Be sure to render your document as a `github_document` (set `output:
+github_document`) and submit a github issue titled "Homework 1" to your
+repository when you are done. Tag `@snystrom` and `@gdicecco`.
+
+**You must attempt a majority of the homework to get credit for this course**
+
+Cite any sources used (including links to StackOverflow, blog posts, etc.). Feel
+free to look at your other classmates work, but **cite them** if you do! Answers
+that don't work are better than no answer at all! We can't give feedback on
+nonexistant code.
+
+```{r, setup}
+library(ggplot2)
+```
+
+### Question 1
+Fix this plot so the points are blue
+
+```{r}
+ggplot(mpg, aes(displ, hwy)) +
+  geom_point(aes(color = "blue"))
+```
+
+### Question 2
+
+### Question 3
+
+### Question 4
+
+### Question 5
+
+### Question 6
+
