@@ -52,7 +52,17 @@ Dimensions of output from code chunks, such as plots, can be manipulated using a
 ``` r
 # Don't worry too much about the code used to create the figure - this will all be discussed more thoroughly below.
 library(ggplot2)
-ggplot(data = gapminder[gapminder$country == "China", ],
+library(dplyr)
+## Warning: package 'dplyr' was built under R version 3.4.2
+## 
+## Attaching package: 'dplyr'
+## The following objects are masked from 'package:stats':
+## 
+##     filter, lag
+## The following objects are masked from 'package:base':
+## 
+##     intersect, setdiff, setequal, union
+ggplot(data = filter(gapminder, country == "China"),
        mapping = aes(x = year, y = lifeExp, color = country)) +
   geom_line(cex = 1) + 
   theme(legend.position = "none") + xlab("Year") + ylab("Life expectancy")
@@ -70,13 +80,11 @@ library(tidyverse)
 ## Warning: package 'tidyverse' was built under R version 3.4.2
 ## ── Attaching packages ────────────────────────────────── tidyverse 1.2.1 ──
 ## ✔ tibble  1.4.2     ✔ purrr   0.2.4
-## ✔ tidyr   0.7.2     ✔ dplyr   0.7.4
-## ✔ readr   1.1.1     ✔ stringr 1.2.0
-## ✔ tibble  1.4.2     ✔ forcats 0.3.0
+## ✔ tidyr   0.7.2     ✔ stringr 1.2.0
+## ✔ readr   1.1.1     ✔ forcats 0.3.0
 ## Warning: package 'tibble' was built under R version 3.4.3
 ## Warning: package 'tidyr' was built under R version 3.4.2
 ## Warning: package 'purrr' was built under R version 3.4.2
-## Warning: package 'dplyr' was built under R version 3.4.2
 ## Warning: package 'forcats' was built under R version 3.4.3
 ## ── Conflicts ───────────────────────────────────── tidyverse_conflicts() ──
 ## ✖ dplyr::filter() masks stats::filter()
@@ -91,9 +99,9 @@ The structure of `ggplot` code relies on a specific grammar. Plots start out wit
 `geoms` are used to add plot layers such as points, lines, or bars (e.g. points = `geom_point`; lines = `geom_line`). Mapping from the `ggplot` function is passed to `geoms`. Local aesthetics can also be placed within `geoms` that won't apply to any other features of the plot.
 
 ``` r
-# This plot subsets the gapminder data to just include the continent of Asia
+# This plot subsets the gapminder data to just include China
 # We'll use a filtering function from a package called dplyr, which we'll talk about more in the next lesson
-library(dplyr)
+
 ggplot(data = filter(gapminder, country == "China"), 
        mapping = aes(x = year, y = pop)) + 
   geom_point() +
@@ -133,11 +141,11 @@ ggplot(data = filter(gapminder, country == "China"),
 
 ![](HLC_intro_to_ggplot_files/figure-markdown_github/unnamed-chunk-6-1.png)
 
-Color, linetype, and shape can be assigned to individual `geoms` manually, or they can be mapped to a variable. By assigning color to the variable `country` in `aes`, `ggplot` will automatically assign a color to each value in the variable and create a legend:
+Color, linetype, and shape can be locally assigned to individual `geoms` manually (as we've done in the last few examples), or they can be mapped to a variable. By assigning color to the variable `country` in `aes`, `ggplot` will automatically assign a color to each value in the variable and create a legend:
 
 ``` r
 
-ggplot(data = filter(gapminder, country == "China"), 
+ggplot(data = filter(gapminder, continent == "Asia"), 
        mapping = aes(x = year, y = pop, color = country)) +
   geom_point() + 
   geom_line() +
