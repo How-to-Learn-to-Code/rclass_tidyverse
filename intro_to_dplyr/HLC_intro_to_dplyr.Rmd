@@ -13,6 +13,7 @@ knitr::opts_chunk$set(echo = TRUE, collapse = TRUE)
 
 library(dplyr)
 library(ggplot2)
+library(maps)
 ```
 
 ### Using this document
@@ -56,8 +57,8 @@ ncmap + geom_point(data = routes.nc, aes(longitude, latitude, fill = NULL, group
 Read in two data tables: one called `counts` containing the observations, and one called `species` containing common names of species. Species are coded in `counts` by a 4-digit identification code (the variable `aou` - these unique codes were created by the American Ornithologists' Union), and `species` links `aou` to the common name of the species.  
 
 ```{r data}
-counts <- read.csv("bbs_nc_2000-2017.csv", stringsAsFactors = F)
-species <- read.csv("bbs_species_20170712.csv", stringsAsFactors = F)
+counts <- read.csv("https://raw.githubusercontent.com/gdicecco/HLC-data-public/master/bbs_nc_2000-2017.csv", stringsAsFactors = F)
+species <- read.csv("https://raw.githubusercontent.com/gdicecco/HLC-data-public/master/bbs_species_20170712.csv", stringsAsFactors = F)
 ```
 
 Use `head` to look at the two data tables. You'll notice that `counts` contains numerical codes for country, state, route, and a variable called `stateroute`, which is a combination of the state number and route number and is a unique identifier for each route. There are also columns for year, species (`aou`), the total number of point counts out of 50 the species was observed at (`stoptotal`), and the total number of individuals observed (`speciestotal`).
@@ -199,7 +200,13 @@ head(route.obs) # Ans: Eastern Towhee, Indigo Bunting, Tufted Titmouse
 
 For this exercise, you will go through a short analysis and workflow using BBS data. BBS observers record the weather conditions during their observations, since many birds are less active on days that are rainy or windy. Observations that meet survey quality standards are considered more reliable than those that don't. The BBS provides a weather dataset that contains data about whether observations (combinations of route and year) meet their quality standards. 
 
-Read in the weather table, found in the lesson repo. Create a new column in `weather` for `stateroute`, so the observations can be matched to observations in `counts`. The quality standards variable is called `runtype` in `weather` (`runtype` = 1 indicates a good quality observation). Filter `weather` to remove observations that don't meet the BBS quality standards, and then remove those observations from `counts` as well. 
+Read in the weather table, found in the lesson repo. 
+
+```{r}
+weather <- read.csv("https://raw.githubusercontent.com/gdicecco/HLC-data-public/master/bbs_weather_20170712.csv", stringsAsFactors = F)
+```
+
+Create a new column in `weather` for `stateroute`, so the observations can be matched to observations in `counts`. The quality standards variable is called `runtype` in `weather` (`runtype` = 1 indicates a good quality observation). Filter `weather` to remove observations that don't meet the BBS quality standards, and then remove those observations from `counts` as well. 
 
 Recall (or refer back to) the previous lesson on `ggplot`, and make the following plots to explore the BBS data for North Carolina:
 
