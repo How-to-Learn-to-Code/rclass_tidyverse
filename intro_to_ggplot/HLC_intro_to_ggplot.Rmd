@@ -204,7 +204,7 @@ ggplot(filter(gapminder, year > 1995), aes(x = gdpPercap, y = lifeExp, color = c
 
 To check your understanding of `ggplot` and topics covered in this lesson, replicate the plot below of data from the Gapminder dataset. Make use of your resources in this document, the `ggplot2` CRAN documentation, R for Data Science, and Google. 
 
-Hint: this plot uses a subset of the Gapminder data, a linear trendline, and a theme other than the default. 
+Hint: this plot uses a subset of the Gapminder data and a linear trendline. 
 
 ```{r gapminder plot, fig.height= 4, fig.width= 9, echo = F}
 ggplot(gapminder[gapminder$year == 1952 | gapminder$year == 2007, ], aes(x = gdpPercap, y = lifeExp)) + 
@@ -212,8 +212,7 @@ ggplot(gapminder[gapminder$year == 1952 | gapminder$year == 2007, ], aes(x = gdp
   geom_smooth(method = "lm", se = FALSE, color = "black", lty = 2) +
   scale_x_log10() + 
   ylab("Life Expectancy") + xlab("GDP per capita") + 
-  guides(color = guide_legend("Continent"), size = guide_legend("Population")) +
-  theme_bw()
+  guides(color = guide_legend("Continent"), size = guide_legend("Population"))
 ```
 
 Today we've just scratched the surface of `ggplot2` and complementary packages such as `forcats`, so we encourage you to make use of the additional resources linked in this lesson and others to learn more.
