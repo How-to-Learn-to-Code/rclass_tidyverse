@@ -26,8 +26,8 @@ For this lesson, we'll be using a dataset that comes from the Breeding Bird Surv
 Read in two data tables: one called `counts` containing the observations, and one called `species` containing common names of species. Species are coded in `counts` by a 4-digit identification code (the variable `aou` - these unique codes were created by the American Ornithologists' Union), and `species` links `aou` to the common name of the species.
 
 ``` r
-counts <- read.csv("bbs_nc_2000-2017.csv", stringsAsFactors = F)
-species <- read.csv("bbs_species_20170712.csv", stringsAsFactors = F)
+counts <- read.csv("https://raw.githubusercontent.com/gdicecco/HLC-data-public/master/bbs_nc_2000-2017.csv", stringsAsFactors = F)
+species <- read.csv("https://raw.githubusercontent.com/gdicecco/HLC-data-public/master/bbs_species_20170712.csv", stringsAsFactors = F)
 ```
 
 Use `head` to look at the two data tables. You'll notice that `counts` contains numerical codes for country, state, route, and a variable called `stateroute`, which is a combination of the state number and route number and is a unique identifier for each route. There are also columns for year, species (`aou`), the total number of point counts out of 50 the species was observed at (`stoptotal`), and the total number of individuals observed (`speciestotal`).
@@ -38,16 +38,11 @@ Use `head` to look at the two data tables. You'll notice that `counts` contains 
 
 ``` r
 library(tidyverse)
-## Warning: package 'tidyverse' was built under R version 3.4.2
-## ── Attaching packages ────────────────────────────────── tidyverse 1.2.1 ──
-## ✔ tibble  1.4.2     ✔ purrr   0.2.4
-## ✔ tidyr   0.7.2     ✔ stringr 1.2.0
+## ── Attaching packages ─────────────────────────────────────────────────────────────────────────────────────── tidyverse 1.2.1 ──
+## ✔ tibble  1.4.2     ✔ purrr   0.2.5
+## ✔ tidyr   0.8.1     ✔ stringr 1.3.1
 ## ✔ readr   1.1.1     ✔ forcats 0.3.0
-## Warning: package 'tibble' was built under R version 3.4.3
-## Warning: package 'tidyr' was built under R version 3.4.2
-## Warning: package 'purrr' was built under R version 3.4.2
-## Warning: package 'forcats' was built under R version 3.4.3
-## ── Conflicts ───────────────────────────────────── tidyverse_conflicts() ──
+## ── Conflicts ────────────────────────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
 ## ✖ dplyr::filter() masks stats::filter()
 ## ✖ dplyr::lag()    masks stats::lag()
 ## ✖ purrr::map()    masks maps::map()
@@ -187,7 +182,13 @@ Hint: to reorder the rows of your table by a variable, look at the help document
 
 For this exercise, you will go through a short analysis and workflow using BBS data. BBS observers record the weather conditions during their observations, since many birds are less active on days that are rainy or windy. Observations that meet survey quality standards are considered more reliable than those that don't. The BBS provides a weather dataset that contains data about whether observations (combinations of route and year) meet their quality standards.
 
-Read in the weather table, found in the lesson repo. Create a new column in `weather` for `stateroute`, so the observations can be matched to observations in `counts`. The quality standards variable is called `runtype` in `weather` (`runtype` = 1 indicates a good quality observation). Filter `weather` to remove observations that don't meet the BBS quality standards, and then remove those observations from `counts` as well.
+Read in the weather table, found in the lesson repo.
+
+``` r
+weather <- read.csv("https://raw.githubusercontent.com/gdicecco/HLC-data-public/master/bbs_weather_20170712.csv", stringsAsFactors = F)
+```
+
+Create a new column in `weather` for `stateroute`, so the observations can be matched to observations in `counts`. The quality standards variable is called `runtype` in `weather` (`runtype` = 1 indicates a good quality observation). Filter `weather` to remove observations that don't meet the BBS quality standards, and then remove those observations from `counts` as well.
 
 Recall (or refer back to) the previous lesson on `ggplot`, and make the following plots to explore the BBS data for North Carolina:
 
