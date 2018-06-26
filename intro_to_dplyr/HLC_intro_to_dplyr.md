@@ -108,7 +108,7 @@ logcounts <- mutate(counts, logN = log(speciestotal))
 
 *Exercise 1*
 
-The variable `stateroute` was created by a mutation of `statenum` and `route`. Replicate that mutation to create a new variable called `stateroute2`.
+The variable `stateroute` in `counts` was created by a mutation of `statenum` and `route`. Replicate that mutation to create a new variable called `stateroute2`.
 
 #### Joins
 
@@ -150,7 +150,7 @@ head(nSpp)
 
 *Exercise 3*
 
-For each year in `counts`, use `group_by` and `summarize` to find out how many routes were surveyed and the mean number of individuals observed per route.
+For each year in `counts`, use `group_by` and `summarize` to find out how many routes were surveyed and the mean number of individuals observed across all routes.
 
 ### Pipes in R
 
@@ -196,9 +196,9 @@ weather <- read.csv("https://raw.githubusercontent.com/gdicecco/HLC-data-public/
                     stringsAsFactors = F)
 ```
 
-Create a new column in `weather` for `stateroute`, so the observations can be matched to observations in `counts`. The quality standards variable is called `runtype` in `weather` (`runtype` = 1 indicates a good quality observation). Filter `weather` to remove observations that don't meet the BBS quality standards, and then remove those observations from `counts` as well.
+Create a new column in `weather` for `stateroute`, so the observations can be matched to observations in `counts`. The quality standards variable is called `runtype` in `weather` (`runtype` = 1 indicates a good quality observation). Filter `weather` to remove observations that don't meet the BBS quality standards and are within the time window of 2000 - 2017. Use that table to remove unreliable observations from `counts`.
 
-Recall (or refer back to) the previous lesson on `ggplot`, and make the following plots to explore the BBS data for North Carolina:
+Recall (or refer back to) the previous lesson on `ggplot`, and make the following plots to explore the BBS data for North Carolina with your filtered `counts` data:
 
--   A bar plot of the total number of species observed on each route across years
--   A scatterplot showing the relationship between number of species and number of individuals (each point should be one observation of route/year)
+1.  Create a line plot of the total number of individual birds observed per year across North Carolina
+2.  First, determine how many species and how many total individuals were observed at each route each year. Then, create a scatterplot showing how the number of species observed is related to the number of individuals (number of species vs. number of individuals), where each point is a unique observation of route/year.
