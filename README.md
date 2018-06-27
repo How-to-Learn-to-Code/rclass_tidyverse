@@ -1,5 +1,5 @@
 # Introduction to R Lessons
-## Spencer Nystrom & Grace DiCecco
+## Spencer Nystrom & Grace Di Cecco
 
 ### Tentative schedule:
 |Day | Subject | Homework |
