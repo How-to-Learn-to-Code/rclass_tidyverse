@@ -152,6 +152,13 @@ head(nSpp)
 
 For each year in `counts`, use `group_by` and `summarize` to find out how many routes were surveyed and the mean number of individuals observed across all routes.
 
+Hint: To get the number of routes surveyed per year from counts, group by year and then use `length(unique(stateroute))` to summarize. `unique` returns the unique values in a vector (in this case, unique values of `stateroute` for each year), and `length` returns the length of a vector (here, the length of the vector of unique `stateroute` values, telling us how many unique `stateroute` values there are each year in `counts`).
+
+``` r
+countsByYears <- group_by(counts, year)
+nroutes <- summarize(countsByYears, nroutes = length(unique(stateroute)))
+```
+
 ### Pipes in R
 
 The pipe operator, `%>%`, is originally from the package `magrittr`, which is a dependency of dplyr. So, loading the tidyverse will allow you to make use of this operator as well. Pipes take the output of one function and pass it to another function. Pipes eliminate common issues that arise when dealing with data in R and allow you to seamlessly connect `dplyr` operations.
