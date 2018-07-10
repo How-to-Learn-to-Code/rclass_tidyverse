@@ -1,0 +1,26 @@
+---
+title: "dplyr II"
+output: github_document
+---
+
+```{r}
+library(gapminder)
+```
+
+```{r, eval=F, include=F}
+dir <- "gapminder_data_files"
+unlink(dir, recursive = T)
+dir.create(dir)
+
+gapminder %>% 
+  split(.$continent) %>% 
+  map2(., names(.), ~{
+    
+    data <- .x 
+    name <- .y 
+    
+    path <- glue::glue("{dir}/{name}.csv")
+    readr::write_tsv(data, path = path)
+  })
+```
+
