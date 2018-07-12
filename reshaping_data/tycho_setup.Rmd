@@ -86,6 +86,7 @@ state.name
 
 ```{r}
 tycho %>% 
+  dplyr::filter(disease == "MEASLES") %>% 
   ggplot(aes(epi_week, incidence_per_100000)) +
     geom_line(aes(color = disease))
 ```

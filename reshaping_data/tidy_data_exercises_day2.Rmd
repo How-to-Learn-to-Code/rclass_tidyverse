@@ -1,0 +1,19 @@
+---
+title: "Tidy Data day 2"
+output: github_document
+---
+
+# Day2:
+
+# `tidyr` package for more complicated data manipulation
+
+```{r}
+tycho_wide_timeDisease_link <- "https://raw.githubusercontent.com/UNC-HLC-R-Intro/lessons/import/data/tycho_wide_time-disease.csv?token=AQdxTfHxKKtnxxzNvQeWm5VXTBq9gZ0-ks5bUKzQwA%3D%3D"
+```
+
+
+```{r}
+n <- 199001
+gsub(".{2}$", "", n)
+gsub("(\\d+)(.{2}$)", "\\1_\\2", n)
+```
