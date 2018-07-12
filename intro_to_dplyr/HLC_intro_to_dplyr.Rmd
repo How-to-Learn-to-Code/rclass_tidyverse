@@ -163,9 +163,16 @@ head(nSpp)
 
 For each year in `counts`, use `group_by` and `summarize` to find out how many routes were surveyed and the mean number of individuals observed across all routes.
 
+Hint: To get the number of routes surveyed per year from counts, group by year and then use `length(unique(stateroute))` to summarize. `unique` returns the unique values in a vector (in this case, unique values of `stateroute` for each year), and `length` returns the length of a vector (here, the length of the vector of unique `stateroute` values, telling us how many unique `stateroute` values there are each year in `counts`).
+
+```{r hint e3}
+countsByYears <- group_by(counts, year)
+nroutes <- summarize(countsByYears, nroutes = length(unique(stateroute)))
+```
+
 ```{r e3 answer, include = F}
 counts.years <- group_by(counts, year)
-nroutes <- summarize(counts.years, total.routes = n(), meanS = mean(speciestotal))
+nroutes <- summarize(counts.years, total.routes = length(unique(stateroute)), meanS = mean(speciestotal))
 ```
 
 ### Pipes in R
