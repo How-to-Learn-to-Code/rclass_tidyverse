@@ -8,7 +8,8 @@
 |2 & 3  |plotting (& factors) | [Homework 2](https://github.com/UNC-HLC-R-Intro/lessons/blob/master/intro_to_ggplot/HLC_intro_to_ggplot.md) |
 |4 & 5  |dplyr & pipes |[Homework 3](https://github.com/UNC-HLC-R-Intro/lessons/blob/master/intro_to_dplyr/HLC_intro_to_dplyr.md) |
 |6  |reshaping data |[Exercise 1](https://github.com/UNC-HLC-R-Intro/lessons/blob/master/reshaping_data/tidy_data_exercises_day1.md)|
-|7  |data import & cleaning |**TBD** |
-|8  |functions I |**TBD** |
-|9  |functions II |**TBD** |
-|10 - 12 | **TBD** |**TBD** |
+|7  |reshaping data 2|[Exercise 2](https://github.com/UNC-HLC-R-Intro/lessons/blob/master/reshaping_data/tidy_data_exercises_day2.md)|
+|8  |data import & cleaning |**TBD** |
+|9  |functions I |**TBD** |
+|10  |functions II |**TBD** |
+|11 - 12 | **TBD** |**TBD** |

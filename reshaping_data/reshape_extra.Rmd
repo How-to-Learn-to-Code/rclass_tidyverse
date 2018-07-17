@@ -1,0 +1,11 @@
+---
+title: "Extra"
+output: html_notebook
+---
+
+# BONUS: Regular expressions (we'll talk about this more later, so don't worry if this is confusing)
+```{r}
+n <- 199001
+gsub(".{2}$", "", n)
+gsub("(\\d+)(.{2}$)", "\\1_\\2", n)
+```

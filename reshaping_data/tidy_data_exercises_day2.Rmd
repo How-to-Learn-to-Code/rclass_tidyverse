@@ -3,17 +3,111 @@ title: "Tidy Data day 2"
 output: github_document
 ---
 
+# Homework Solution:
+
+```{r, echo=F}
+tycho_timeOnly_link <- "https://raw.githubusercontent.com/UNC-HLC-R-Intro/lessons/import/data/tycho_wide_timeOnly.csv?token=AQdxTdVbMVfOF85YawF5KGZrS_i0xTxDks5bUKzswA%3D%3D"
+
+tycho <- readr::read_csv(tycho_timeOnly_link)
+```
+
+Specify names of melted columns with reshape
+```{r}
+tycho_melt <- tycho %>% 
+  reshape2::melt(id.vars = c("state", "disease"), value.name = "incidence", variable.name = "yearweek") 
+```
+
+Convert yearweek from **factor** to **numeric**.
+
+With `as.character(yearweek) %>% as.numeric`
+
+You have to do it this way because R sees factors as numbers first unless you say otherwise. 
+
+`yearweek %>% as.numeric` would output `1,2,3,4,5...` because these are the factor **levels**
+
+The measles vaccine came out in 1960, so that yearweek code is 196001
+```{r}
+tycho_melt %>% 
+  dplyr::filter(disease == "MEASLES") %>% 
+  dplyr::mutate(yearweek = as.character(yearweek) %>% as.numeric) %>% 
+  ggplot(aes(yearweek, incidence)) +
+    geom_line(aes(group = disease)) +
+    ggtitle("Measles over time in USA") +
+    geom_vline(xintercept = 196001, color = "red")
+```
+
+
 # Day2:
 
-# `tidyr` package for more complicated data manipulation
+Today we will work with the same data, but in a slightly more difficult format.
+
+
 
 ```{r}
 tycho_wide_timeDisease_link <- "https://raw.githubusercontent.com/UNC-HLC-R-Intro/lessons/import/data/tycho_wide_time-disease.csv?token=AQdxTfHxKKtnxxzNvQeWm5VXTBq9gZ0-ks5bUKzQwA%3D%3D"
 ```
 
+```{r}
+tycho <- readr::read_csv(tycho_wide_timeDisease_link)
+```
+
+# `tidyr` package for more complicated data manipulation
 
 ```{r}
-n <- 199001
-gsub(".{2}$", "", n)
-gsub("(\\d+)(.{2}$)", "\\1_\\2", n)
+tycho %>% 
+  head
 ```
+
+The goal of today is to reproduce the above plot from this more complicated data
+structure. We'll be using another package from the `tidyverse` called `tidyr`
+([documentation](https://tidyr.tidyverse.org/reference/index.html))
+
+One good way to think about reshaping data is to work *backwards* from what you want, and come up with the steps to get to the end.
+
+We want our data to look like this:
+```{r, echo=F}
+library(reshape2)
+tycho %>% 
+ melt() %>% head %>% 
+ tidyr::separate(variable, c("yearweek", "disease"))
+```
+
+So we should make data that first looks like this:
+```{r, echo=F}
+tycho %>% 
+  melt() %>% head
+```
+
+And then separate the `variable` column into two new columns, `yearweek` and `disease`.
+
+It is very easy to separate two values from eachother if they are delimited by a separator character (in this case "_").
+
+The `tidyr` package provides several functions for manupulating data frames that are in tidy format.
+
+For more reading: 
+- [R for Data Science Chapter](http://r4ds.had.co.nz/tidy-data.html)
+
+- [Tidyr tutorial](https://www.r-bloggers.com/data-manipulation-with-tidyr/amp/)
+
+
+## Exercise 1
+Melt `tycho` to make it tidy.
+
+```{r, echo = F}
+tycho %>% 
+  melt(value.name = "incidence")
+```
+
+## Exercise 2
+
+Read the documentation for the `tidyr` function `separate`. 
+Create the new columns `yearweek` and `disease` from the melted data above.
+
+```{r, echo = F}
+tycho %>% 
+  melt(value.name = "incidence") %>% 
+  separate(variable, c("yearweek", "disease")) %>% 
+  head
+```
+
+
