@@ -8,7 +8,6 @@ library(tidyverse)
 library(reshape2)
 ```
 
-
 # Homework Solution:
 
 ```{r, echo=F}
@@ -46,7 +45,6 @@ tycho_melt %>%
 # Day2:
 
 Today we will work with the same data, but in a slightly more difficult format.
-
 
 
 ```{r}
