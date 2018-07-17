@@ -3,6 +3,12 @@ title: "Tidy Data day 2"
 output: github_document
 ---
 
+```{r setup}
+library(tidyverse)
+library(reshape2)
+```
+
+
 # Homework Solution:
 
 ```{r, echo=F}
