@@ -7,10 +7,39 @@ output: github_document
 library(tidyverse)
 ```
 
+Today we will discuss how to import raw data into R.
+
 ```{r}
 # Use Shift+Click to follow this link to see the raw data
-tycho_link <- "https://raw.githubusercontent.com/UNC-HLC-R-Intro/lessons/master/data/import_tycho.csv?token=AQdxTWmWuIeWV6pCC87vKOJQBiL5lbnTks5bWd9iwA%3D%3D"
-tycho <- read.csv(tycho_link)
-tycho %>% head
+tycho_link <- "https://raw.githubusercontent.com/UNC-HLC-R-Intro/lessons/import/data/import_tycho_simple.csv?token=AQdxTW69CSAGG6JPYwAYDEZ3ze4-AHWRks5bWeAAwA%3D%3D"
+tycho_base <- read.csv(tycho_link)
+tycho_base %>% head
+```
+
+
+```{r}
+tycho_readr <- read_csv(tycho_link)
+tycho_readr %>% head
+```
+
+## Exercise 1: base R vs. readr
+What are the differences between `tycho_base` and `tycho_readr`?
+- What is the structure of the data?
+- Are the columns the same type?
+- Which function is faster?
+
+## Exercise 2:
+Look at this raw data on github and import it using `readr`.
+
+What happens?
+
+Read `?read_csv` and try to find a way to fix the problem.
+```{r}
+tycho_link_2 <- "https://raw.githubusercontent.com/UNC-HLC-R-Intro/lessons/import/data/import_tycho.csv?token=AQdxTWPiN68L7-gEprtUcHGm257fEeK-ks5bWeERwA%3D%3D"
+```
+
+```{r, include=F, echo=F}
+tycho2 <- readr::read_csv(tycho_link_2, comment = "#", guess_max = 5)
+head(tycho2)
 ```
 
