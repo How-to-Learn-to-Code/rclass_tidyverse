@@ -117,16 +117,23 @@ tycho_readr %>% head
 
 ## Exercise 1: base R vs. readr
 
-What are the differences between `tycho_base` and `tycho_readr`? - What
-is the structure of the data? - Are the columns the same type? - Which
-function is faster?
+What are the differences between `tycho_base` and `tycho_readr`?
+
+  - What is the structure of the data?
+
+  - Are the columns the same type?
+
+  - Which function is faster?
 
 ## Exercise 2:
 
   - Look at this raw data on github and import it using `readr`.
+
   - What happens?
+
   - What could be a way to fix this problem? (Don’t worry about the code
     solution yet, brainstorm with a partner)
+
   - Can you find a setting in `?read_csv` that might implement your
     solution(s)?
 
@@ -161,11 +168,11 @@ names <- c("Alice", "Bob", "Carol", "Dennis", "Frank", "George")
 
 <!--html_preserve-->
 
-<div id="htmlwidget-acf246606e10de899912" class="str_view html-widget" style="width:960px;height:100%;">
+<div id="htmlwidget-8e0ec554cba42788b622" class="str_view html-widget" style="width:960px;height:100%;">
 
 </div>
 
-<script type="application/json" data-for="htmlwidget-acf246606e10de899912">{"x":{"html":"<ul>\n  <li>Alice<\/li>\n  <li>Bob<\/li>\n  <li>Carol<\/li>\n  <li>De<span class='match'>n<\/span><span class='match'>n<\/span>is<\/li>\n  <li>Fra<span class='match'>n<\/span>k<\/li>\n  <li>George<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<script type="application/json" data-for="htmlwidget-8e0ec554cba42788b622">{"x":{"html":"<ul>\n  <li>Alice<\/li>\n  <li>Bob<\/li>\n  <li>Carol<\/li>\n  <li>De<span class='match'>n<\/span><span class='match'>n<\/span>is<\/li>\n  <li>Fra<span class='match'>n<\/span>k<\/li>\n  <li>George<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 
 <!--/html_preserve-->
 
@@ -173,11 +180,11 @@ names <- c("Alice", "Bob", "Carol", "Dennis", "Frank", "George")
 
 <!--html_preserve-->
 
-<div id="htmlwidget-465a5290c4d336c4d7dd" class="str_view html-widget" style="width:960px;height:100%;">
+<div id="htmlwidget-1fe7a9c4d3de6dd0a4dd" class="str_view html-widget" style="width:960px;height:100%;">
 
 </div>
 
-<script type="application/json" data-for="htmlwidget-465a5290c4d336c4d7dd">{"x":{"html":"<ul>\n  <li><span class='match'>A<\/span>lice<\/li>\n  <li>Bob<\/li>\n  <li>C<span class='match'>a<\/span>rol<\/li>\n  <li>Dennis<\/li>\n  <li>Fr<span class='match'>a<\/span>nk<\/li>\n  <li>George<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<script type="application/json" data-for="htmlwidget-1fe7a9c4d3de6dd0a4dd">{"x":{"html":"<ul>\n  <li><span class='match'>A<\/span>lice<\/li>\n  <li>Bob<\/li>\n  <li>C<span class='match'>a<\/span>rol<\/li>\n  <li>Dennis<\/li>\n  <li>Fr<span class='match'>a<\/span>nk<\/li>\n  <li>George<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 
 <!--/html_preserve-->
 
@@ -185,11 +192,11 @@ names <- c("Alice", "Bob", "Carol", "Dennis", "Frank", "George")
 
 <!--html_preserve-->
 
-<div id="htmlwidget-9b5365d2ecb7bdbaf68a" class="str_view html-widget" style="width:960px;height:100%;">
+<div id="htmlwidget-042f3735c26d211678c8" class="str_view html-widget" style="width:960px;height:100%;">
 
 </div>
 
-<script type="application/json" data-for="htmlwidget-9b5365d2ecb7bdbaf68a">{"x":{"html":"<ul>\n  <li><span class='match'>A<\/span>lice<\/li>\n  <li><span class='match'>B<\/span>ob<\/li>\n  <li><span class='match'>C<\/span>arol<\/li>\n  <li><span class='match'>D<\/span>ennis<\/li>\n  <li><span class='match'>F<\/span>rank<\/li>\n  <li><span class='match'>G<\/span>eorge<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<script type="application/json" data-for="htmlwidget-042f3735c26d211678c8">{"x":{"html":"<ul>\n  <li><span class='match'>A<\/span>lice<\/li>\n  <li><span class='match'>B<\/span>ob<\/li>\n  <li><span class='match'>C<\/span>arol<\/li>\n  <li><span class='match'>D<\/span>ennis<\/li>\n  <li><span class='match'>F<\/span>rank<\/li>\n  <li><span class='match'>G<\/span>eorge<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 
 <!--/html_preserve-->
 
@@ -201,11 +208,11 @@ myVector <- c(10, "twenty", 30, "fourty", "fifty", 60, "")
 
 <!--html_preserve-->
 
-<div id="htmlwidget-21759bdb540736435a38" class="str_view html-widget" style="width:960px;height:100%;">
+<div id="htmlwidget-7e7129d9dca34ca5f548" class="str_view html-widget" style="width:960px;height:100%;">
 
 </div>
 
-<script type="application/json" data-for="htmlwidget-21759bdb540736435a38">{"x":{"html":"<ul>\n  <li><span class='match'>1<\/span><span class='match'>0<\/span><\/li>\n  <li>twenty<\/li>\n  <li><span class='match'>3<\/span><span class='match'>0<\/span><\/li>\n  <li>fourty<\/li>\n  <li>fifty<\/li>\n  <li><span class='match'>6<\/span><span class='match'>0<\/span><\/li>\n  <li><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<script type="application/json" data-for="htmlwidget-7e7129d9dca34ca5f548">{"x":{"html":"<ul>\n  <li><span class='match'>1<\/span><span class='match'>0<\/span><\/li>\n  <li>twenty<\/li>\n  <li><span class='match'>3<\/span><span class='match'>0<\/span><\/li>\n  <li>fourty<\/li>\n  <li>fifty<\/li>\n  <li><span class='match'>6<\/span><span class='match'>0<\/span><\/li>\n  <li><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 
 <!--/html_preserve-->
 
@@ -213,11 +220,11 @@ myVector <- c(10, "twenty", 30, "fourty", "fifty", 60, "")
 
 <!--html_preserve-->
 
-<div id="htmlwidget-74fed58d6eefa2795479" class="str_view html-widget" style="width:960px;height:100%;">
+<div id="htmlwidget-f4a2b52fa6f7b6a95225" class="str_view html-widget" style="width:960px;height:100%;">
 
 </div>
 
-<script type="application/json" data-for="htmlwidget-74fed58d6eefa2795479">{"x":{"html":"<ul>\n  <li>10<\/li>\n  <li><span class='match'>t<\/span><span class='match'>w<\/span><span class='match'>e<\/span><span class='match'>n<\/span><span class='match'>t<\/span><span class='match'>y<\/span><\/li>\n  <li>30<\/li>\n  <li><span class='match'>f<\/span><span class='match'>o<\/span><span class='match'>u<\/span><span class='match'>r<\/span><span class='match'>t<\/span><span class='match'>y<\/span><\/li>\n  <li><span class='match'>f<\/span><span class='match'>i<\/span><span class='match'>f<\/span><span class='match'>t<\/span><span class='match'>y<\/span><\/li>\n  <li>60<\/li>\n  <li><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<script type="application/json" data-for="htmlwidget-f4a2b52fa6f7b6a95225">{"x":{"html":"<ul>\n  <li>10<\/li>\n  <li><span class='match'>t<\/span><span class='match'>w<\/span><span class='match'>e<\/span><span class='match'>n<\/span><span class='match'>t<\/span><span class='match'>y<\/span><\/li>\n  <li>30<\/li>\n  <li><span class='match'>f<\/span><span class='match'>o<\/span><span class='match'>u<\/span><span class='match'>r<\/span><span class='match'>t<\/span><span class='match'>y<\/span><\/li>\n  <li><span class='match'>f<\/span><span class='match'>i<\/span><span class='match'>f<\/span><span class='match'>t<\/span><span class='match'>y<\/span><\/li>\n  <li>60<\/li>\n  <li><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 
 <!--/html_preserve-->
 

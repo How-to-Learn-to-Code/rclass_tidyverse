@@ -36,14 +36,20 @@ tycho_readr[1:10,1:10]
 
 ## Exercise 1: base R vs. readr
 What are the differences between `tycho_base` and `tycho_readr`?
+
 - What is the structure of the data?
+
 - Are the columns the same type?
+
 - Which function is faster?
 
 ## Exercise 2:
 - Look at this raw data on github and import it using `readr`.
+
 - What happens?
+
 - What could be a way to fix this problem? (Don't worry about the code solution yet, brainstorm with a partner)
+
 - Can you find a setting in `?read_csv` that might implement your solution(s)?
 
 
