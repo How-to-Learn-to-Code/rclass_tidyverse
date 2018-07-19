@@ -1,26 +1,16 @@
 ---
-title: "dplyr II"
+title: "Data Import"
 output: github_document
 ---
 
 ```{r}
-library(gapminder)
+library(tidyverse)
 ```
 
-```{r, eval=F, include=F}
-dir <- "gapminder_data_files"
-unlink(dir, recursive = T)
-dir.create(dir)
-
-gapminder %>% 
-  split(.$continent) %>% 
-  map2(., names(.), ~{
-    
-    data <- .x 
-    name <- .y 
-    
-    path <- glue::glue("{dir}/{name}.csv")
-    readr::write_tsv(data, path = path)
-  })
+```{r}
+# Use Shift+Click to follow this link to see the raw data
+tycho_link <- "https://raw.githubusercontent.com/UNC-HLC-R-Intro/lessons/master/data/import_tycho.csv?token=AQdxTWmWuIeWV6pCC87vKOJQBiL5lbnTks5bWd9iwA%3D%3D"
+tycho <- read.csv(tycho_link)
+tycho %>% head
 ```
 

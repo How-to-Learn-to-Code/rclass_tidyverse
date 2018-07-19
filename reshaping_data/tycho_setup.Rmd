@@ -39,6 +39,20 @@ tycho_wide_timeDisease <- tycho %>%
 readr::write_csv(tycho_wide_timeDisease, "../data/tycho_wide_time-disease.csv")
 ```
 
+## Write some more delimited files for import lesson
+```{r}
+file_path <- "../data/import_tycho.csv"
+comment_lines <- "# Source: https://www.tycho.pitt.edu/\n# Date: 2018-07-11"
+write_lines(comment_lines, path = file_path)
+readr::write_delim(tycho_wide_timeDisease, file_path, delim = ",", append = T)
+```
+
+```{r}
+hard_file <- "../data/import_tycho_hard.txt"
+comment_lines <- "# Source: https://www.tycho.pitt.edu/\n# Date: 2018-07-11"
+write_lines(comment_lines, path = hard_file)
+readr::write_delim(tycho_wide_timeDisease, hard_file, delim = "]", append = T)
+```
 
 
 
