@@ -1,0 +1,158 @@
+---
+title: "Data Import"
+output: github_document
+always_allow_html: yes
+---
+
+```{r setup}
+library(tidyverse)
+```
+
+Today we will discuss how to import raw data into R.
+
+```{r}
+# Use Shift+Click to follow this link to see the raw data
+tycho_link <- "https://raw.githubusercontent.com/UNC-HLC-R-Intro/lessons/import/data/import_tycho_simple.csv?token=AQdxTW69CSAGG6JPYwAYDEZ3ze4-AHWRks5bWeAAwA%3D%3D"
+tycho_base <- read.csv(tycho_link)
+```
+```{r, eval=F}
+tycho_base %>% head
+```
+```{r, echo=F}
+tycho_base[1:10,1:10]
+```
+
+
+```{r}
+tycho_readr <- read_csv(tycho_link)
+```
+```{r, eval=F}
+tycho_readr %>% head
+```
+```{r, echo=F}
+tycho_readr[1:10,1:10]
+```
+
+
+## Exercise 1: base R vs. readr
+What are the differences between `tycho_base` and `tycho_readr`?
+
+- What is the structure of the data?
+
+- Are the columns the same type?
+
+- Which function is faster?
+
+## Exercise 2:
+- Look at this raw data on github and import it using `readr`.
+
+- What happens?
+
+- What could be a way to fix this problem? (Don't worry about the code solution yet, brainstorm with a partner)
+
+- Can you find a setting in `?read_csv` that might implement your solution(s)?
+
+
+```{r}
+tycho_link_2 <- "https://raw.githubusercontent.com/UNC-HLC-R-Intro/lessons/import/data/import_tycho.csv?token=AQdxTWPiN68L7-gEprtUcHGm257fEeK-ks5bWeERwA%3D%3D"
+```
+
+```{r, include=F, echo=F}
+tycho2 <- readr::read_csv(tycho_link_2, comment = "#", guess_max = 5)
+head(tycho2)
+```
+
+## Exercise 3: Regular Expressions
+
+[Use This chapter of "R For Data Science" for reference](http://r4ds.had.co.nz/strings.html#matching-patterns-with-regular-expressions)
+
+Using `str_view_all` to show your results, create regular expressions that answer the following questions:
+
+
+```{r, eval=F}
+# You might need to run this
+install.packages("htmlwidgets")
+```
+
+```{r}
+library(stringr)
+```
+
+```{r}
+names <- c("Alice", "Bob", "Carol", "Dennis", "Frank", "George")
+```
+
+### Match all `names` containing the letter "N"
+```{r, echo=F}
+str_view_all(names, "n")
+```
+
+### Match all names containing the letter "A"
+```{r, echo=F}
+str_view_all(names, "[Aa]")
+```
+
+### Match the first letter of every name
+```{r, echo=F}
+str_view_all(names, "^[:letter:]")
+# Also a valid solution, but will also match if the first character is a number:
+# str_view_all(names, "^.")
+```
+
+```{r}
+myVector <- c(10, "twenty", 30, "fourty", "fifty", 60, "")
+```
+
+### Match all `myVector` entries that are numbers (not text)
+```{r, echo=F}
+str_view_all(myVector, "\\d")
+```
+### Match all text in `myVector`
+```{r, echo=F}
+str_view_all(myVector, "[:letter:]")
+```
+
+## Exercise 4: replacing with regular expressions
+Use the `gsub` command to replace things based on regular expressions
+- You can check your regex's with `string_view_all`
+
+### Example: Replace "Bob" for your own name
+```{r}
+myString <- "My name is Bob"
+```
+```{r, echo = T}
+myString
+gsub("Bob", "Spencer", myString)
+```
+### Replace all spaces for "_" 
+```{r, echo = F}
+gsub(" ", "_", myString)
+```
+### Delete all spaces
+```{r, echo = F}
+gsub(" ", "", myString)
+```
+
+
+# Homework
+- Finish any remaining regex examples above
+- Read and play with the example found [here](https://github.com/UNC-HLC-R-Intro/lessons/blob/import/data_import/data_import_cleaning_example.md) to see how regex's and `tidyr` can be used to clean up a messy dataset
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

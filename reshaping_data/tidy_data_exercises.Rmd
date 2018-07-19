@@ -1,0 +1,127 @@
+---
+title: "Tidy Data"
+output: github_document
+---
+
+Today we will be working with a dataset from [Project Tycho](https://www.tycho.pitt.edu/) which tracks disease infection over time.
+
+Today's dataset tracks long-term infection rates of various diseases in America by State.
+
+```{r, setup}
+library(tidyverse)
+```
+
+```{r}
+# The data is uploaded to github
+tycho_timeOnly_link <- "https://raw.githubusercontent.com/UNC-HLC-R-Intro/lessons/import/data/tycho_wide_timeOnly.csv?token=AQdxTdVbMVfOF85YawF5KGZrS_i0xTxDks5bUKzswA%3D%3D"
+```
+
+```{r}
+tycho <- readr::read_csv(tycho_timeOnly_link)
+```
+
+# Description of data
+
+**state** - American state
+
+**disease** - disease tracked on that row
+
+**column names** - the year & week (ex **192802** is the __*2nd week*__ of __1928__) of the measurement
+
+**column values** - the incidence of disease per 100000 people in each state. (Infection normalized to population size)
+```{r}
+head(tycho)
+```
+
+## Exercise 1 (5 minutes in groups of ~4)
+**Hint:** Use `summarize`, `group_by`, and the `count` functions
+
+### Are all states in this datset?
+
+### What diseases are being tracked?
+
+### Do all states have entries for all diseases being tracked?
+
+
+
+# What if we want to plot this data?
+
+### Use ggplot2 to plot the disease occurrance of Measles over time in North Carolina (3 minutes) 
+```{r, echo = F}
+tycho_melt <- tycho %>% 
+  reshape2::melt(id.vars = c("state", "disease"), value.name = "incidence", variable.name = "yearweek") 
+
+tycho_melt %>% 
+  dplyr::filter(state == "NORTH CAROLINA", disease == "MEASLES") %>% 
+  dplyr::mutate(yearweek = as.character(yearweek) %>% as.numeric) %>% 
+  ggplot(aes(yearweek, incidence)) +
+    geom_line(aes(group = disease)) +
+    ggtitle("Measles occurrence over time in North Carolina")
+```
+**Hint:** Recall `ggplot2` syntax
+```{r}
+iris %>% 
+  ggplot(aes(Petal.Length, Sepal.Width)) +
+    geom_point(aes(color = Species))
+```
+
+
+
+
+# Reshaping/Melting data
+
+![tidyData](http://r4ds.had.co.nz/images/tidy-1.png)
+
+The `reshape2` package uses a function called `melt` to move from "wide" to "long" form data
+
+
+## Exercise 2 
+
+### Melt the tycho dataframe so that each timepoint is a row (named "yearweek") and the values are in 1 column ("incidence")
+```{r, echo=F}
+head(tycho_melt)
+```
+
+### Now try plotting the data like above
+```{r, echo=F}
+tycho_melt %>% 
+  dplyr::filter(state == "NORTH CAROLINA", disease == "MEASLES") %>% 
+  dplyr::mutate(yearweek = as.character(yearweek) %>% as.numeric) %>% 
+  ggplot(aes(yearweek, incidence)) +
+    geom_line(aes(group = disease)) +
+    ggtitle("Measles occurrence over time in North Carolina")
+    #geom_vline(xintercept = 196001)
+    #geom_vline(aes(xintercept = which(levels(yearweek) == "196001")))
+  
+```
+
+### Plot all Measles data over time in America
+```{r, echo=F}
+tycho_melt %>% 
+  dplyr::filter(disease == "MEASLES") %>% 
+  dplyr::mutate(yearweek = as.character(yearweek) %>% as.numeric) %>% 
+  ggplot(aes(yearweek, incidence)) +
+    geom_line(aes(group = disease)) +
+    ggtitle("Measles over time in USA") 
+    #geom_vline(xintercept = 196001, color = "red")
+```
+
+### What year was the Measles vaccine introduced? How did this affect incidence of disease? 
+**Hint:** Think of a good way to plot this!
+
+
+
+# Day2:
+
+# `tidyr` package for more complicated data manipulation
+
+```{r}
+tycho_wide_timeDisease_link <- "https://raw.githubusercontent.com/UNC-HLC-R-Intro/lessons/import/data/tycho_wide_time-disease.csv?token=AQdxTfHxKKtnxxzNvQeWm5VXTBq9gZ0-ks5bUKzQwA%3D%3D"
+```
+
+
+```{r}
+n <- 199001
+gsub(".{2}$", "", n)
+gsub("(\\d+)(.{2}$)", "\\1_\\2", n)
+```

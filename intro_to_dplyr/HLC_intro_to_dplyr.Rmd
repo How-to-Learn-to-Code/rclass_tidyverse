@@ -34,7 +34,7 @@ library(maps)
 For this lesson, we'll be using a dataset that comes from the Breeding Bird Survey. The BBS is a long-term population monitoring program for birds in North America run in partnership between the US Geological Survey and the Canadian Wildlife Service. It began in 1966 and now consists of over 4000 annual surveys (called "routes", which each consist of 50 point counts) across the US and Canada. The data are freely available online, and today we will make use of a subset of the data consisting of all observations in North Carolina from 2000 to 2017.
 
 ```{r nc map, fig.height = 5, fig.width = 8, echo = F, results = "hide"}
-routes <- read.csv("bbs_routes_20170712.csv") # fix this path
+routes <- read.csv("bbs_routes_20170712.csv") 
 
 routes$stateroute <- routes$statenum*1000 + routes$route
 
@@ -57,8 +57,10 @@ ncmap + geom_point(data = routes.nc, aes(longitude, latitude, fill = NULL, group
 Read in two data tables: one called `counts` containing the observations, and one called `species` containing common names of species. Species are coded in `counts` by a 4-digit identification code (the variable `aou` - these unique codes were created by the American Ornithologists' Union), and `species` links `aou` to the common name of the species.  
 
 ```{r data}
-counts <- read.csv("https://raw.githubusercontent.com/gdicecco/HLC-data-public/master/bbs_nc_2000-2017.csv", stringsAsFactors = F)
-species <- read.csv("https://raw.githubusercontent.com/gdicecco/HLC-data-public/master/bbs_species_20170712.csv", stringsAsFactors = F)
+counts <- read.csv("https://raw.githubusercontent.com/gdicecco/HLC-data-public/master/bbs_nc_2000-2017.csv", 
+                   stringsAsFactors = F)
+species <- read.csv("https://raw.githubusercontent.com/gdicecco/HLC-data-public/master/bbs_species_20170712.csv",
+                    stringsAsFactors = F)
 ```
 
 Use `head` to look at the two data tables. You'll notice that `counts` contains numerical codes for country, state, route, and a variable called `stateroute`, which is a combination of the state number and route number and is a unique identifier for each route. There are also columns for year, species (`aou`), the total number of point counts out of 50 the species was observed at (`stoptotal`), and the total number of individuals observed (`speciestotal`).
@@ -117,7 +119,11 @@ logcounts <- mutate(counts, logN = log(speciestotal))
 
 *Exercise 1*
 
-The variable `stateroute` was created by a mutation of `statenum` and `route`. Replicate that mutation to create a new variable called `stateroute2`.
+The variable `stateroute` in `counts` was created by a mutation of `statenum` and `route`. Replicate that mutation to create a new variable called `stateroute2`.
+
+```{r e1 answer, include = F}
+counts <- mutate(counts, stateroute2 = statenum*1000 + route)
+```
 
 #### Joins
 
@@ -129,7 +135,12 @@ countsSpecies <- left_join(counts, species, by = "aou")
 
 *Exercise 2*
 
-Read the help documentation for joins in `dplyr`. What different types of joins can be supported? Try out one or two of them with `counts` and `species` to see what happens.
+Read the help documentation for joins in `dplyr` (use `?left_join`). What different types of joins can be supported? What do you predict would be the outcome of `semi_join(species, counts)`? Try it and find out (use `head` to compare the result of the join and the original `species` table).
+
+```{r e2 answer, include = F}
+# Only species that occur in counts are kept
+head(semi_join(species, counts))
+```
 
 #### Group_by
 
@@ -150,7 +161,19 @@ head(nSpp)
 
 *Exercise 3*
 
-For each year in `counts`, use `group_by` and `summarize` to find out how many routes were surveyed and the mean number of individuals observed per route.
+For each year in `counts`, use `group_by` and `summarize` to find out how many routes were surveyed and the mean number of individuals observed across all routes.
+
+Hint: To get the number of routes surveyed per year from counts, group by year and then use `length(unique(stateroute))` to summarize. `unique` returns the unique values in a vector (in this case, unique values of `stateroute` for each year), and `length` returns the length of a vector (here, the length of the vector of unique `stateroute` values, telling us how many unique `stateroute` values there are each year in `counts`).
+
+```{r hint e3}
+countsByYears <- group_by(counts, year)
+nroutes <- summarize(countsByYears, nroutes = length(unique(stateroute)))
+```
+
+```{r e3 answer, include = F}
+counts.years <- group_by(counts, year)
+nroutes <- summarize(counts.years, total.routes = length(unique(stateroute)), meanS = mean(speciestotal))
+```
 
 ### Pipes in R
 
@@ -185,7 +208,7 @@ For the year 2000, determine which three species (give their English common name
 
 Hint: to reorder the rows of your table by a variable, look at the help documentation for `arrange` from `dplyr`.
 
-```{r answers, include = F}
+```{r e4 answer, include = F}
 route.obs <- counts %>%
   filter(year == 2000) %>%
   group_by(aou) %>%
@@ -203,13 +226,35 @@ For this exercise, you will go through a short analysis and workflow using BBS d
 Read in the weather table, found in the lesson repo. 
 
 ```{r}
-weather <- read.csv("https://raw.githubusercontent.com/gdicecco/HLC-data-public/master/bbs_weather_20170712.csv", stringsAsFactors = F)
+weather <- read.csv("https://raw.githubusercontent.com/gdicecco/HLC-data-public/master/bbs_weather_20170712.csv",
+                    stringsAsFactors = F)
 ```
 
-Create a new column in `weather` for `stateroute`, so the observations can be matched to observations in `counts`. The quality standards variable is called `runtype` in `weather` (`runtype` = 1 indicates a good quality observation). Filter `weather` to remove observations that don't meet the BBS quality standards, and then remove those observations from `counts` as well. 
+Create a new column in `weather` for `stateroute`, so the observations can be matched to observations in `counts`. The quality standards variable is called `runtype` in `weather` (`runtype` = 1 indicates a good quality observation). Filter `weather` to remove observations that don't meet the BBS quality standards and are within the time window of 2000 - 2017. Use that table to remove unreliable observations from `counts`. 
 
-Recall (or refer back to) the previous lesson on `ggplot`, and make the following plots to explore the BBS data for North Carolina:
+Recall (or refer back to) the previous lesson on `ggplot`, and make the following plots to explore the BBS data for North Carolina with your filtered `counts` data:
 
-- A bar plot of the total number of species observed on each route across years
-- A bar plot of the average number of species observed per route across years
-- A scatterplot showing the relationship between number of species and number of individuals (each point should be one observation of route/year)
+1. Create a line plot of the total number of individual birds observed per year across North Carolina
+2. First, determine how many species and how many total individuals were observed at each route each year. Then, create a scatterplot showing how the number of species observed is related to the number of individuals (number of species vs. number of individuals), where each point is a unique observation of route/year.
+
+```{r e5 answer, include = F}
+qual.weather <- mutate(weather, stateroute = statenum*1000 + route) %>%
+  filter(runtype == 1, year > 2000)
+qual.counts <- counts %>%
+  filter(stateroute %in% qual.weather$stateroute)
+
+# Number of species across years
+nBirds <- qual.counts %>%
+  group_by(year) %>%
+  summarize(nindiv = sum(speciestotal))
+ggplot(data = nBirds, mapping = aes(x = year, y = nindiv)) + geom_line() + xlab("Year") + ylab("Number of Individuals")
+
+# N species over time
+nSpecies <- qual.counts %>%
+  group_by(stateroute, year) %>%
+  summarize(nspp = n(), nindiv = sum(speciestotal))
+ggplot(data = nSpecies, mapping = aes(x = nindiv, y = nspp)) + geom_point() + 
+  xlab("Number of Individuals") + ylab("Number of Species")
+
+```
+

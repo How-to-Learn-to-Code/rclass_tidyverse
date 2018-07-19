@@ -1,0 +1,112 @@
+---
+title: "Reshaping Data"
+author: "Spencer Nystrom"
+output: github_document
+---
+
+```{r}
+library(tidyverse)
+library(reshape2)
+```
+
+```{r}
+tycho <- readr::read_csv("../data/tycho.csv")
+```
+
+```{r}
+tycho
+```
+```{r}
+tycho_wide_time <- tycho %>% 
+  dplyr::filter(loc_type == "STATE") %>% 
+  dplyr::select(epi_week, loc, disease, incidence_per_100000) %>% 
+  #tidyr::unite(date_disease, c("epi_week", "disease")) %>% 
+  dplyr::rename(state = loc,
+                incidence = incidence_per_100000) %>% 
+  dcast(., state + disease ~ epi_week, value.var = "incidence", fun.aggregate = sum) 
+readr::write_csv(tycho_wide_time, "../data/tycho_wide_timeOnly.csv")
+```
+
+```{r}
+tycho_wide_timeDisease <- tycho %>% 
+#tycho %>% 
+  dplyr::filter(loc_type == "STATE") %>% 
+  dplyr::select(epi_week, loc, disease, incidence_per_100000) %>% 
+  tidyr::unite(date_disease, c("epi_week", "disease")) %>% 
+  dplyr::rename(state = loc,
+                incidence = incidence_per_100000) %>% 
+  dcast(., state ~ date_disease, value.var = "incidence", fun.aggregate = sum) 
+readr::write_csv(tycho_wide_timeDisease, "../data/tycho_wide_time-disease.csv")
+```
+
+## Write some more delimited files for import lesson
+```{r}
+file_path <- "../data/import_tycho_simple.csv"
+readr::write_delim(tycho_wide_timeDisease, file_path, delim = ",", append = F)
+```
+
+```{r}
+file_path <- "../data/import_tycho.csv"
+comment_lines <- "# Source: https://www.tycho.pitt.edu/\n# Date: 2018-07-11"
+write_lines(comment_lines, path = file_path)
+readr::write_delim(tycho_wide_timeDisease, file_path, delim = ",", append = T, col_names = T)
+```
+
+```{r}
+hard_file <- "../data/import_tycho_hard.txt"
+comment_lines <- "# Source: https://www.tycho.pitt.edu/\n# Date: 2018-07-11"
+write_lines(comment_lines, path = hard_file)
+readr::write_delim(tycho_wide_timeDisease, hard_file, delim = "]", append = T, col_names = T)
+```
+
+
+
+
+
+
+
+
+```{r}
+tycho_long <- tycho %>% 
+#tycho %>% 
+  dplyr::filter(loc_type == "STATE") %>% 
+  dplyr::select(epi_week, loc, disease, incidence_per_100000) %>% #head
+  #head %>% 
+  dplyr::group_by(loc) %>% #head
+  tidyr::unite(date_disease, c(epi_week, disease)) %>%  #head
+  dplyr::mutate(incidence_percent = as.integer(incidence_per_100000 * 100)) %>% #head
+  dplyr::select(-incidence_per_100000) %>% 
+  #reshape2::dcast(., loc + epi_week ~ disease, fun.aggregate = min, na.rm = T) %>%  head
+  #reshape2::dcast(., loc + epi_week ~ disease, value.var = "incidence_percent") %>%  head
+  reshape2::dcast(., loc ~ date_disease, value.var = "incidence_percent", fun.aggregate = min) %>%  #head
+  #reshape2::dcast(., loc ~ date_disease) %>%  head
+  dplyr::rename(STATE = loc)
+tycho_long %>% head
+```
+
+```{r}
+tycho_long %>% 
+  reshape2::melt(value.name = "cases", variable.name = "date_disease") %>% 
+  tidyr::separate(date_disease, c("date", "disease"), sep = "_") %>% 
+  ggplot(aes(date, cases)) +
+    geom_line(aes(color = disease))
+```
+
+
+
+
+## Exercise 1
+Use the built-in `state.abb` and `state.name` variables to create a data.frame and add the state abbreviation to the tycho data.
+**Hint:** use the function `tolower` on the state names in both datsets so they will match
+```{r}
+state.abb
+state.name
+```
+
+```{r}
+tycho %>% 
+  dplyr::filter(disease == "MEASLES") %>% 
+  ggplot(aes(epi_week, incidence_per_100000)) +
+    geom_line(aes(color = disease))
+```
+

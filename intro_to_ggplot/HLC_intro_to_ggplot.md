@@ -29,18 +29,18 @@ In this class, we'll use a dataset provided by the Gapminder Foundation in R. Th
 
 ``` r
 library(gapminder)
-## Warning: package 'gapminder' was built under R version 3.4.2
+## Warning: package 'gapminder' was built under R version 3.4.4
 
 head(gapminder)
 ## # A tibble: 6 x 6
-##   country     continent  year lifeExp      pop gdpPercap
-##   <fct>       <fct>     <int>   <dbl>    <int>     <dbl>
-## 1 Afghanistan Asia       1952    28.8  8425333      779.
-## 2 Afghanistan Asia       1957    30.3  9240934      821.
-## 3 Afghanistan Asia       1962    32.0 10267083      853.
-## 4 Afghanistan Asia       1967    34.0 11537966      836.
-## 5 Afghanistan Asia       1972    36.1 13079460      740.
-## 6 Afghanistan Asia       1977    38.4 14880372      786.
+##       country continent  year lifeExp      pop gdpPercap
+##        <fctr>    <fctr> <int>   <dbl>    <int>     <dbl>
+## 1 Afghanistan      Asia  1952  28.801  8425333  779.4453
+## 2 Afghanistan      Asia  1957  30.332  9240934  820.8530
+## 3 Afghanistan      Asia  1962  31.997 10267083  853.1007
+## 4 Afghanistan      Asia  1967  34.020 11537966  836.1971
+## 5 Afghanistan      Asia  1972  36.088 13079460  739.9811
+## 6 Afghanistan      Asia  1977  38.438 14880372  786.1134
 ```
 
 You'll notice that the Gapminder dataset is called a "tibble". This is similar to a data frame, but is the format used in the tidyverse. The two main differences are in printing and subsetting. The default `print` of a tibble always contains only ten rows and the class of the data is shown underneath the name of each column (similar to `str`). When subsetting a tibble, using `[` returns another tibble, and `[[` always returns a vector.
@@ -78,17 +78,17 @@ Try changing the figure height and figure width values to get a sense for how th
 # ggplot loads automatically with the tidyverse:
 library(tidyverse)
 ## Warning: package 'tidyverse' was built under R version 3.4.2
-## ── Attaching packages ────────────────────────────────── tidyverse 1.2.1 ──
-## ✔ tibble  1.4.2     ✔ purrr   0.2.4
-## ✔ tidyr   0.7.2     ✔ stringr 1.2.0
-## ✔ readr   1.1.1     ✔ forcats 0.3.0
-## Warning: package 'tibble' was built under R version 3.4.3
+## -- Attaching packages ----------------------------------------------------------------------------------------- tidyverse 1.2.1 --
+## v tibble  1.3.4     v purrr   0.2.4
+## v tidyr   0.7.2     v stringr 1.2.0
+## v readr   1.1.1     v forcats 0.2.0
 ## Warning: package 'tidyr' was built under R version 3.4.2
+## Warning: package 'readr' was built under R version 3.4.2
 ## Warning: package 'purrr' was built under R version 3.4.2
-## Warning: package 'forcats' was built under R version 3.4.3
-## ── Conflicts ───────────────────────────────────── tidyverse_conflicts() ──
-## ✖ dplyr::filter() masks stats::filter()
-## ✖ dplyr::lag()    masks stats::lag()
+## Warning: package 'forcats' was built under R version 3.4.2
+## -- Conflicts -------------------------------------------------------------------------------------------- tidyverse_conflicts() --
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()
 
 # or it can be loaded on its own:
 library(ggplot2)
@@ -244,7 +244,7 @@ ggplot(filter(gapminder, year > 1995), aes(x = gdpPercap, y = lifeExp, color = c
 
 To check your understanding of `ggplot` and topics covered in this lesson, replicate the plot below of data from the Gapminder dataset. Make use of your resources in this document, the `ggplot2` CRAN documentation, R for Data Science, and Google.
 
-Hint: this plot uses a subset of the Gapminder data, a linear trendline, and a theme other than the default.
+Hint: this plot uses a subset of the Gapminder data and a linear trendline.
 
 ![](HLC_intro_to_ggplot_files/figure-markdown_github/gapminder%20plot-1.png)
 

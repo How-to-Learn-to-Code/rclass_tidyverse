@@ -1,0 +1,1102 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style type="text/css">
+@font-face {
+font-family: octicons-link;
+src: url(data:font/woff;charset=utf-8;base64,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) format('woff');
+}
+body {
+-webkit-text-size-adjust: 100%;
+text-size-adjust: 100%;
+color: #333;
+font-family: "Helvetica Neue", Helvetica, "Segoe UI", Arial, freesans, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+font-size: 16px;
+line-height: 1.6;
+word-wrap: break-word;
+}
+a {
+background-color: transparent;
+}
+a:active,
+a:hover {
+outline: 0;
+}
+strong {
+font-weight: bold;
+}
+h1 {
+font-size: 2em;
+margin: 0.67em 0;
+}
+img {
+border: 0;
+}
+hr {
+box-sizing: content-box;
+height: 0;
+}
+pre {
+overflow: auto;
+}
+code,
+kbd,
+pre {
+font-family: monospace, monospace;
+font-size: 1em;
+}
+input {
+color: inherit;
+font: inherit;
+margin: 0;
+}
+html input[disabled] {
+cursor: default;
+}
+input {
+line-height: normal;
+}
+input[type="checkbox"] {
+box-sizing: border-box;
+padding: 0;
+}
+table {
+border-collapse: collapse;
+border-spacing: 0;
+}
+td,
+th {
+padding: 0;
+}
+* {
+box-sizing: border-box;
+}
+input {
+font: 13px / 1.4 Helvetica, arial, nimbussansl, liberationsans, freesans, clean, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+a {
+color: #4078c0;
+text-decoration: none;
+}
+a:hover,
+a:active {
+text-decoration: underline;
+}
+hr {
+height: 0;
+margin: 15px 0;
+overflow: hidden;
+background: transparent;
+border: 0;
+border-bottom: 1px solid #ddd;
+}
+hr:before {
+display: table;
+content: "";
+}
+hr:after {
+display: table;
+clear: both;
+content: "";
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+margin-top: 15px;
+margin-bottom: 15px;
+line-height: 1.1;
+}
+h1 {
+font-size: 30px;
+}
+h2 {
+font-size: 21px;
+}
+h3 {
+font-size: 16px;
+}
+h4 {
+font-size: 14px;
+}
+h5 {
+font-size: 12px;
+}
+h6 {
+font-size: 11px;
+}
+blockquote {
+margin: 0;
+}
+ul,
+ol {
+padding: 0;
+margin-top: 0;
+margin-bottom: 0;
+}
+ol ol,
+ul ol {
+list-style-type: lower-roman;
+}
+ul ul ol,
+ul ol ol,
+ol ul ol,
+ol ol ol {
+list-style-type: lower-alpha;
+}
+dd {
+margin-left: 0;
+}
+code {
+font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+font-size: 12px;
+}
+pre {
+margin-top: 0;
+margin-bottom: 0;
+font: 12px Consolas, "Liberation Mono", Menlo, Courier, monospace;
+}
+.select::-ms-expand {
+opacity: 0;
+}
+.octicon {
+font: normal normal normal 16px/1 octicons-link;
+display: inline-block;
+text-decoration: none;
+text-rendering: auto;
+-webkit-font-smoothing: antialiased;
+-moz-osx-font-smoothing: grayscale;
+-webkit-user-select: none;
+-moz-user-select: none;
+-ms-user-select: none;
+user-select: none;
+}
+.octicon-link:before {
+content: '\f05c';
+}
+.markdown-body:before {
+display: table;
+content: "";
+}
+.markdown-body:after {
+display: table;
+clear: both;
+content: "";
+}
+.markdown-body>*:first-child {
+margin-top: 0 !important;
+}
+.markdown-body>*:last-child {
+margin-bottom: 0 !important;
+}
+a:not([href]) {
+color: inherit;
+text-decoration: none;
+}
+.anchor {
+display: inline-block;
+padding-right: 2px;
+margin-left: -18px;
+}
+.anchor:focus {
+outline: none;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+margin-top: 1em;
+margin-bottom: 16px;
+font-weight: bold;
+line-height: 1.4;
+}
+h1 .octicon-link,
+h2 .octicon-link,
+h3 .octicon-link,
+h4 .octicon-link,
+h5 .octicon-link,
+h6 .octicon-link {
+color: #000;
+vertical-align: middle;
+visibility: hidden;
+}
+h1:hover .anchor,
+h2:hover .anchor,
+h3:hover .anchor,
+h4:hover .anchor,
+h5:hover .anchor,
+h6:hover .anchor {
+text-decoration: none;
+}
+h1:hover .anchor .octicon-link,
+h2:hover .anchor .octicon-link,
+h3:hover .anchor .octicon-link,
+h4:hover .anchor .octicon-link,
+h5:hover .anchor .octicon-link,
+h6:hover .anchor .octicon-link {
+visibility: visible;
+}
+h1 {
+padding-bottom: 0.3em;
+font-size: 2.25em;
+line-height: 1.2;
+border-bottom: 1px solid #eee;
+}
+h1 .anchor {
+line-height: 1;
+}
+h2 {
+padding-bottom: 0.3em;
+font-size: 1.75em;
+line-height: 1.225;
+border-bottom: 1px solid #eee;
+}
+h2 .anchor {
+line-height: 1;
+}
+h3 {
+font-size: 1.5em;
+line-height: 1.43;
+}
+h3 .anchor {
+line-height: 1.2;
+}
+h4 {
+font-size: 1.25em;
+}
+h4 .anchor {
+line-height: 1.2;
+}
+h5 {
+font-size: 1em;
+}
+h5 .anchor {
+line-height: 1.1;
+}
+h6 {
+font-size: 1em;
+color: #777;
+}
+h6 .anchor {
+line-height: 1.1;
+}
+p,
+blockquote,
+ul,
+ol,
+dl,
+table,
+pre {
+margin-top: 0;
+margin-bottom: 16px;
+}
+hr {
+height: 4px;
+padding: 0;
+margin: 16px 0;
+background-color: #e7e7e7;
+border: 0 none;
+}
+ul,
+ol {
+padding-left: 2em;
+}
+ul ul,
+ul ol,
+ol ol,
+ol ul {
+margin-top: 0;
+margin-bottom: 0;
+}
+li>p {
+margin-top: 16px;
+}
+dl {
+padding: 0;
+}
+dl dt {
+padding: 0;
+margin-top: 16px;
+font-size: 1em;
+font-style: italic;
+font-weight: bold;
+}
+dl dd {
+padding: 0 16px;
+margin-bottom: 16px;
+}
+blockquote {
+padding: 0 15px;
+color: #777;
+border-left: 4px solid #ddd;
+}
+blockquote>:first-child {
+margin-top: 0;
+}
+blockquote>:last-child {
+margin-bottom: 0;
+}
+table {
+display: block;
+width: 100%;
+overflow: auto;
+word-break: normal;
+word-break: keep-all;
+}
+table th {
+font-weight: bold;
+}
+table th,
+table td {
+padding: 6px 13px;
+border: 1px solid #ddd;
+}
+table tr {
+background-color: #fff;
+border-top: 1px solid #ccc;
+}
+table tr:nth-child(2n) {
+background-color: #f8f8f8;
+}
+img {
+max-width: 100%;
+box-sizing: content-box;
+background-color: #fff;
+}
+code {
+padding: 0;
+padding-top: 0.2em;
+padding-bottom: 0.2em;
+margin: 0;
+font-size: 85%;
+background-color: rgba(0,0,0,0.04);
+border-radius: 3px;
+}
+code:before,
+code:after {
+letter-spacing: -0.2em;
+content: "\00a0";
+}
+pre>code {
+padding: 0;
+margin: 0;
+font-size: 100%;
+word-break: normal;
+white-space: pre;
+background: transparent;
+border: 0;
+}
+.highlight {
+margin-bottom: 16px;
+}
+.highlight pre,
+pre {
+padding: 16px;
+overflow: auto;
+font-size: 85%;
+line-height: 1.45;
+background-color: #f7f7f7;
+border-radius: 3px;
+}
+.highlight pre {
+margin-bottom: 0;
+word-break: normal;
+}
+pre {
+word-wrap: normal;
+}
+pre code {
+display: inline;
+max-width: initial;
+padding: 0;
+margin: 0;
+overflow: initial;
+line-height: inherit;
+word-wrap: normal;
+background-color: transparent;
+border: 0;
+}
+pre code:before,
+pre code:after {
+content: normal;
+}
+kbd {
+display: inline-block;
+padding: 3px 5px;
+font-size: 11px;
+line-height: 10px;
+color: #555;
+vertical-align: middle;
+background-color: #fcfcfc;
+border: solid 1px #ccc;
+border-bottom-color: #bbb;
+border-radius: 3px;
+box-shadow: inset 0 -1px 0 #bbb;
+}
+.pl-c {
+color: #969896;
+}
+.pl-c1,
+.pl-s .pl-v {
+color: #0086b3;
+}
+.pl-e,
+.pl-en {
+color: #795da3;
+}
+.pl-s .pl-s1,
+.pl-smi {
+color: #333;
+}
+.pl-ent {
+color: #63a35c;
+}
+.pl-k {
+color: #a71d5d;
+}
+.pl-pds,
+.pl-s,
+.pl-s .pl-pse .pl-s1,
+.pl-sr,
+.pl-sr .pl-cce,
+.pl-sr .pl-sra,
+.pl-sr .pl-sre {
+color: #183691;
+}
+.pl-v {
+color: #ed6a43;
+}
+.pl-id {
+color: #b52a1d;
+}
+.pl-ii {
+background-color: #b52a1d;
+color: #f8f8f8;
+}
+.pl-sr .pl-cce {
+color: #63a35c;
+font-weight: bold;
+}
+.pl-ml {
+color: #693a17;
+}
+.pl-mh,
+.pl-mh .pl-en,
+.pl-ms {
+color: #1d3e81;
+font-weight: bold;
+}
+.pl-mq {
+color: #008080;
+}
+.pl-mi {
+color: #333;
+font-style: italic;
+}
+.pl-mb {
+color: #333;
+font-weight: bold;
+}
+.pl-md {
+background-color: #ffecec;
+color: #bd2c00;
+}
+.pl-mi1 {
+background-color: #eaffea;
+color: #55a532;
+}
+.pl-mdr {
+color: #795da3;
+font-weight: bold;
+}
+.pl-mo {
+color: #1d3e81;
+}
+kbd {
+display: inline-block;
+padding: 3px 5px;
+font: 11px Consolas, "Liberation Mono", Menlo, Courier, monospace;
+line-height: 10px;
+color: #555;
+vertical-align: middle;
+background-color: #fcfcfc;
+border: solid 1px #ccc;
+border-bottom-color: #bbb;
+border-radius: 3px;
+box-shadow: inset 0 -1px 0 #bbb;
+}
+.task-list-item {
+list-style-type: none;
+}
+.task-list-item+.task-list-item {
+margin-top: 3px;
+}
+.task-list-item input {
+margin: 0 0.35em 0.25em -1.6em;
+vertical-align: middle;
+}
+:checked+.radio-label {
+z-index: 1;
+position: relative;
+border-color: #4078c0;
+}
+.sourceLine {
+display: inline-block;
+}
+code .kw { color: #000000; }
+code .dt { color: #ed6a43; }
+code .dv { color: #009999; }
+code .bn { color: #009999; }
+code .fl { color: #009999; }
+code .ch { color: #009999; }
+code .st { color: #183691; }
+code .co { color: #969896; }
+code .ot { color: #0086b3; }
+code .al { color: #a61717; }
+code .fu { color: #63a35c; }
+code .er { color: #a61717; background-color: #e3d2d2; }
+code .wa { color: #000000; }
+code .cn { color: #008080; }
+code .sc { color: #008080; }
+code .vs { color: #183691; }
+code .ss { color: #183691; }
+code .im { color: #000000; }
+code .va {color: #008080; }
+code .cf { color: #000000; }
+code .op { color: #000000; }
+code .bu { color: #000000; }
+code .ex { color: #000000; }
+code .pp { color: #999999; }
+code .at { color: #008080; }
+code .do { color: #969896; }
+code .an { color: #008080; }
+code .cv { color: #008080; }
+code .in { color: #008080; }
+</style>
+<style>
+body {
+  box-sizing: border-box;
+  min-width: 200px;
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 45px;
+  padding-top: 0px;
+}
+</style>
+
+</head>
+
+<body>
+
+<h1 id="tidy-data-day-2">Tidy Data day 2</h1>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw">library</span>(reshape2)</a></code></pre></div>
+<h1 id="homework-solution">Homework Solution:</h1>
+<pre><code>## Parsed with column specification:
+## cols(
+##   .default = col_double(),
+##   state = col_character(),
+##   disease = col_character()
+## )
+
+## See spec(...) for full column specifications.
+</code></pre>
+<p>Specify names of melted columns with reshape</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">tycho_melt &lt;-<span class="st"> </span>tycho <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="st">  </span>reshape2<span class="op">::</span><span class="kw">melt</span>(<span class="dt">id.vars =</span> <span class="kw">c</span>(<span class="st">&quot;state&quot;</span>, <span class="st">&quot;disease&quot;</span>), <span class="dt">value.name =</span> <span class="st">&quot;incidence&quot;</span>, <span class="dt">variable.name =</span> <span class="st">&quot;yearweek&quot;</span>) </a></code></pre></div>
+<p>Convert yearweek from <strong>factor</strong> to <strong>numeric</strong>.</p>
+<p>With <code>as.character(yearweek) %&gt;% as.numeric</code></p>
+<p>You have to do it this way because R sees factors as numbers first unless you say otherwise.</p>
+<p><code>yearweek %&gt;% as.numeric</code> would output <code>1,2,3,4,5...</code> because these are the factor <strong>levels</strong></p>
+<p>The measles vaccine came out in 1960, so that yearweek code is 196001</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">tycho_melt <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(disease <span class="op">==</span><span class="st"> &quot;MEASLES&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb4-3" data-line-number="3"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">mutate</span>(<span class="dt">yearweek =</span> <span class="kw">as.character</span>(yearweek) <span class="op">%&gt;%</span><span class="st"> </span>as.numeric) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb4-4" data-line-number="4"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(yearweek, incidence)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb4-5" data-line-number="5"><span class="st">    </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">group =</span> disease)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb4-6" data-line-number="6"><span class="st">    </span><span class="kw">ggtitle</span>(<span class="st">&quot;Measles over time in USA&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb4-7" data-line-number="7"><span class="st">    </span><span class="kw">geom_vline</span>(<span class="dt">xintercept =</span> <span class="dv">196001</span>, <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>)</a></code></pre></div>
+<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAqAAAAHgCAIAAAD17khjAAAACXBIWXMAAA7DAAAOwwHHb6hkAAAgAElEQVR4nOzdeWATZf4/8CdHk9Cb0nIoYJGjXFqwyi4CCyogIsglCioqKALKLsup4AWLUpVDRWCRQ1Fw4QdylKOCBUROBSlSoQUptNDWljZteqa55/fHs853djJNppM0SSfv11/Jk8nMk5nJfOY55nkUDMMQAAAAkBelvzMAAAAA3ocADwAAIEMI8AAAADKEAA8AACBDCPAAAAAyhAAPAAAgQ40gwI8cOVKhUAwYMMD5o8rKSo1Go1AoNmzY0KB5uP/++8eNG9egm/CX6Ojo1q1bB+xWFi5cqFAocnNzeekHDx5UKBTbtm1jU4xG4+LFi5OSksLDw++4446HHnpo9+7dgk+BpqamKhQKhULx+++/S8gSAECj0AgCPHXixInS0lJe4sGDB61Wq1/y03gdO3ZsyZIl7NuYmJimTZs29EYbeitms7lfv37vvPNOy5Yt58yZM27cuNu3b48ePXrBggXOC3/77bf0xe7duxsuSwAA/tU4Anx0dLRCodi/fz8vPSUlJTY21i9Zarx4Af7GjRu//fZbQ2+0obeyZs2a9PT0jRs3HjhwYOHChStWrPjtt9/Gjx//4YcfXr16lbuk1Wrds2dPr169IiIidu3a1XBZAgDwr8YR4KOiovr167dnzx5uotVqTU1NHTZsmL9yBYHj1KlTERERL774IpuiUqlef/11hmF+/vln7pI//PCDwWB48sknBw0adPbs2by8PF/nFQDAJxpHgCeEjBw58tChQ0ajkU05ceJEeXn5iBEjeEteunRp+PDhzZs3j42NHTNmTFZWFvsRwzBr1qy55557wsLCmjVr9sgjj5w8eZL9tLS09LXXXouPj2/SpEm3bt3Wr19fV2ZcbEL8Sgghhw8fHjBgQHR0dPv27SdOnMi2QYwdOzY8PNxkMrFLpqWlKRSKr776ym0G+vbt+89//vPUqVN/+ctfnnvuOd4WBwwYsGjRopqaGoVC8cEHH9DlR44cyX46derU1NTUBx98MDo6+pFHHsnJybl27drgwYOjo6Pj4+N5fR1cZIOHu5W+fftOnTr1woULvXr1atKkSYcOHdauXetiL4lhMpnMZjOvEad79+7Xrl0bPnw4N3Hnzp2EkBEjRjz22GMEtfQAIF+NJsA/8cQTtbW1hw8fZlP27t3bqVOnzp07cxc7e/Zsr169srOzp0yZMmHChKNHjz744INsX6qNGze+9tprLVq0WLBgwciRIy9dujR06FA2Kjz55JNffPHFX//611mzZmk0mldeeUXw6u96EyJXQgj59ttvBw8eXFJSMn369IEDB27duvW+++6rqqoihIwePbqmpubYsWPswrt27dLpdKNGjXKbAUJIfn7+qFGjamtrk5KSeBtdvnz5hAkTtFptWlqaYLfB06dP/+Mf/xg9evT06dNPnjw5ePDg/v37d+7cefHixSqVasqUKdnZ2WL2g2u5ubljxox56KGHli5dGh4ePm3atCNHjoj5Yl0ee+wxi8XSs2fPFStWlJSU0ESVStWhQwdu27/NZtu9e3fnzp07depEAzxq6QFAtpiAN2LEiLvuuothmMTExIkTJ9JEh8MRHx8/d+5cWmpcv349TezXr19SUpLJZKKLXb9+PSIiYty4cfTtI488kpiYaLfb6VsaVNLS0hiGKSwsJIQkJyfTj0wmU7t27f7+97/Tt0lJSU8//bTbTbheCZfFYrn77rvvueee6upqmkLvXZYsWcIwTEVFhUajmTZtGv3Ibre3bNly7NixYn5jnz59CCH//ve/69qf7777blhYGPu2T58+I0aMoK/79++v0WiuXbtG37766quEkA8//JC+PXr0KCFk27ZtYrLBw90KzeGBAwfo26KiIoVCMX/+/LpySwjJycnhpX/33XeEkK1bt9K3Nptt3rx5Op2OntVJSUnz588/f/4871v0J9Cqe4ZhEhMTlUrl7du369pXAACNV6MpwRNCRowYsW/fPpvNRgi5dOlSbm7uE088wV2gtLT0xIkTL774Ym1tbXl5eXl5eUxMzKOPPvrDDz/QBbZu3Xrs2DGl8r+/mhaXaU24Wq0mhBw9epQW6LVa7Y0bN1auXMnLg+tNiFwJISQ7O/vGjRszZ84MCwujKY888khSUlJqaiohJDIycvDgwXv37mUYhhBy5syZoqKiZ599VsxvJITEx8dPmTJF2k6+//77O3ToQF8nJCQQQsaPH899W1tbKzIbLnTo0IEWoAkhLVq0aNmyJbfxRQKVSvXhhx8WFhZu3779pZdeKi4uTk5OTkpKevLJJ7lrZuvn6duhQ4c6HI6UlBRPNg0AEJgaWYDX6/WnT58mhOzduzcuLq53797cBWjt8d///vemHN9++21JSQmNlHFxcUVFRV9++eXf//73Bx54gNZ4U7GxsW+99VZaWtqdd975+OOPL1++/NatW855cL0JkSshhNy4cYMQ0rVrV25i165dc3Jy6OsxY8YUFBRcuHCBELJr167o6OghQ4aI+Y2EkA4dOigUCim7mBBuhTa9E2JT2BsjkdlwgZdD7po9ER0dPXbs2A0bNty8efPQoUO9e/feuXPn4sWL6acOh4PuyRYtWuTm5ubm5t5zzz0EtfQAIFNqf2egHnr27NmmTZuUlJS//e1vKSkpw4YNU6lU3AXoM/HJycl//etfed9lGEahUHz44Yfz589v3779sGHD5s6dGx0d/eijj7LLLF68+Omnn/72228PHTo0b968N95449NPP6XV1OI3IWYldGHnH6hSqdjH+p944gmVSrV3796ePXvu2rXrySef1Gq1YjJACGFrBRqOmGy4QH+LGCEhIYQQi8XCS6cpGo2GEGIwGCZPnvzCCy+w/ekUCsXgwYMHDBiQkJCQkpKSnJxMCDl9+jRtQ2nfvj13VUeOHCkvL4+OjhaZJQCARqExBXiFQjFixIg9e/bMnj373Llzb775Jm8BeuFu0qQJd9i7X3/91WKxKJVKg8GwYMGCd955591336UR6Ny5c+xipaWleXl5nTt3Xrhw4cKFC/Pz85988snZs2e/8sortOJdzCZEroQQ0q5dO0JIVlbWX/7yFzYxMzOTrR6PiYl56KGH9u7dO2LEiNzcXFo/7zYD9d6nUvksG7QTZWZmZqdOnbjp9Kn6bt26EUKioqIOHToUFhbG6zCv0WhatGhRXV1N39LxbRYuXJiYmMgu89VXX+3Zs2f//v3OTxwAADRqjamKnhAycuTIGzduLFmyRKfTDRw4kPdpq1atEhMTV61axV7T//jjj/79+2/dupUQcu3aNYfDkZCQQKM7wzD06SyHw0EIOXfuXM+ePXfs2EG/2Lp16wceeIA4FbVdb0LkSgghnTp1ateu3SeffMK2EB85cuTs2bPcGoUxY8ZcuHDh008/vfPOO/v16ycmAyI5HA4xFekueCUbYjz44INhYWFvvfUW9xG4K1euLF++vEOHDvR+SKlUDh48eMuWLXv37uV+9/jx4+fPn+/bty8hhGGYXbt2NW3a9I033hjJMWvWLIJaegCQo8ZU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1nWP0qVLFyL1aXjx86h26tRJcgCOjo7mtstQXqyir6mpcTt9QEZGxv/7f/+PNorXVZqnzf9eDPBLly5NTk4W2QtVws204IgLp0+fHjFiBO9p/n/961/OHfQAggoCPB8NAN4t/tJ+dj62b98+3mWdtusHSI2ltNpd2gB/9913azQaF0O4e0VCQoLk7yqVSudhbbzbBu82KgveAN24ceOnn35i39JI7MUAn5WVtWLFCl7Nh2C/k59//rlTp071neWI3qQaDIaMjAy2T8maNWuI061bcXGxvzqQAgQIBHixKisrf/vtN2nf9UsJvrKy8vvvv3dO933VvaC6Lr42m81FIZvWSLmnYQAAF6hJREFU0IaEhPjgnqlTp06efN25n51fOtnxRgQyGAypqansW5EB/osvvjh06JD4jXJXuHfv3nvvvZf76YYNG1544QWDwWCxWOp7u0lnDc7Ly5s8eTJ9iP/GjRvO9fN6vd7F0P0AQQIBXqzNmzdLrrf3S4BXKBTffvut77crUl33Gd98843zRd+5CEhr6RuUhwHeuRne7VC1DcE5eK9fv55XteM2wG/dunX//v3clDVr1ly5coVhmIEDB9LZh+tSXFzMK0xfv3796tWrX3zxBZtit9v1er1gp4qsrCznyh673W6z2egplJGRQW/7uJUB5eXl/pqw0Waz7dq1y+1t9MSJE//973/7Jks+tmjRIvR+CBAI8KLYbLb169dL/nrz5s3rmkms4dx///2HDx+WMKSrC16s8xS8AlZXV3/00UfO6c4Dt3Xu3FnadsX/BA8rCZxL8L4/BwTROhKGYdj+htx9kp6e7lxtTm+5ysvLaZc9Qsjy5ct/+eUXh8Nx8eJFF9PMOxwOOnYe9wimpaXl5+dzh4z8z3/+c8899yQmJnIfcKcD49y6dYtbo0PPZ8FbbeegQlsKnOcCblCXL1+eMmWK29kZsrOzxYya3OgwDLNq1apTp075OyNAiH8DfHp6+muvvfbSSy+tXLnS63OneldKSkpBQYFg12iR4uPjeSkSZrupy48//ug8XPno0aM96actSDDPvJDpSf/ENWvWGAwGjUbjdsmuXbtK28T777/PHa7Vhejo6BYtWvASrVaryOEFnc+WkJAQ5553/lJVVSUYYCZMmLBp0yZeIh2Z+M0333zwwQftdrvFYnEenEdwKL3S0lLaInD79m22z4TJZDKbzbTYTe/zqqur6ZiA3NWuXLmSvsjIyPjyyy8JIbW1tbRjQUlJifPTENwU2leDnpnsTcnChQudZ3P45ptvJk2a5MXn/eh/hPtPsVqt3h3eMS8vb/To0RcuXHjppZdctGdZrdZx48b5bCIoCEB+C/BGo3H58uVz585dt25ddXU1rwIw0Jw5c6Z37968XlfOZdC8vLy6Og2FhIRw3x48eHDs2LHeyl5ZWdmoUaN43eZbtWr14IMPemsTNTU1Bw4cELwO8gLezJkzJc/2duzYsRdeeCE0NNTtkoIl+IyMDOeDwrspMZvNY8eOdR4fTRCvlt5qtb788st0slq3BMe64Z0GddVkej62nVvc+zDuLRqtrNq3bx+bQgvfO3bsOHjwoMVicTgcer2e3pHTceJoZzfBJx7Zv0NhYSGtgbfZbNxfxyvq2e129nixuZo9ezat18nOzqbfzcnJMRqN9DW7tg8//LBTp070reDDgV988cWMGTN4kxpv27Zt3759Ddph85133pkwYQIRce/722+/8U7X0tLS9evX83r/5OTknDhxIjU1de/evWydx/fff//xxx9zN3H16tUjR46sXr3aOz9DiMlkOnLkSMOtHzzktwB//vz5jh07xsfHq1SqoUOHBn6VzquvvspLefTRR9PS0rgpv//++6BBg8QMfvfyyy+Hh4dLy4nRaOTdDw0ZMuTRRx91HrHL+R7CYDAcPHhQwkbtdvukSZPWrVvHTaTlIV7UN5lMo0aN4lbJOhwO5xoawRgWERExZ84cMflp3bo1r8Z76dKlQ4YMcQ7wvOr9d999d/r06c7lv6KiIufae16AX7NmTVpa2p133ikmh02bNnVOVKvV3Lfjx49fsGABN8XhcKxcuXLhwoViNuEtu3fvps+Y5efnm0ymkpKSt99++z//+Q/dIfv27WMYxm63s8MNsU34tMK8sLDQaDRyK+qfeOIJOgjg559/TlPYIuzt27e5zUa00xxr+/btd911Fy9mZGVl0TYC9kyjh4+eQmxstlqtBoOBbog7BBN3EKesrKxBgwaxZXq2pUDaeFYlJSXOjUc0k9w/xdmzZ8+cObNhw4aEhATaX8Fut9fU1Oj1eu7IvqWlpQ8//PDkyZO5a0tLS1uwYMH777+/adMmuttramroX3jVqlXsr8vLy1uwYMGSJUumT5/O/tfoEwf79+/n3kdmZWWlpKS4/WmXLl1688033U6ydfTo0XHjxu3fv99gMGBOwgCkdr9Iw9Dr9XFxcfR1XFwc9w+Wm5vLTlbWvXv3sLAw3neVSqVCodBqtRK2q1AouG8feeQRXu3ZTz/99PDDD/MW69Chw/Dhw2mvXVZsbOysWbO4Kd27d7fb7du2beMmqtVqrVbLW+HGjRt79ep1zz33sCmXLl2aPn06b2y406dP//HHH7wyR8+ePXljcYeHh2/cuHHSpEk7d+5kE0NCQsaMGfP666+zodRqtXbv3p0Xa3ft2nXy5EleWeeTTz5JS0vjXojDw8OfeeYZXoD/9NNPjx8/zmsF+Oyzzz766CNuIb6srKxt27a8Eu3mzZvT0tJ4VdazZs264447uCmlpaVvvvkmL3sqlUqn03Xp0oVtx2UYZvny5a+99trnn3/Ohp/CwsLJkyfzuuzpdLrFixffunWLO1/wq6++evnyZW6AVyqVWq2W1xBgsVi++OKLHTt2cAcSHjFixN13381djJ6czZs35ybS04BXgp82bRq3rxkh5Ny5c7/88kvXrl25Navff/99cXExr0Z9+/btvEtqXl7ekiVLeJUTx44dUygUvFGKX3/9de5R27Bhw9mzZ5977rkzZ87Qv0NBQcGMGTOKioo6d+7MuyM8cOAAGyCpw4cPp6SkcDNTW1v7zTff9OrVi9u/3Wg0pqam8sZgvnbtWmpqKntPvHLlSrPZPG7cuPbt23P73DkcjtTUVN4cEPn5+ampqbzRBr/77rumTZty/4OHDx9OTU21Wq30xMjNzR0+fPiUKVPatWuXkZFBD/qzzz47fPjwvn37EkJu3ryZnZ2dm5vbr1+/Nm3aNGnShBBSUVGRnp4eFxenVCo7d+6sVCoJIcnJyQqFYuTIkUqlkt4LpqenHzhwgBAye/bs1157jd7EGwwGq9W6YsUKi8Vy7NixmpqazMzMvLy8vLy8o0ePPvbYY8OHDyd/3pQcPHhw8uTJw4cPp00hdArgH3/88ciRI/n5+ffdd9/27dvpJui97PHjx69du7Zu3Tp6UA4cODBx4sRnn32W/DlzYG1t7fDhwz/55BOFQmGxWFatWkUnEejRowe9B718+XJRUVHXrl1jY2PZ8zMlJWXXrl0bNmx4+umnhwwZQgipqanZsmXL8OHDDQZDly5d6B6g7TITJ07U6XQPPPDAyy+/TPfnypUro6OjdTode91zOBylpaWrV6+eM2cO3S10SYVCYTQaaaUdbcOiXTJ5Uy9WVVUJji1hNpulBQI/atKkCd2lXPSCI3mddbYxMX6ya9euVatW0df5+fkTJkxgP9q0aVPSn+iIpF70zDPPsL89NDR03rx57733HvceIikp6YUXXuA92LN+/XqGYUaPHs2mhIeH06sY/f9TEyZMqKqqevLJJ7nf3b9/P8Mwjz/+OJsSHR1ts9lKSkq4R7RNmzb333///fff7/pA6nS6V1555ejRo9xQMX36dIZhPvvsM+6Sx48fZxiGXrOo2NjYjz766MSJE9xy5KBBg+bMmfPwww+zKQqFom/fvt26dePWMbRv355hmGXLltE/NtW/f/8nnniibdu2bIpSqbx48WJxcXG7du243121atX06dO52x03btw///lPbgRVKpX0cHN7t8XGxnbs2JF36n/00UcMw3Dvrpo1a3by5EmGYbijArdu3bpfv368Ujgtj86cOZO73X79+q1evZobkh966CGGYY4ePcr97tKlSxmGeeWVV9gUrVb7j3/8Y+TIkdzqhCFDhjAMw5smJyUlhWGYX1u3Zp9R0+l0BoPh999/j4iIYBeLj48/evQo9+aDEBIVFdW0aVPnlouIiAhelUCrVq26d+/OTeGen+x2e/To8dhjj+l0OjZRTLNIXVq0aDFv3rw33nhD8hp43n///fHjxzvf2QPIwB133OHdoMYwjNlsFkxXMH4aC+LEiRNHjx6lk1VcvHjxq6++WrFiBf2I24XHbrc735tERUXZ7XZpnbnsdjtb1NBqtfTyx53RKzw8nF40Kysr6aaVSiW9fNtsNnajOp2OXh9ra2vZImNERAS9x6yoqKA7VqVS0cu3hO86U6vVkZGRNFdGo5Eti0dGRtK4y5b11Wo1Dc9Wq5UtwjZp0oRGSpHftVgsbPVGaGgo7ftWU1PD9uuJiopSKBQMw7Bl/ZCQEHpdFvwud7v1+q5Wq6UVsHTP0OfNHA4HW/vK/jTB7dI+XNzDwf29Go2Ghjez2cxWFYSFhdFbqKqqKtosqlAoaKlC8BRy/V32FIoYP95msRRu3EhEn37sAeKeQuTPE4b7XXYn8E5d7k4mLk8/7sF1TaPRsIdSzKkrHnv6hYeHl5WV+Wb24YBCD2IQTnsfGhqq1WrrO/ZRo8NeDbgiIiI8bOMQ7PTjtwBfU1MzZcqUZcuWtWjRYvny5XfffTe3fMwqLy93blWNiopyOBxB2OSjVqs1Gk1wXvIiIiLKysoCfHYTtyKfeYY4HJX/24jj5iuRkdJm/GvsYmJiTCZTcJ7tJFgDvE6nEz8XsJx4/jePjY11TvRbG3xYWNjMmTOTk5PtdntCQsKwYcP8lRMAAAD58VuAJ4TQVnY/ZgAAAECuMJIdAACADCHAAwAAyBACPAAAgAwhwAMAAMgQAjwAAIAMIcADAADIEAI8AACADCHAAwAAyBACPAAAgAwhwAMAAMgQAjwAAIAMIcADAADIEAI8AACADPlzNjnJcnJy1Gp1ZGSkvzPiawzDNPYJ0aWpqKi4efNm8+bNlcrGfUtqb9eO1PMI2u32BspMgLty5UpoaGh4eLi/M+JrDMP4Owv+UVxcbDQamzdv7u+M+EED/c0VjfFkevnll5s3b75kyRJ/ZwR85Pvvv1+wYMHhw4ejo6P9nRfwkYEDBz711FOvvPKKvzMCPrJu3brt27cfPnzY3xmRj8ZdHgIAAABBCPAAAAAypFq4cKG/81BvISEhXbt2veuuu/ydEfARpVLZsmXLnj17qtWNstcISKDRaBITE1u2bOnvjICPqFSqtm3bdu/e3d8ZkY9G2QYPAAAArqGKHgAAQIb8XOFpt9unTZu2bNky9pm3PXv27N+/3+Fw3HvvvVOnTtXpdISQtLS0nTt3mkymNm3aTJs27Y477iCEvPHGG7///rtCoSCEDBkyZPLkyYSQ9PT0jRs3mkymxMTEqVOnajSauhLBL0QecQ8PLo54QBFz0FNSUr7++mvuV7744ouYmBj8zRsdwcu1h39eHHGJGP9JTU2dM2fO8OHDKyoqaMr58+enT59eXFxcW1u7Zs2ar7/+mmGY/Pz80aNHFxUVWa3Wr7/+es6cOXTh5557rqamhrvCmpqaZ555Jicnx2azvf/++zt37qwrEfxC5BFnPDu4OOIBRfxBZ/3888+ffPIJfY2/eeMieLn28M+LIy6ZP6vo27Zt+9RTT4WEhLApV69e7dmzZ1xcnE6nGzhw4E8//UQI0ev1gwcPbtGihVqtHjBgQGFhISGktrbW4XCEhoZyV3j+/PmOHTvGx8erVKqhQ4eeOnWqrkTwC5FH3MODiyMeUEQedFZtbW1KSsqUKVMI/uaNkODl2sM/L464ZP6sou/WrRshRKVSsSl33333119/PWjQoMjIyEOHDpWWlhJCEhMTExMTCSEWi2Xr1q39+vUjhBQVFSmVyg8++CA7O7t9+/YvvfRS8+bN9Xp9XFwcXVVcXJxeryeECCaCX4g84h4eXBzxgCLyoLM2b978+OOP05Ya/M0bHcHLtYd/XhxxyQLroaNevXrl5eW99957ISEhvXv35t65nzlz5ssvv+zVq9fEiRMJISqVauDAgSNHjlQqlbt3716+fPmHH37IWxsj9ICAYCL4i+AR9+7BxREPNC7+5gUFBZmZmbShneBv3mjxLtc8Hv55ccTFC6wAbzabBw8e/OSTTxJCzp07l5mZSQhhGGbt2rU5OTlvv/12mzZt6JItW7Z89tln6VPRI0aM2Lt3L8MwsbGxGRkZdAG9Xh8bG0sIEUyEACF4xD08uDjiAU7woFPHjx8fNGgQ7VJH8DdvhAQv1x7+eXHEJQusx+QKCwunTZtWWlpqNpt37do1cOBAQsiFCxeysrKSk5PZ04UQcvz48Xnz5tXU1Fgslh9++KFLly4KheK+++67du1aUVERwzBpaWl9+/YlhAgmQoAQPOIeHlwc8QAneNAJIQzDHD9+/MEHH2SXxN+80RG8XP//9u4vpMkvjuP4OS5ylmNSehERXkR/aEgIEYFmK7OJUEg1sSwvAqdEQWUI6U0gUUQSBOVFxUBBbzQiSkgvNsuBiZkXsoYsiDToLzP6wwbtOb+LB4aQM6jW+p29X1dnX49fxjk8fuaZe/zNi5cd/2Xpv9FNTU3NrVu35n9+5s6dOzk5Obt27aqpqZFSdnV19ff3J25htmzZsu7ubsMwvF6v3++XUq5fv76pqcl8Bff06dOurq54PL5hw4bGxkbzgxMLFpEuP93x399cdvxf89NNF0KEw+GOjo7Ozs7Ed3GZ/+8s+ONa/PbFy47/mvQHPAAA+OP+rSN6AADwRxDwAABoiIAHAEBDBDwAABoi4AEA0BABDwCAhgh4AAA0RMADSI9QKCSlnJubS/cTAfREwAMAoCECHgAADRHwgIZaWlrKysoSD9vb2x0Oh1Lq69evJ0+eLCwstNlsVVVVoVDInBAKhfbs2WO32202W1lZ2bNnz8y61WodHR2tqKiorq4uKSk5deqUWT906JCU8s2bN0KI2dlZKaXf7xdCJOufrJ4wNjZmt9tv3LiRwkUBMgwBD2jI7XaPjIyYAayU6unpOXr0qJTyyJEjExMTXq93cHAwOzvb6XRGIhEhRF1dXSwW6+/vv3v3rlLK4/EkWnk8nuLi4tOnT7tcLjPFlVIjIyMWi+Xx48dCiOHhYZvNZv4XuGT9k9VNk5OTLpfr/Pnzx48f/6vLBOhNAdCOYRiFhYWdnZ1KqYmJCSnlq1evnj9/brFY3r17Z86JxWIFBQX37t2Lx+OXLl2anp42693d3StXrjTH2dnZbW1t5nh0dFRK+fHjx5cvX1qtVrfbfeLECaVUQ0NDdXW1UipZ/0XqQohAIJCfn9/a2vqXlgbIGEvS/QIDwJ8npXS73X19fU1NTT09PU6nc82aNX19ffF4fN26dYlpnz9/DofDWVlZzc3NY2NjQ0ND4+PjDx48mN9q27Zt5mDLli15eXmPHj368uXL1q1bXS7XtWvXhBDDw8PNzc1CiKmpqQX7x2KxBetmZe/evVLKcDicyvUAMhEBD+jJ7XZfvXr1/fv3vb297e3tQojv37/n5eUl3l832e32b9++VVZWfvjwYf/+/QcPHiwtLW1paUlMyM3NNQcWi6WiosLv90ej0dLS0h07djQ0NASDwenp6crKykX6P3z4cMH627dvhRCtra3FxcXl5eUej6e8vDw1iwFkpHQfIQBICfOUvr6+3mq1fvr0SSk1OTkphAgGg+aESCRSX18fDAbv37+fk5MTjUbN+vXr1+cf0ft8vkTP27dvb9682eFwDAwMGIaxevXqw4cPb9q0yfxqsv7J6uYRfSQSUUrV1tZu3LgxFoulelmAzEHAA9o6e/asEKK2ttZ8aBjG7t27i4qKBgcHfT5fVVXV2rVro9Goz+cTQly5ciUQCFy4cKGgoGDp0qXj4+Pqh4CfmZmRUlosFjOV6+rqsrKyzpw5s3j/ZPX5Af/69evc3NzLly//5SUCNEbAA9oKBAJCiIGBgUQlEokcO3Zs1apVdrt93759L168UEoZhtHW1pafn79ixYoDBw6Ew+GSkpKdO3eqHwJeKeVwOIqKiszxzZs3hRBDQ0OL909Wnx/wSqmOjo7ly5fPzMykbkGAjCKVUul6dwBASnm93nPnzs3Ozi5Zwl/bABmHyx7Q0Nzc3JMnTy5evNjY2Ei6A5mJ3+ABDU1NTW3fvt3pdPb29lqt1nQ/HQBpQMADAKAhblULAICGCHgAADREwAMAoCECHgAADRHwAABoiIAHAEBDBDwAABr6D//lYIOjSxfqAAAAAElFTkSuQmCC" /><!-- --></p>
+<h1 id="day2">Day2:</h1>
+<p>Today we will work with the same data, but in a slightly more difficult format.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">tycho_wide_timeDisease_link &lt;-<span class="st"> &quot;https://raw.githubusercontent.com/UNC-HLC-R-Intro/lessons/import/data/tycho_wide_time-disease.csv?token=AQdxTfHxKKtnxxzNvQeWm5VXTBq9gZ0-ks5bUKzQwA%3D%3D&quot;</span></a></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">tycho &lt;-<span class="st"> </span>readr<span class="op">::</span><span class="kw">read_csv</span>(tycho_wide_timeDisease_link)</a></code></pre></div>
+<pre><code>## Parsed with column specification:
+## cols(
+##   .default = col_double(),
+##   state = col_character(),
+##   `192840_SMALLPOX` = col_integer(),
+##   `194033_MEASLES` = col_integer(),
+##   `194043_POLIO` = col_integer(),
+##   `194115_POLIO` = col_integer(),
+##   `194116_MEASLES` = col_integer(),
+##   `194133_MEASLES` = col_integer(),
+##   `194133_POLIO` = col_integer(),
+##   `194241_MEASLES` = col_integer(),
+##   `194334_SMALLPOX` = col_integer(),
+##   `194533_SMALLPOX` = col_integer(),
+##   `194706_SMALLPOX` = col_integer(),
+##   `194724_SMALLPOX` = col_integer(),
+##   `194728_SMALLPOX` = col_integer(),
+##   `194729_SMALLPOX` = col_integer(),
+##   `194733_SMALLPOX` = col_integer(),
+##   `194735_SMALLPOX` = col_integer(),
+##   `194737_SMALLPOX` = col_integer(),
+##   `194739_SMALLPOX` = col_integer(),
+##   `194743_SMALLPOX` = col_integer()
+##   # ... with 498 more columns
+## )
+
+## See spec(...) for full column specifications.
+</code></pre>
+<h1 id="tidyr-package-for-more-complicated-data-manipulation"><code>tidyr</code> package for more complicated data manipulation</h1>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">tycho <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb8-2" data-line-number="2"><span class="st">  </span>head</a></code></pre></div>
+<pre><code>## # A tibble: 6 x 15,548
+##   state  `192801_MEASLES` `192801_POLIO` `192801_SMALLPO… `192802_MEASLES`
+##   &lt;chr&gt;             &lt;dbl&gt;          &lt;dbl&gt;            &lt;dbl&gt;            &lt;dbl&gt;
+## 1 ALABA…             3.67           0                0.04             6.25
+## 2 ALASKA             0              0                0                0   
+## 3 ARIZO…             1.9            0                0                6.4 
+## 4 ARKAN…             4.11           0                0.38             9.91
+## 5 CALIF…             1.38           0.17             0.34             1.8 
+## 6 COLOR…             8.38           0.39             3.06             6.02
+## # ... with 15,543 more variables: `192802_POLIO` &lt;dbl&gt;,
+## #   `192802_SMALLPOX` &lt;dbl&gt;, `192803_MEASLES` &lt;dbl&gt;, `192803_POLIO` &lt;dbl&gt;,
+## #   `192803_SMALLPOX` &lt;dbl&gt;, `192804_MEASLES` &lt;dbl&gt;, `192804_POLIO` &lt;dbl&gt;,
+## #   `192804_SMALLPOX` &lt;dbl&gt;, `192805_MEASLES` &lt;dbl&gt;, `192805_POLIO` &lt;dbl&gt;,
+## #   `192805_SMALLPOX` &lt;dbl&gt;, `192806_MEASLES` &lt;dbl&gt;, `192806_POLIO` &lt;dbl&gt;,
+## #   `192806_SMALLPOX` &lt;dbl&gt;, `192807_MEASLES` &lt;dbl&gt;, `192807_POLIO` &lt;dbl&gt;,
+## #   `192807_SMALLPOX` &lt;dbl&gt;, `192808_MEASLES` &lt;dbl&gt;, `192808_POLIO` &lt;dbl&gt;,
+## #   `192808_SMALLPOX` &lt;dbl&gt;, `192809_MEASLES` &lt;dbl&gt;, `192809_POLIO` &lt;dbl&gt;,
+## #   `192809_SMALLPOX` &lt;dbl&gt;, `192810_MEASLES` &lt;dbl&gt;, `192810_POLIO` &lt;dbl&gt;,
+## #   `192810_SMALLPOX` &lt;dbl&gt;, `192811_MEASLES` &lt;dbl&gt;, `192811_POLIO` &lt;dbl&gt;,
+## #   `192811_SMALLPOX` &lt;dbl&gt;, `192812_MEASLES` &lt;dbl&gt;, `192812_POLIO` &lt;dbl&gt;,
+## #   `192812_SMALLPOX` &lt;dbl&gt;, `192813_MEASLES` &lt;dbl&gt;, `192813_POLIO` &lt;dbl&gt;,
+## #   `192813_SMALLPOX` &lt;dbl&gt;, `192814_MEASLES` &lt;dbl&gt;, `192814_POLIO` &lt;dbl&gt;,
+## #   `192814_SMALLPOX` &lt;dbl&gt;, `192815_MEASLES` &lt;dbl&gt;, `192815_POLIO` &lt;dbl&gt;,
+## #   `192815_SMALLPOX` &lt;dbl&gt;, `192816_MEASLES` &lt;dbl&gt;, `192816_POLIO` &lt;dbl&gt;,
+## #   `192816_SMALLPOX` &lt;dbl&gt;, `192817_MEASLES` &lt;dbl&gt;, `192817_POLIO` &lt;dbl&gt;,
+## #   `192817_SMALLPOX` &lt;dbl&gt;, `192818_MEASLES` &lt;dbl&gt;, `192818_POLIO` &lt;dbl&gt;,
+## #   `192818_SMALLPOX` &lt;dbl&gt;, `192819_MEASLES` &lt;dbl&gt;, `192819_POLIO` &lt;dbl&gt;,
+## #   `192819_SMALLPOX` &lt;dbl&gt;, `192820_MEASLES` &lt;dbl&gt;, `192820_POLIO` &lt;dbl&gt;,
+## #   `192820_SMALLPOX` &lt;dbl&gt;, `192821_MEASLES` &lt;dbl&gt;, `192821_POLIO` &lt;dbl&gt;,
+## #   `192821_SMALLPOX` &lt;dbl&gt;, `192822_MEASLES` &lt;dbl&gt;, `192822_POLIO` &lt;dbl&gt;,
+## #   `192822_SMALLPOX` &lt;dbl&gt;, `192823_MEASLES` &lt;dbl&gt;, `192823_POLIO` &lt;dbl&gt;,
+## #   `192823_SMALLPOX` &lt;dbl&gt;, `192824_MEASLES` &lt;dbl&gt;, `192824_POLIO` &lt;dbl&gt;,
+## #   `192824_SMALLPOX` &lt;dbl&gt;, `192825_MEASLES` &lt;dbl&gt;, `192825_POLIO` &lt;dbl&gt;,
+## #   `192825_SMALLPOX` &lt;dbl&gt;, `192826_MEASLES` &lt;dbl&gt;, `192826_POLIO` &lt;dbl&gt;,
+## #   `192826_SMALLPOX` &lt;dbl&gt;, `192827_MEASLES` &lt;dbl&gt;, `192827_POLIO` &lt;dbl&gt;,
+## #   `192827_SMALLPOX` &lt;dbl&gt;, `192828_MEASLES` &lt;dbl&gt;, `192828_POLIO` &lt;dbl&gt;,
+## #   `192828_SMALLPOX` &lt;dbl&gt;, `192829_MEASLES` &lt;dbl&gt;, `192829_POLIO` &lt;dbl&gt;,
+## #   `192829_SMALLPOX` &lt;dbl&gt;, `192830_MEASLES` &lt;dbl&gt;, `192830_POLIO` &lt;dbl&gt;,
+## #   `192830_SMALLPOX` &lt;dbl&gt;, `192831_MEASLES` &lt;dbl&gt;, `192831_POLIO` &lt;dbl&gt;,
+## #   `192831_SMALLPOX` &lt;dbl&gt;, `192832_MEASLES` &lt;dbl&gt;, `192832_POLIO` &lt;dbl&gt;,
+## #   `192832_SMALLPOX` &lt;dbl&gt;, `192833_MEASLES` &lt;dbl&gt;, `192833_POLIO` &lt;dbl&gt;,
+## #   `192833_SMALLPOX` &lt;dbl&gt;, `192834_MEASLES` &lt;dbl&gt;, `192834_POLIO` &lt;dbl&gt;,
+## #   `192834_SMALLPOX` &lt;dbl&gt;, `192835_MEASLES` &lt;dbl&gt;, `192835_POLIO` &lt;dbl&gt;,
+## #   …
+</code></pre>
+<p>The goal of today is to reproduce the above plot from this more complicated data structure. We’ll be using another package from the <code>tidyverse</code> called <code>tidyr</code> (<a href="https://tidyr.tidyverse.org/reference/index.html">documentation</a>)</p>
+<p>One good way to think about reshaping data is to work <em>backwards</em> from what you want, and come up with the steps to get to the end.</p>
+<p>We want our data to look like this:</p>
+<pre><code>## Using state as id variables
+
+##        state yearweek disease value
+## 1    ALABAMA   192801 MEASLES  3.67
+## 2     ALASKA   192801 MEASLES  0.00
+## 3    ARIZONA   192801 MEASLES  1.90
+## 4   ARKANSAS   192801 MEASLES  4.11
+## 5 CALIFORNIA   192801 MEASLES  1.38
+## 6   COLORADO   192801 MEASLES  8.38
+</code></pre>
+<p>So we should make data that first looks like this:</p>
+<pre><code>## Using state as id variables
+
+##        state       variable value
+## 1    ALABAMA 192801_MEASLES  3.67
+## 2     ALASKA 192801_MEASLES  0.00
+## 3    ARIZONA 192801_MEASLES  1.90
+## 4   ARKANSAS 192801_MEASLES  4.11
+## 5 CALIFORNIA 192801_MEASLES  1.38
+## 6   COLORADO 192801_MEASLES  8.38
+</code></pre>
+<p>And then separate the <code>variable</code> column into two new columns, <code>yearweek</code> and <code>disease</code>.</p>
+<p>It is very easy to separate two values from eachother if they are delimited by a separator character (in this case &quot;_&quot;).</p>
+<p>The <code>tidyr</code> package provides several functions for manupulating data frames that are in tidy format.</p>
+<p>For more reading: - <a href="http://r4ds.had.co.nz/tidy-data.html">R for Data Science Chapter</a></p>
+<ul>
+<li><a href="https://www.r-bloggers.com/data-manipulation-with-tidyr/amp/">Tidyr tutorial</a></li>
+</ul>
+<h2 id="exercise-1">Exercise 1</h2>
+<p>Melt <code>tycho</code> to make it tidy.</p>
+<pre><code>## Using state as id variables
+
+##                       state           variable incidence
+## 1                   ALABAMA     192801_MEASLES      3.67
+## 2                    ALASKA     192801_MEASLES      0.00
+## 3                   ARIZONA     192801_MEASLES      1.90
+## 4                  ARKANSAS     192801_MEASLES      4.11
+## 5                CALIFORNIA     192801_MEASLES      1.38
+## 6                  COLORADO     192801_MEASLES      8.38
+## 7               CONNECTICUT     192801_MEASLES      4.50
+## 8                  DELAWARE     192801_MEASLES      8.58
+## 9      DISTRICT OF COLUMBIA     192801_MEASLES      0.00
+## 10                  FLORIDA     192801_MEASLES      0.21
+## 11                  GEORGIA     192801_MEASLES      1.17
+## 12                   HAWAII     192801_MEASLES      0.00
+## 13                    IDAHO     192801_MEASLES      0.00
+## 14                 ILLINOIS     192801_MEASLES      0.50
+## 15                  INDIANA     192801_MEASLES      1.34
+## 16                     IOWA     192801_MEASLES      0.16
+## 17                   KANSAS     192801_MEASLES      0.81
+## 18                 KENTUCKY     192801_MEASLES      3.08
+## 19                LOUISIANA     192801_MEASLES      1.89
+## 20                    MAINE     192801_MEASLES      4.52
+## 21                 MARYLAND     192801_MEASLES     10.87
+## 22            MASSACHUSETTS     192801_MEASLES     25.66
+## 23                 MICHIGAN     192801_MEASLES      5.68
+## 24                MINNESOTA     192801_MEASLES      0.31
+## 25              MISSISSIPPI     192801_MEASLES      0.00
+## 26                 MISSOURI     192801_MEASLES      1.19
+## 27                  MONTANA     192801_MEASLES      0.18
+## 28                 NEBRASKA     192801_MEASLES      1.60
+## 29                   NEVADA     192801_MEASLES      0.00
+## 30            NEW HAMPSHIRE     192801_MEASLES      0.00
+## 31               NEW JERSEY     192801_MEASLES      3.55
+## 32               NEW MEXICO     192801_MEASLES     14.90
+## 33                 NEW YORK     192801_MEASLES      7.60
+## 34           NORTH CAROLINA     192801_MEASLES     47.86
+## 35             NORTH DAKOTA     192801_MEASLES      0.00
+## 36                     OHIO     192801_MEASLES      2.51
+## 37                 OKLAHOMA     192801_MEASLES      4.86
+## 38                   OREGON     192801_MEASLES      4.91
+## 39             PENNSYLVANIA     192801_MEASLES      6.97
+## 40             RHODE ISLAND     192801_MEASLES      1.18
+## 41           SOUTH CAROLINA     192801_MEASLES     42.04
+## 42             SOUTH DAKOTA     192801_MEASLES      5.69
+## 43                TENNESSEE     192801_MEASLES     22.03
+## 44                    TEXAS     192801_MEASLES      1.18
+## 45                     UTAH     192801_MEASLES      0.40
+## 46                  VERMONT     192801_MEASLES      0.28
+## 47                 VIRGINIA     192801_MEASLES      0.00
+## 48               WASHINGTON     192801_MEASLES     14.83
+## 49            WEST VIRGINIA     192801_MEASLES      3.36
+## 50                WISCONSIN     192801_MEASLES      1.54
+## 51                  WYOMING     192801_MEASLES      0.91
+## 52                  ALABAMA       192801_POLIO      0.00
+## 53                   ALASKA       192801_POLIO      0.00
+## 54                  ARIZONA       192801_POLIO      0.00
+## 55                 ARKANSAS       192801_POLIO      0.00
+## 56               CALIFORNIA       192801_POLIO      0.17
+## 57                 COLORADO       192801_POLIO      0.39
+## 58              CONNECTICUT       192801_POLIO      0.00
+## 59                 DELAWARE       192801_POLIO      0.00
+## 60     DISTRICT OF COLUMBIA       192801_POLIO      0.00
+## 61                  FLORIDA       192801_POLIO      0.00
+## 62                  GEORGIA       192801_POLIO      0.03
+## 63                   HAWAII       192801_POLIO      0.00
+## 64                    IDAHO       192801_POLIO      0.00
+## 65                 ILLINOIS       192801_POLIO      0.03
+## 66                  INDIANA       192801_POLIO      0.03
+## 67                     IOWA       192801_POLIO      0.08
+## 68                   KANSAS       192801_POLIO      0.00
+## 69                 KENTUCKY       192801_POLIO      0.00
+## 70                LOUISIANA       192801_POLIO      0.00
+## 71                    MAINE       192801_POLIO      0.00
+## 72                 MARYLAND       192801_POLIO      0.06
+## 73            MASSACHUSETTS       192801_POLIO      0.14
+## 74                 MICHIGAN       192801_POLIO      0.04
+## 75                MINNESOTA       192801_POLIO      0.00
+## 76              MISSISSIPPI       192801_POLIO      0.00
+## 77                 MISSOURI       192801_POLIO      0.03
+## 78                  MONTANA       192801_POLIO      0.18
+## 79                 NEBRASKA       192801_POLIO      0.07
+## 80                   NEVADA       192801_POLIO      0.00
+## 81            NEW HAMPSHIRE       192801_POLIO      0.00
+## 82               NEW JERSEY       192801_POLIO      0.08
+## 83               NEW MEXICO       192801_POLIO      0.00
+## 84                 NEW YORK       192801_POLIO      0.08
+## 85           NORTH CAROLINA       192801_POLIO      0.00
+## 86             NORTH DAKOTA       192801_POLIO      0.00
+## 87                     OHIO       192801_POLIO      0.02
+## 88                 OKLAHOMA       192801_POLIO      0.00
+## 89                   OREGON       192801_POLIO      0.64
+## 90             PENNSYLVANIA       192801_POLIO      0.00
+## 91             RHODE ISLAND       192801_POLIO      0.00
+## 92           SOUTH CAROLINA       192801_POLIO      0.06
+## 93             SOUTH DAKOTA       192801_POLIO      0.00
+## 94                TENNESSEE       192801_POLIO      0.04
+## 95                    TEXAS       192801_POLIO      0.05
+## 96                     UTAH       192801_POLIO      0.00
+## 97                  VERMONT       192801_POLIO      0.00
+## 98                 VIRGINIA       192801_POLIO      0.00
+## 99               WASHINGTON       192801_POLIO      0.26
+## 100           WEST VIRGINIA       192801_POLIO      0.06
+## 101               WISCONSIN       192801_POLIO      0.03
+## 102                 WYOMING       192801_POLIO      0.00
+## 103                 ALABAMA    192801_SMALLPOX      0.04
+## 104                  ALASKA    192801_SMALLPOX      0.00
+## 105                 ARIZONA    192801_SMALLPOX      0.00
+## 106                ARKANSAS    192801_SMALLPOX      0.38
+## 107              CALIFORNIA    192801_SMALLPOX      0.34
+## 108                COLORADO    192801_SMALLPOX      3.06
+## 109             CONNECTICUT    192801_SMALLPOX      1.65
+## 110                DELAWARE    192801_SMALLPOX      0.00
+## 111    DISTRICT OF COLUMBIA    192801_SMALLPOX      0.00
+## 112                 FLORIDA    192801_SMALLPOX      0.07
+## 113                 GEORGIA    192801_SMALLPOX      0.00
+## 114                  HAWAII    192801_SMALLPOX      0.00
+## 115                   IDAHO    192801_SMALLPOX      0.89
+## 116                ILLINOIS    192801_SMALLPOX      0.40
+## 117                 INDIANA    192801_SMALLPOX      4.14
+## 118                    IOWA    192801_SMALLPOX      2.37
+## 119                  KANSAS    192801_SMALLPOX      3.95
+## 120                KENTUCKY    192801_SMALLPOX      0.62
+## 121               LOUISIANA    192801_SMALLPOX      0.48
+## 122                   MAINE    192801_SMALLPOX      0.00
+## 123                MARYLAND    192801_SMALLPOX      0.00
+## 124           MASSACHUSETTS    192801_SMALLPOX      0.00
+## 125                MICHIGAN    192801_SMALLPOX      0.36
+## 126               MINNESOTA    192801_SMALLPOX      0.08
+## 127             MISSISSIPPI    192801_SMALLPOX      0.05
+## 128                MISSOURI    192801_SMALLPOX      1.06
+## 129                 MONTANA    192801_SMALLPOX      6.65
+## 130                NEBRASKA    192801_SMALLPOX      0.88
+## 131                  NEVADA    192801_SMALLPOX      0.00
+## 132           NEW HAMPSHIRE    192801_SMALLPOX      0.00
+## 133              NEW JERSEY    192801_SMALLPOX      0.08
+## 134              NEW MEXICO    192801_SMALLPOX      0.24
+## 135                NEW YORK    192801_SMALLPOX      0.03
+## 136          NORTH CAROLINA    192801_SMALLPOX      2.04
+## 137            NORTH DAKOTA    192801_SMALLPOX      0.00
+## 138                    OHIO    192801_SMALLPOX      0.29
+## 139                OKLAHOMA    192801_SMALLPOX      4.61
+## 140                  OREGON    192801_SMALLPOX      3.42
+## 141            PENNSYLVANIA    192801_SMALLPOX      0.01
+## 142            RHODE ISLAND    192801_SMALLPOX      0.00
+## 143          SOUTH CAROLINA    192801_SMALLPOX      1.09
+## 144            SOUTH DAKOTA    192801_SMALLPOX      0.88
+## 145               TENNESSEE    192801_SMALLPOX      0.19
+## 146                   TEXAS    192801_SMALLPOX      0.51
+## 147                    UTAH    192801_SMALLPOX      3.77
+## 148                 VERMONT    192801_SMALLPOX      0.00
+## 149                VIRGINIA    192801_SMALLPOX      0.00
+## 150              WASHINGTON    192801_SMALLPOX      2.00
+## 151           WEST VIRGINIA    192801_SMALLPOX      0.65
+## 152               WISCONSIN    192801_SMALLPOX      0.92
+## 153                 WYOMING    192801_SMALLPOX      2.27
+## 154                 ALABAMA     192802_MEASLES      6.25
+## 155                  ALASKA     192802_MEASLES      0.00
+## 156                 ARIZONA     192802_MEASLES      6.40
+## 157                ARKANSAS     192802_MEASLES      9.91
+## 158              CALIFORNIA     192802_MEASLES      1.80
+## 159                COLORADO     192802_MEASLES      6.02
+## 160             CONNECTICUT     192802_MEASLES      9.00
+## 161                DELAWARE     192802_MEASLES      7.30
+## 162    DISTRICT OF COLUMBIA     192802_MEASLES      0.00
+## 163                 FLORIDA     192802_MEASLES      0.49
+## 164                 GEORGIA     192802_MEASLES      5.96
+## 165                  HAWAII     192802_MEASLES      0.00
+## 166                   IDAHO     192802_MEASLES      0.45
+## 167                ILLINOIS     192802_MEASLES      0.77
+## 168                 INDIANA     192802_MEASLES      2.71
+## 169                    IOWA     192802_MEASLES      0.00
+## 170                  KANSAS     192802_MEASLES      1.35
+## 171                KENTUCKY     192802_MEASLES      1.99
+## 172               LOUISIANA     192802_MEASLES      3.00
+## 173                   MAINE     192802_MEASLES      7.40
+## 174                MARYLAND     192802_MEASLES     15.47
+## 175           MASSACHUSETTS     192802_MEASLES     28.50
+## 176                MICHIGAN     192802_MEASLES      7.59
+## 177               MINNESOTA     192802_MEASLES      0.23
+## 178             MISSISSIPPI     192802_MEASLES      0.00
+## 179                MISSOURI     192802_MEASLES      0.83
+## 180                 MONTANA     192802_MEASLES      0.18
+## 181                NEBRASKA     192802_MEASLES      0.29
+## 182                  NEVADA     192802_MEASLES      0.00
+## 183           NEW HAMPSHIRE     192802_MEASLES      0.00
+## 184              NEW JERSEY     192802_MEASLES      4.74
+## 185              NEW MEXICO     192802_MEASLES     11.06
+## 186                NEW YORK     192802_MEASLES      9.65
+## 187          NORTH CAROLINA     192802_MEASLES    119.70
+## 188            NORTH DAKOTA     192802_MEASLES      0.15
+## 189                    OHIO     192802_MEASLES      0.00
+## 190                OKLAHOMA     192802_MEASLES      2.56
+## 191                  OREGON     192802_MEASLES      4.91
+## 192            PENNSYLVANIA     192802_MEASLES      8.74
+## 193            RHODE ISLAND     192802_MEASLES      0.74
+## 194          SOUTH CAROLINA     192802_MEASLES     83.90
+## 195            SOUTH DAKOTA     192802_MEASLES      6.57
+## 196               TENNESSEE     192802_MEASLES     16.96
+## 197                   TEXAS     192802_MEASLES      0.63
+## 198                    UTAH     192802_MEASLES      0.00
+## 199                 VERMONT     192802_MEASLES      0.56
+## 200                VIRGINIA     192802_MEASLES      0.00
+## 201              WASHINGTON     192802_MEASLES     17.34
+## 202           WEST VIRGINIA     192802_MEASLES      4.19
+## 203               WISCONSIN     192802_MEASLES      0.96
+## 204                 WYOMING     192802_MEASLES      0.00
+## 205                 ALABAMA       192802_POLIO      0.00
+## 206                  ALASKA       192802_POLIO      0.00
+## 207                 ARIZONA       192802_POLIO      0.00
+## 208                ARKANSAS       192802_POLIO      0.00
+## 209              CALIFORNIA       192802_POLIO      0.15
+## 210                COLORADO       192802_POLIO      0.20
+## 211             CONNECTICUT       192802_POLIO      0.00
+## 212                DELAWARE       192802_POLIO      0.00
+## 213    DISTRICT OF COLUMBIA       192802_POLIO      0.00
+## 214                 FLORIDA       192802_POLIO      0.00
+## 215                 GEORGIA       192802_POLIO      0.00
+## 216                  HAWAII       192802_POLIO      0.00
+## 217                   IDAHO       192802_POLIO      0.00
+## 218                ILLINOIS       192802_POLIO      0.01
+## 219                 INDIANA       192802_POLIO      0.03
+## 220                    IOWA       192802_POLIO      0.00
+## 221                  KANSAS       192802_POLIO      0.22
+## 222                KENTUCKY       192802_POLIO      0.00
+## 223               LOUISIANA       192802_POLIO      0.05
+## 224                   MAINE       192802_POLIO      0.13
+## 225                MARYLAND       192802_POLIO      0.06
+## 226           MASSACHUSETTS       192802_POLIO      0.14
+## 227                MICHIGAN       192802_POLIO      0.04
+## 228               MINNESOTA       192802_POLIO      0.04
+## 229             MISSISSIPPI       192802_POLIO      0.00
+## 230                MISSOURI       192802_POLIO      0.06
+## 231                 MONTANA       192802_POLIO      0.00
+## 232                NEBRASKA       192802_POLIO      0.07
+## 233                  NEVADA       192802_POLIO      0.00
+## 234           NEW HAMPSHIRE       192802_POLIO      0.00
+## 235              NEW JERSEY       192802_POLIO      0.03
+## 236              NEW MEXICO       192802_POLIO      0.00
+## 237                NEW YORK       192802_POLIO      0.05
+## 238          NORTH CAROLINA       192802_POLIO      0.03
+## 239            NORTH DAKOTA       192802_POLIO      0.45
+## 240                    OHIO       192802_POLIO      0.00
+## 241                OKLAHOMA       192802_POLIO      0.04
+## 242                  OREGON       192802_POLIO      0.43
+## 243            PENNSYLVANIA       192802_POLIO      0.03
+## 244            RHODE ISLAND       192802_POLIO      0.00
+## 245          SOUTH CAROLINA       192802_POLIO      0.06
+## 246            SOUTH DAKOTA       192802_POLIO      0.00
+## 247               TENNESSEE       192802_POLIO      0.04
+## 248                   TEXAS       192802_POLIO      0.04
+## 249                    UTAH       192802_POLIO      0.00
+## 250                 VERMONT       192802_POLIO      0.00
+## 251                VIRGINIA       192802_POLIO      0.00
+## 252              WASHINGTON       192802_POLIO      0.39
+## 253           WEST VIRGINIA       192802_POLIO      0.24
+## 254               WISCONSIN       192802_POLIO      0.03
+## 255                 WYOMING       192802_POLIO      0.00
+## 256                 ALABAMA    192802_SMALLPOX      0.15
+## 257                  ALASKA    192802_SMALLPOX      0.00
+## 258                 ARIZONA    192802_SMALLPOX      0.00
+## 259                ARKANSAS    192802_SMALLPOX      0.49
+## 260              CALIFORNIA    192802_SMALLPOX      0.41
+## 261                COLORADO    192802_SMALLPOX      1.78
+## 262             CONNECTICUT    192802_SMALLPOX      3.36
+## 263                DELAWARE    192802_SMALLPOX      0.00
+## 264    DISTRICT OF COLUMBIA    192802_SMALLPOX      0.00
+## 265                 FLORIDA    192802_SMALLPOX      0.70
+## 266                 GEORGIA    192802_SMALLPOX      0.00
+## 267                  HAWAII    192802_SMALLPOX      0.00
+## 268                   IDAHO    192802_SMALLPOX      2.45
+## 269                ILLINOIS    192802_SMALLPOX      0.33
+## 270                 INDIANA    192802_SMALLPOX      3.89
+## 271                    IOWA    192802_SMALLPOX      0.00
+## 272                  KANSAS    192802_SMALLPOX      6.76
+## 273                KENTUCKY    192802_SMALLPOX      1.05
+## 274               LOUISIANA    192802_SMALLPOX      0.53
+## 275                   MAINE    192802_SMALLPOX      0.00
+## 276                MARYLAND    192802_SMALLPOX      0.00
+## 277           MASSACHUSETTS    192802_SMALLPOX      0.00
+## 278                MICHIGAN    192802_SMALLPOX      1.05
+## 279               MINNESOTA    192802_SMALLPOX      0.12
+## 280             MISSISSIPPI    192802_SMALLPOX      0.35
+## 281                MISSOURI    192802_SMALLPOX      1.42
+## 282                 MONTANA    192802_SMALLPOX      4.99
+## 283                NEBRASKA    192802_SMALLPOX      3.21
+## 284                  NEVADA    192802_SMALLPOX      0.00
+## 285           NEW HAMPSHIRE    192802_SMALLPOX      0.00
+## 286              NEW JERSEY    192802_SMALLPOX      0.00
+## 287              NEW MEXICO    192802_SMALLPOX      0.00
+## 288                NEW YORK    192802_SMALLPOX      0.16
+## 289          NORTH CAROLINA    192802_SMALLPOX      3.44
+## 290            NORTH DAKOTA    192802_SMALLPOX      0.90
+## 291                    OHIO    192802_SMALLPOX      0.00
+## 292                OKLAHOMA    192802_SMALLPOX      8.58
+## 293                  OREGON    192802_SMALLPOX      5.24
+## 294            PENNSYLVANIA    192802_SMALLPOX      0.00
+## 295            RHODE ISLAND    192802_SMALLPOX      0.00
+## 296          SOUTH CAROLINA    192802_SMALLPOX      1.90
+## 297            SOUTH DAKOTA    192802_SMALLPOX      1.02
+## 298               TENNESSEE    192802_SMALLPOX      1.07
+## 299                   TEXAS    192802_SMALLPOX      1.37
+## 300                    UTAH    192802_SMALLPOX      6.55
+## 301                 VERMONT    192802_SMALLPOX      0.00
+## 302                VIRGINIA    192802_SMALLPOX      0.00
+## 303              WASHINGTON    192802_SMALLPOX      4.51
+## 304           WEST VIRGINIA    192802_SMALLPOX      1.00
+## 305               WISCONSIN    192802_SMALLPOX      0.92
+## 306                 WYOMING    192802_SMALLPOX      8.18
+## 307                 ALABAMA     192803_MEASLES      7.95
+## 308                  ALASKA     192803_MEASLES      0.00
+## 309                 ARIZONA     192803_MEASLES      4.50
+## 310                ARKANSAS     192803_MEASLES     11.15
+## 311              CALIFORNIA     192803_MEASLES      1.31
+## 312                COLORADO     192803_MEASLES      2.86
+## 313             CONNECTICUT     192803_MEASLES      8.81
+## 314                DELAWARE     192803_MEASLES     15.88
+## 315    DISTRICT OF COLUMBIA     192803_MEASLES      0.00
+## 316                 FLORIDA     192803_MEASLES      0.42
+## 317                 GEORGIA     192803_MEASLES      0.00
+## 318                  HAWAII     192803_MEASLES      0.00
+## 319                   IDAHO     192803_MEASLES      0.45
+## 320                ILLINOIS     192803_MEASLES      0.61
+## 321                 INDIANA     192803_MEASLES      1.71
+## 322                    IOWA     192803_MEASLES      0.00
+## 323                  KANSAS     192803_MEASLES      1.41
+## 324                KENTUCKY     192803_MEASLES      5.26
+## 325               LOUISIANA     192803_MEASLES      2.33
+## 326                   MAINE     192803_MEASLES      6.78
+## 327                MARYLAND     192803_MEASLES     21.43
+## 328           MASSACHUSETTS     192803_MEASLES     34.76
+## 329                MICHIGAN     192803_MEASLES      9.39
+## 330               MINNESOTA     192803_MEASLES      0.15
+## 331             MISSISSIPPI     192803_MEASLES      0.00
+## 332                MISSOURI     192803_MEASLES      1.69
+## 333                 MONTANA     192803_MEASLES      0.74
+##  [ reached getOption(&quot;max.print&quot;) -- omitted 792564 rows ]
+</code></pre>
+<h2 id="exercise-2">Exercise 2</h2>
+<p>Read the documentation for the <code>tidyr</code> function <code>separate</code>. Create the new columns <code>yearweek</code> and <code>disease</code> from the melted data above.</p>
+<pre><code>## Using state as id variables
+
+## Warning: Expected 2 pieces. Additional pieces discarded in 106641 rows
+## [301462, 301463, 301464, 301465, 301466, 301467, 301468, 301469, 301470,
+## 301471, 301472, 301473, 301474, 301475, 301476, 301477, 301478, 301479,
+## 301480, 301481, ...].
+
+##        state yearweek disease incidence
+## 1    ALABAMA   192801 MEASLES      3.67
+## 2     ALASKA   192801 MEASLES      0.00
+## 3    ARIZONA   192801 MEASLES      1.90
+## 4   ARKANSAS   192801 MEASLES      4.11
+## 5 CALIFORNIA   192801 MEASLES      1.38
+## 6   COLORADO   192801 MEASLES      8.38
+</code></pre>
+
+</body>
+</html>
