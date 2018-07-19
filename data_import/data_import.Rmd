@@ -4,7 +4,7 @@ output: github_document
 always_allow_html: yes
 ---
 
-```{r}
+```{r setup}
 library(tidyverse)
 ```
 
@@ -14,14 +14,25 @@ Today we will discuss how to import raw data into R.
 # Use Shift+Click to follow this link to see the raw data
 tycho_link <- "https://raw.githubusercontent.com/UNC-HLC-R-Intro/lessons/import/data/import_tycho_simple.csv?token=AQdxTW69CSAGG6JPYwAYDEZ3ze4-AHWRks5bWeAAwA%3D%3D"
 tycho_base <- read.csv(tycho_link)
+```
+```{r, eval=F}
 tycho_base %>% head
+```
+```{r, echo=F}
+tycho_base[1:10,1:10]
 ```
 
 
 ```{r}
 tycho_readr <- read_csv(tycho_link)
+```
+```{r, eval=F}
 tycho_readr %>% head
 ```
+```{r, echo=F}
+tycho_readr[1:10,1:10]
+```
+
 
 ## Exercise 1: base R vs. readr
 What are the differences between `tycho_base` and `tycho_readr`?
@@ -119,7 +130,7 @@ gsub(" ", "", myString)
 
 # Homework
 - Finish any remaining regex examples above
-- Read and play with the example found [here]("data_import_cleaning_example.md") to see how regex's and `tidyr` can be used to clean up a messy dataset
+- Read and play with the example found [here](https://github.com/UNC-HLC-R-Intro/lessons/blob/import/data_import/data_import_cleaning_example.md) to see how regex's and `tidyr` can be used to clean up a messy dataset
 
 
 
