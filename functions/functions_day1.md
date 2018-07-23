@@ -67,12 +67,10 @@ The following function generates random primers. Use it to create a list
 of 50 primers between 40-50 base pairs:
 
 ``` r
-library(stringi) # Required for stri_rand_strings function
 genPrimer <- function(minlen, maxlen, nprimers, bases = '[ACTG]') {
-  
+
   lengths <- lengths1 <- sample(minlen:maxlen, nprimers,replace=TRUE)
-  res <- list(primer = stri_rand_strings(nprimers, lengths, bases),
-              length = lengths)
+  res <- stri_rand_strings(nprimers, lengths, bases)
   return(res)
   
 }
