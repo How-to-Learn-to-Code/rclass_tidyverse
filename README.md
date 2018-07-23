@@ -10,6 +10,6 @@
 |6  |reshaping data |[Exercise 1](https://github.com/UNC-HLC-R-Intro/lessons/blob/master/reshaping_data/tidy_data_exercises_day1.md)|
 |7  |reshaping data 2|[Exercise 2](https://github.com/UNC-HLC-R-Intro/lessons/blob/master/reshaping_data/tidy_data_exercises_day2.md)|
 |8  |data import & cleaning |[Exercise](https://github.com/UNC-HLC-R-Intro/lessons/blob/master/data_import/data_import.md)|
-|9  |functions I |**TBD** |
-|10  |functions II |**TBD** |
+|9  |functions I |[Exercise](https://github.com/UNC-HLC-R-Intro/lessons/blob/master/functions/functions_day1.md)|
+|10  |functions II |[Exercise](https://github.com/UNC-HLC-R-Intro/lessons/blob/master/functions/functions_day2.md)|
 |11 - 12 | **TBD** |**TBD** |
