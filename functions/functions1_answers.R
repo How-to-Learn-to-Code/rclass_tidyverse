@@ -14,7 +14,8 @@ v <- rnorm(50, mean = 5) # create a vector of length 50 from random samples of a
 myFun <- function(vector) {
   length <- length(vector)
   sum <- sum(vector)
-  return(list(length = length, sum = sum))
+  results <- list(length = length, sum = sum)
+  return(results)
 }
 
 myFun(v)
