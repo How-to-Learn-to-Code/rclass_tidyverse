@@ -101,4 +101,6 @@ Make a vector of the days of the week:
 days <- c("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday")
 ```
 
-Use `sapply` and an if/else statement that identifies values in `days` as either a weekend day with the number 1 or a weekday with the number 2 (e.g. the output vector produced should start with 1, 2, 2...).
+Use sapply to create a vector that contains abbreviations for the days of the week using days. Use an if/else statement to keep just the first character of each day of the week that starts with a unique letter (Monday, Wednesday, Friday), but keep two characters for days that start with the same letter as another day (Tuesday, Thursday, Saturday, and Sunday).
+
+Hint: use the function substr to extract a subset of the characters from a character string.
