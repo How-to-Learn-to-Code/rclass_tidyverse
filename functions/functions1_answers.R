@@ -40,6 +40,6 @@ primers <- genPrimer(40, 50, 50)
 primerStats <- function(primerlist) {
   lengths <- nchar(primerlist)
   nG <- str_count(primerlist, "G")
-  results <- data.frame(sequence = primers, length = lengths, numberG = nG)
+  results <- data.frame(sequence = primerlist, length = lengths, numberG = nG)
   return(results)
 }
