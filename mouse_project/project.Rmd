@@ -1,0 +1,16 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+download.file(destfile = "cortex.xls", url = "https://archive.ics.uci.edu/ml/machine-learning-databases/00342/Data_Cortex_Nuclear.xls")
+
+cortex <- readxl::read_xls("cortex.xls")
+head(cortex)
+```
+
+```{r}
+
+```
+
