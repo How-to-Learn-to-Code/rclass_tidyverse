@@ -1,8 +1,15 @@
 ---
 title: "R Notebook"
-output: html_notebook
+output: github_document
 ---
 
+```{r setup}
+library(tidyverse)
+library(magrittr)
+knitr::opts_chunk$set(echo = F)
+```
+
+[Data](https://archive.ics.uci.edu/ml/datasets/Mice+Protein+Expression)
 ```{r}
 download.file(destfile = "cortex.xls", url = "https://archive.ics.uci.edu/ml/machine-learning-databases/00342/Data_Cortex_Nuclear.xls")
 
@@ -10,7 +17,132 @@ cortex <- readxl::read_xls("cortex.xls")
 head(cortex)
 ```
 
-```{r}
-
+```{r, include=F}
+fct_asInt <- function(x){
+  as.character(x) %>% as.numeric(.)
+}
+cortex %>% 
+  names
+cortex_melt <- cortex %>% 
+  reshape2::melt(id.vars = c("MouseID", "Treatment", "Behavior", "class", "Genotype"), 
+                 variable.name = "gene", 
+                 value.name = "expression") %>% 
+  dplyr::mutate(expression = fct_asInt(expression))
+head(cortex_melt)
 ```
 
+## Write a function that will tidy your melted data
+ - rename "MouseID" column to "id"
+ - rename all column names as lowercase
+ - remove the "_N" from the end of all protein names
+ - rename the "Control" genotype to "Wild-Type"
+
+```{r}
+tidy_data <- function(df){
+  colName <- names(df)
+  names(df) <- names(df) %>% 
+    tolower() %>% 
+    gsub("mouse", "", .)
+  
+  df <- df %>% 
+    dplyr::mutate(gene = gsub("_N", "", gene)) %>% 
+    dplyr::mutate(genotype = gsub("Control", "Wild-Type", genotype)) %>% 
+    dplyr::mutate(genotype = fct_rev(genotype))
+   
+  return(df)
+}
+
+cortex_melt %<>% 
+  tidy_data()
+```
+
+```{r}
+cortex_mean <- cortex_melt %>% 
+  tidyr::drop_na(expression) %>% 
+  dplyr::group_by(genotype, treatment, behavior, class, gene) %>% 
+  dplyr::summarise(expression = mean(expression)) 
+```
+
+```{r, include=F, eval=F}
+cortex_mean %>% 
+  ggplot(aes(class, log2(expression))) +
+    geom_boxplot()
+```
+
+## Write a function that plots a ggplot boxplot comparing genotype on the x-axis, log2(expression) on the y-axis where each boxplot is colored by drug/nodrug treatment
+```{r}
+trt_boxplot <- function(df){
+  ggplot(df, aes(genotype, log2(expression))) +
+    geom_boxplot(aes(fill = fct_rev(treatment)), notch = T) +
+    scale_fill_manual(values = c("Saline" = "Grey40", "Memantine" = "firebrick")) +
+    guides(fill = guide_legend(title = "Treatment")) +
+    xlab(NULL) +
+    theme(axis.text.x = element_text(size = 14))
+    
+}
+
+cortex_mean %>% 
+  trt_boxplot
+```
+
+## Using group_by, summarise, and tidyr::spread(), rank all genes by their fold-change in response to drug overall.
+
+### Q: What are the top 5 proteins that increase following drug treatment?
+**Hint:** You'll first want to use tidyr::drop_na() to remove missing data or else you'll get `r NA` values!
+
+Your output should look something like this:
+```{r}
+fc_rank <- cortex_melt %>% 
+  tidyr::drop_na() %>% 
+  dplyr::group_by(treatment, gene) %>% 
+  dplyr::summarise(expression = mean(expression)) %>% 
+  tidyr::spread(treatment, expression) %>% 
+  dplyr::mutate(fold_change = Memantine / Saline) %>% 
+  dplyr::arrange(desc(fold_change))
+fc_rank %>% 
+  dplyr::mutate(gene = glue::glue("gene_{x}", x = seq_along(gene)))
+```
+
+#### Top 5 Increasing Genes:
+```{r, include=F}
+fc_rank$gene[1:5] 
+```
+
+#### Top 5 Decreasing Genes:
+```{r, include=F}
+rev(fc_rank$gene)[1:5] 
+```
+
+## Use the grep command to find any proteins that match histone H3 ("H3")
+**Bonus:** Are there any other histones in this dataset? Use regular expressions to find them.
+```{r, include=F}
+cortex_melt$gene %>% 
+  grep("H\\d", ., value = T) %>% 
+  unique
+```
+
+## Using your boxplot function, plot the expression level of all H3 proteins (in aggregate) for WT vs Mut, Drug/noDrug
+
+### Q: What appears to be the trend?
+```{r}
+cortex_melt %>% 
+  dplyr::filter(grepl("H\\d", gene)) %>% 
+  trt_boxplot() +
+    ggtitle("Expression of Histone H3 in response to drug")
+```  
+
+## Make a boxplot for each histone gene comparing Wild-Type to Mutant drug/nodrug
+**Hint:** Try using facets
+
+```{r, fig.height=5, fig.width=7.5, include=F}
+cortex_melt %>% 
+  dplyr::filter(grepl("H\\d", gene)) %>% 
+  trt_boxplot() +
+    facet_wrap(~gene) +
+    ggtitle("Levels of modified H3 in response to drug")
+```
+
+### Q: What is the effect of drug treatment on AcetylH3K9?
+(Although you would do stats in real life, don't worry about that now)
+
+### A: Ts65Dn mice have much higher levels of H3K9Ac than Wild-type before drug treatment. While drug treatment has little effect in WT on H3K9Ac levels, drug treatment reduces the level of H3K9Ac.
