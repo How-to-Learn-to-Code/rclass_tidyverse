@@ -77,7 +77,7 @@ knitr::opts_chunk$set(echo = F)
 
 ![](project_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
 
-## Using group\_by, summarise, and tidyr::spread(), rank all genes by their fold-change in response to drug overall.
+## Using group\_by, summarise, and tidyr::spread(), rank all proteins by their fold-change in response to drug overall.
 
 ### Q: What are the top 5 proteins that increase following drug treatment?
 
@@ -87,23 +87,23 @@ data or else you’ll get NA values\!
 Your output should look something like this:
 
     ## # A tibble: 77 x 4
-    ##    gene    Memantine Saline fold_change
-    ##    <chr>       <dbl>  <dbl>       <dbl>
-    ##  1 gene_1      3.77   3.28         1.15
-    ##  2 gene_2      0.433  0.396        1.09
-    ##  3 gene_3      0.785  0.730        1.07
-    ##  4 gene_4      0.544  0.509        1.07
-    ##  5 gene_5      0.749  0.703        1.07
-    ##  6 gene_6      0.322  0.303        1.06
-    ##  7 gene_7      1.27   1.20         1.06
-    ##  8 gene_8      0.187  0.176        1.06
-    ##  9 gene_9      0.600  0.569        1.05
-    ## 10 gene_10     0.238  0.227        1.05
+    ##    protein    Memantine Saline fold_change
+    ##    <chr>          <dbl>  <dbl>       <dbl>
+    ##  1 protein_1      3.77   3.28         1.15
+    ##  2 protein_2      0.433  0.396        1.09
+    ##  3 protein_3      0.785  0.730        1.07
+    ##  4 protein_4      0.544  0.509        1.07
+    ##  5 protein_5      0.749  0.703        1.07
+    ##  6 protein_6      0.322  0.303        1.06
+    ##  7 protein_7      1.27   1.20         1.06
+    ##  8 protein_8      0.187  0.176        1.06
+    ##  9 protein_9      0.600  0.569        1.05
+    ## 10 protein_10     0.238  0.227        1.05
     ## # ... with 67 more rows
 
-#### Top 5 Increasing Genes:
+#### Top 5 Increasing proteins:
 
-#### Top 5 Decreasing Genes:
+#### Top 5 Decreasing proteins:
 
 ## Use the grep command to find any proteins that match histone H3 (“H3”)
 
@@ -119,7 +119,7 @@ them.
 
 ![](project_files/figure-gfm/unnamed-chunk-11-1.png)<!-- -->
 
-## Make a boxplot for each histone gene comparing Wild-Type to Mutant drug/nodrug
+## Make a boxplot for each histone protein comparing Wild-Type to Mutant drug/nodrug
 
 **Hint:** Try using facets
 

@@ -21,11 +21,11 @@ head(cortex)
 fct_asInt <- function(x){
   as.character(x) %>% as.numeric(.)
 }
-cortex %>% 
-  names
+#cortex %>% 
+#  names
 cortex_melt <- cortex %>% 
   reshape2::melt(id.vars = c("MouseID", "Treatment", "Behavior", "class", "Genotype"), 
-                 variable.name = "gene", 
+                 variable.name = "protein", 
                  value.name = "expression") %>% 
   dplyr::mutate(expression = fct_asInt(expression))
 head(cortex_melt)
@@ -45,7 +45,7 @@ tidy_data <- function(df){
     gsub("mouse", "", .)
   
   df <- df %>% 
-    dplyr::mutate(gene = gsub("_N", "", gene)) %>% 
+    dplyr::mutate(protein = gsub("_N", "", protein)) %>% 
     dplyr::mutate(genotype = gsub("Control", "Wild-Type", genotype)) %>% 
     dplyr::mutate(genotype = fct_rev(genotype))
    
@@ -59,7 +59,7 @@ cortex_melt %<>%
 ```{r}
 cortex_mean <- cortex_melt %>% 
   tidyr::drop_na(expression) %>% 
-  dplyr::group_by(genotype, treatment, behavior, class, gene) %>% 
+  dplyr::group_by(genotype, treatment, behavior, class, protein) %>% 
   dplyr::summarise(expression = mean(expression)) 
 ```
 
@@ -85,7 +85,7 @@ cortex_mean %>%
   trt_boxplot
 ```
 
-## Using group_by, summarise, and tidyr::spread(), rank all genes by their fold-change in response to drug overall.
+## Using group_by, summarise, and tidyr::spread(), rank all proteins by their fold-change in response to drug overall.
 
 ### Q: What are the top 5 proteins that increase following drug treatment?
 **Hint:** You'll first want to use tidyr::drop_na() to remove missing data or else you'll get `r NA` values!
@@ -94,29 +94,29 @@ Your output should look something like this:
 ```{r}
 fc_rank <- cortex_melt %>% 
   tidyr::drop_na() %>% 
-  dplyr::group_by(treatment, gene) %>% 
+  dplyr::group_by(treatment, protein) %>% 
   dplyr::summarise(expression = mean(expression)) %>% 
   tidyr::spread(treatment, expression) %>% 
   dplyr::mutate(fold_change = Memantine / Saline) %>% 
   dplyr::arrange(desc(fold_change))
 fc_rank %>% 
-  dplyr::mutate(gene = glue::glue("gene_{x}", x = seq_along(gene)))
+  dplyr::mutate(protein = glue::glue("protein_{x}", x = seq_along(protein)))
 ```
 
-#### Top 5 Increasing Genes:
+#### Top 5 Increasing proteins:
 ```{r, include=F}
-fc_rank$gene[1:5] 
+fc_rank$protein[1:5] 
 ```
 
-#### Top 5 Decreasing Genes:
+#### Top 5 Decreasing proteins:
 ```{r, include=F}
-rev(fc_rank$gene)[1:5] 
+rev(fc_rank$protein)[1:5] 
 ```
 
 ## Use the grep command to find any proteins that match histone H3 ("H3")
 **Bonus:** Are there any other histones in this dataset? Use regular expressions to find them.
 ```{r, include=F}
-cortex_melt$gene %>% 
+cortex_melt$protein %>% 
   grep("H\\d", ., value = T) %>% 
   unique
 ```
@@ -126,19 +126,19 @@ cortex_melt$gene %>%
 ### Q: What appears to be the trend?
 ```{r}
 cortex_melt %>% 
-  dplyr::filter(grepl("H\\d", gene)) %>% 
+  dplyr::filter(grepl("H\\d", protein)) %>% 
   trt_boxplot() +
     ggtitle("Expression of Histone H3 in response to drug")
 ```  
 
-## Make a boxplot for each histone gene comparing Wild-Type to Mutant drug/nodrug
+## Make a boxplot for each histone protein comparing Wild-Type to Mutant drug/nodrug
 **Hint:** Try using facets
 
 ```{r, fig.height=5, fig.width=7.5, include=F}
 cortex_melt %>% 
-  dplyr::filter(grepl("H\\d", gene)) %>% 
+  dplyr::filter(grepl("H\\d", protein)) %>% 
   trt_boxplot() +
-    facet_wrap(~gene) +
+    facet_wrap(~protein) +
     ggtitle("Levels of modified H3 in response to drug")
 ```
 
