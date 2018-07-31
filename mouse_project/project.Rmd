@@ -1,33 +1,47 @@
 ---
-title: "R Notebook"
+title: "Final Project: Mouse Cortex Protein Expression"
 output: github_document
 ---
 
-```{r setup}
+## Answer the following questions about the mouse cortex expression data, export your results as a github_document.
+
+```{r setup, warning=F, message=F}
 library(tidyverse)
 library(magrittr)
+```
+
+```{r opts, include=F, warning=F, echo=F}
 knitr::opts_chunk$set(echo = F)
 ```
 
-[Data](https://archive.ics.uci.edu/ml/datasets/Mice+Protein+Expression)
+[Explanation of Data](https://archive.ics.uci.edu/ml/datasets/Mice+Protein+Expression)
 ```{r}
-download.file(destfile = "cortex.xls", url = "https://archive.ics.uci.edu/ml/machine-learning-databases/00342/Data_Cortex_Nuclear.xls")
+cortex_url <- "https://archive.ics.uci.edu/ml/machine-learning-databases/00342/Data_Cortex_Nuclear.xls"
+
+download.file(destfile = "cortex.xls", url = cortex_url)
 
 cortex <- readxl::read_xls("cortex.xls")
-head(cortex)
 ```
 
+### Raw Data:
+```{r}
+cortex[1:4,1:4]
+```
+## Transform the raw data into a melted data.frame
 ```{r, include=F}
 fct_asInt <- function(x){
   as.character(x) %>% as.numeric(.)
 }
-#cortex %>% 
-#  names
+
 cortex_melt <- cortex %>% 
   reshape2::melt(id.vars = c("MouseID", "Treatment", "Behavior", "class", "Genotype"), 
                  variable.name = "protein", 
                  value.name = "expression") %>% 
   dplyr::mutate(expression = fct_asInt(expression))
+```
+
+### Melted Data:
+```{r, include=T}
 head(cortex_melt)
 ```
 
@@ -39,7 +53,7 @@ head(cortex_melt)
 
 ```{r}
 tidy_data <- function(df){
-  colName <- names(df)
+  
   names(df) <- names(df) %>% 
     tolower() %>% 
     gsub("mouse", "", .)
@@ -56,6 +70,12 @@ cortex_melt %<>%
   tidy_data()
 ```
 
+### Example of output:
+```{r, echo=F, include=T}
+head(cortex_melt)
+```
+
+
 ```{r}
 cortex_mean <- cortex_melt %>% 
   tidyr::drop_na(expression) %>% 
@@ -70,19 +90,33 @@ cortex_mean %>%
 ```
 
 ## Write a function that plots a ggplot boxplot comparing genotype on the x-axis, log2(expression) on the y-axis where each boxplot is colored by drug/nodrug treatment
-```{r}
+
+- Customize the theme of the plot to your liking. 
+- At a minimum, pick non-default colors for your conditions, and resize text labels 
+- **Bonus:** Put Wild-Type first in the plot
+
+```{r, fig.height=5, fig.width=5}
 trt_boxplot <- function(df){
   ggplot(df, aes(genotype, log2(expression))) +
     geom_boxplot(aes(fill = fct_rev(treatment)), notch = T) +
     scale_fill_manual(values = c("Saline" = "Grey40", "Memantine" = "firebrick")) +
     guides(fill = guide_legend(title = "Treatment")) +
     xlab(NULL) +
-    theme(axis.text.x = element_text(size = 14))
+    theme(axis.text.x = element_text(size = 14, color = "black"), 
+          axis.text.y = element_text(size = 14, color = "black"),
+          axis.title.y = element_text(size = 16, color = "black"),
+          axis.ticks.x = element_blank(),
+          axis.line = element_line(color = "black"), 
+          #rect = element_blank(), 
+          #panel.grid.major.y = element_line(color = "black"),
+          #panel.grid.minor.y = element_line(color = "black"),
+          #panel.grid.major.x = element_blank()
+          )
     
 }
 
 cortex_mean %>% 
-  trt_boxplot
+  trt_boxplot 
 ```
 
 ## Using group_by, summarise, and tidyr::spread(), rank all proteins by their fold-change in response to drug overall.
@@ -91,6 +125,8 @@ cortex_mean %>%
 **Hint:** You'll first want to use tidyr::drop_na() to remove missing data or else you'll get `r NA` values!
 
 Your output should look something like this:
+
+(But "protein_#" will be an actual protein name)
 ```{r}
 fc_rank <- cortex_melt %>% 
   tidyr::drop_na() %>% 
@@ -119,12 +155,14 @@ rev(fc_rank$protein)[1:5]
 cortex_melt$protein %>% 
   grep("H\\d", ., value = T) %>% 
   unique
+# Only H3 is in this dataset, 3 PTM versions are present.
 ```
 
 ## Using your boxplot function, plot the expression level of all H3 proteins (in aggregate) for WT vs Mut, Drug/noDrug
+**Hint:** The `grepl` function can be combined with `filter` to select things that match a regex.
 
 ### Q: What appears to be the trend?
-```{r}
+```{r, include=F}
 cortex_melt %>% 
   dplyr::filter(grepl("H\\d", protein)) %>% 
   trt_boxplot() +
@@ -133,16 +171,24 @@ cortex_melt %>%
 
 ## Make a boxplot for each histone protein comparing Wild-Type to Mutant drug/nodrug
 **Hint:** Try using facets
+**Bonus:** use regex & backreference to rename histone marks in conventional format (ie "H3K9Ac" instead of "AcetylH3K9". Format = "<Histone#><amino-acid#><modification>")
 
 ```{r, fig.height=5, fig.width=7.5, include=F}
 cortex_melt %>% 
   dplyr::filter(grepl("H\\d", protein)) %>% 
+  dplyr::mutate(protein = gsub("Acetyl(.+)", "\\1Ac", protein)) %>% 
+  dplyr::mutate(protein = gsub("(H3)(.+)(K\\d+)", "\\1\\3\\2", protein)) %>% 
   trt_boxplot() +
     facet_wrap(~protein) +
-    ggtitle("Levels of modified H3 in response to drug")
+    ggtitle("Levels of modified H3 in response to drug") +
+    theme(strip.text.x = element_text(size = 14), title = element_text(size = 16))
 ```
 
 ### Q: What is the effect of drug treatment on AcetylH3K9?
 (Although you would do stats in real life, don't worry about that now)
 
-### A: Ts65Dn mice have much higher levels of H3K9Ac than Wild-type before drug treatment. While drug treatment has little effect in WT on H3K9Ac levels, drug treatment reduces the level of H3K9Ac.
+```{r, include=F}
+# A: 
+# Ts65Dn mice have much higher levels of H3K9Ac than Wild-type before drug treatment. 
+# While drug treatment has little effect in WT on H3K9Ac levels, drug treatment reduces the level of H3K9Ac.
+```
