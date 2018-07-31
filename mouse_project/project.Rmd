@@ -15,11 +15,12 @@ knitr::opts_chunk$set(echo = F)
 ```
 
 [Explanation of Data](https://archive.ics.uci.edu/ml/datasets/Mice+Protein+Expression)
-```{r}
+```{r, include=T, echo=T}
 cortex_url <- "https://archive.ics.uci.edu/ml/machine-learning-databases/00342/Data_Cortex_Nuclear.xls"
 
 download.file(destfile = "cortex.xls", url = cortex_url)
-
+```
+```{r}
 cortex <- readxl::read_xls("cortex.xls")
 ```
 
@@ -27,6 +28,7 @@ cortex <- readxl::read_xls("cortex.xls")
 ```{r}
 cortex[1:4,1:4]
 ```
+
 ## Transform the raw data into a melted data.frame
 ```{r, include=F}
 fct_asInt <- function(x){
@@ -74,6 +76,52 @@ cortex_melt %<>%
 ```{r, echo=F, include=T}
 head(cortex_melt)
 ```
+
+## How many proteins are being measured?
+
+```{r, fig.height=4, fig.width=2, include=F}
+cortex_melt %>% 
+  dplyr::summarize(protein_count = n_distinct(protein)) %>% 
+  ggplot(aes(factor(1))) +
+    geom_col(aes(y = protein_count)) +
+    ylab("Number of Proteins") +
+    xlab(NULL) +
+    theme(legend.position = "none",
+          axis.text.x = element_blank(),
+          axis.ticks.x = element_blank())
+```
+
+## How many measurements per genotype/treatment group are there?
+
+```{r, include=F, echo=F}
+# There are ~ 300 measurements per group
+cortex_melt %>% 
+  group_by(genotype, treatment) %>% 
+  dplyr::summarize(num_measurements = n_distinct(id)) %>% 
+  ggplot(aes(genotype)) +
+    geom_col(aes(y = num_measurements, fill = treatment), position = "dodge") +
+    ylab("Number of Measurements") +
+    xlab(NULL) +
+    theme(axis.ticks.x = element_blank()) +
+    ggtitle("Number of measurements per group")
+```
+
+## Do all mice have measurements for all proteins?
+```{r, fig.width=5, fig.height=3, include=F, echo=F}
+# A: No. Not all mice have values present.
+cortex_melt %>% 
+  tidyr::drop_na(expression) %>% 
+  group_by(id) %>% 
+  summarize(measurements = n_distinct(protein)) %>% 
+  ggplot(aes(reorder(id, measurements), measurements)) +
+    geom_point(size = 0.1) +
+    xlab("Mouse") +
+    ylab("Number of Proteins Measured") +
+    theme(axis.text.x = element_blank(),
+          axis.ticks.x = element_blank())
+
+```
+
 
 
 ```{r}

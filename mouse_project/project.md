@@ -11,6 +11,12 @@ library(magrittr)
 [Explanation of
 Data](https://archive.ics.uci.edu/ml/datasets/Mice+Protein+Expression)
 
+``` r
+cortex_url <- "https://archive.ics.uci.edu/ml/machine-learning-databases/00342/Data_Cortex_Nuclear.xls"
+
+download.file(destfile = "cortex.xls", url = cortex_url)
+```
+
 ### Raw Data:
 
     ## # A tibble: 4 x 4
@@ -50,6 +56,12 @@ Data](https://archive.ics.uci.edu/ml/datasets/Mice+Protein+Expression)
     ## 5 309_5 Memantine      C/S c-CS-m Wild-Type  DYRK1A  0.4349402
     ## 6 309_6 Memantine      C/S c-CS-m Wild-Type  DYRK1A  0.4475064
 
+## How many proteins are being measured?
+
+## How many measurements per genotype/treatment group are there?
+
+## Do all mice have measurements for all proteins?
+
 ## Write a function that plots a ggplot boxplot comparing genotype on the x-axis, log2(expression) on the y-axis where each boxplot is colored by drug/nodrug treatment
 
   - Customize the theme of the plot to your liking.
@@ -58,7 +70,7 @@ Data](https://archive.ics.uci.edu/ml/datasets/Mice+Protein+Expression)
   - **Bonus:** Put Wild-Type first in the
 plot
 
-![](project_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->
+![](project_files/figure-gfm/unnamed-chunk-13-1.png)<!-- -->
 
 ## Using group\_by, summarise, and tidyr::spread(), rank all proteins by their fold-change in response to drug overall.
 
