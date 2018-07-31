@@ -12,4 +12,4 @@
 |8  |data import & cleaning |[Exercise](https://github.com/UNC-HLC-R-Intro/lessons/blob/master/data_import/data_import.md)|
 |9  |functions I |[Exercise 1](https://github.com/UNC-HLC-R-Intro/lessons/blob/master/functions/functions_day1.md)|
 |10  |functions II |[Exercise 2](https://github.com/UNC-HLC-R-Intro/lessons/blob/master/functions/functions_day2.md)|
-|11 - 12 | **TBD** |**TBD** |
+|11 - 12 | Final Project |[Final Project](https://github.com/UNC-HLC-R-Intro/lessons/blob/master/mouse_project/project.md)|
