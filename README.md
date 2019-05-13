@@ -27,10 +27,12 @@ Need students to use `?` function to read documentation for how things work.
     - xlab/ylab/ggtitle/labs(tag = "A")
     
   - Data Manipulation (Day 3)
-    - plots are good, but sometimes we want numbers out too
     - dplyr + pipes
     - `filter`, `mutate`, `select`
-    - `group_by`, `summarize`
+      - use these to subset data, etc. to make plots
+    - plots are good, but sometimes we want numbers out too
+      - `group_by`, `summarize`
+      - use these to make new tables to add lines to plots or something? (ie draw vertical line & mean of each group)
    
   **Can we combine data import & tidying?** 
   - Data import & Export (Day 4)
@@ -40,8 +42,15 @@ Need students to use `?` function to read documentation for how things work.
     - melting/reshaping so data works better with dplyr/ggplot
     - emphasize to students that most of their real data can be reformatted into a "tidy" structure
     - we can use dplyr/tidyr/reshape2 functions to clean data so you can use R instead of excel
+  
+  - Lists/vectors & looping
+    - list, list[['name']]
+    - problem: multiple csv files in a directory, want to read them in
+      - for loop w/ readr::read_csv
+    - want to make a plot of each subset of data (not facet)
+      - use df %>% split %>% for name in names()
 
-### Part 2: Programing
+### Part 2: Programing?
 Now that students feel comfortable in R environment we'll dig into programming a bit more
 
   - functions? (Day 5)
