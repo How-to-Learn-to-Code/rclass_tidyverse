@@ -25,6 +25,7 @@ Need students to use `?` function to read documentation for how things work.
     - aesthetic mappings (fill vs color, alpha, linetype, shape)
     - facets
     - xlab/ylab/ggtitle/labs(tag = "A")
+    - https://moderndive.netlify.com/images/ggplot_cheatsheet-1.png
     
   - Data Manipulation (Day 3)
     - dplyr + pipes
@@ -33,6 +34,7 @@ Need students to use `?` function to read documentation for how things work.
     - plots are good, but sometimes we want numbers out too
       - `group_by`, `summarize`
       - use these to make new tables to add lines to plots or something? (ie draw vertical line & mean of each group)
+    - https://moderndive.netlify.com/images/dplyr_cheatsheet-1.png
    
   **Can we combine data import & tidying?** 
   - Data import & Export (Day 4)
@@ -53,10 +55,12 @@ Need students to use `?` function to read documentation for how things work.
 ### Part 2: Programing?
 Now that students feel comfortable in R environment we'll dig into programming a bit more
 
-  - functions? (Day 5)
-  - if-else (Day 6)
-  - loops (Day 7)
-  - (Day 8)
+  - functions + if-else (Day 5)
+    - write functions that subset data, etc.
+    - this way we use data as the focus for why things matter instead of making new esoteric examples
+  - loops & vectors (Day 6)
+  - (Day 7)
+  - Extra day, can cover Rmd if time or old material (Day 8)
 
 
 
@@ -64,7 +68,7 @@ Now that students feel comfortable in R environment we'll dig into programming a
 ### 2018 Schedule:
 |Day | Subject | Homework |
 |:--:|:---:|:------------:|
-|1  |intro | [Homework 1](https://github.com/UNC-HLC-R-Intro/lessons/blob/master/class_introduction/Homework1.Rmd) |
+|1  |intro | [Homework 1](class_introduction/class_introduction.md) |
 |2 & 3  |plotting (& factors) | [Homework 2](https://github.com/UNC-HLC-R-Intro/lessons/blob/master/intro_to_ggplot/HLC_intro_to_ggplot.md) |
 |4 & 5  |dplyr & pipes |[Homework 3](https://github.com/UNC-HLC-R-Intro/lessons/blob/master/intro_to_dplyr/HLC_intro_to_dplyr.md) |
 |6  |reshaping data |[Exercise 1](https://github.com/UNC-HLC-R-Intro/lessons/blob/master/reshaping_data/tidy_data_exercises_day1.md)|

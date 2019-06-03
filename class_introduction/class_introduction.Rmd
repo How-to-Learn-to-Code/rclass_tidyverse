@@ -1,63 +1,173 @@
 ---
 title: "Class Introduction"
-author: "Spencer Nystrom & Grace DiCecco"
+author: "Spencer Nystrom & Jamshaid Shahir"
 output: github_document
 ---
 
-## Login to Github
+## Class Intro
+ - Student introductions
+ - class expectations:
+   - work together
+   - ask questions
+   - be respectful of others
+   - making mistakes is the best way to learn!
 
-### Clone student repo to Rstudio.cloud
- `install.packages("tidyverse")`
+## Rstudio.cloud setup
+
+ - login w/ github account
+ - disable "restore environemnt" setting in Rstudio
+ - explain each window
  
+
 ```{r, eval=F}
 install.packages("tidyverse")
+install.packages("gapminder")
 ```
 
- 
-### Terminal:
-  `git config --global user.name <User>`
-  
-  `git config --global user.email <user@email>`
-  
 ### Create new folder for day1
 ### Talk about working directories
 
-## Introduce markdown
- - output: github_document
- - knit
+### R scripts vs. console
 
-## talk about commit and push 
- - save, knit, and commit files to git
- - push changes to github
- - Check github to see output
+
+# Intro to R
+
+## By default R spits out things to terminal
+```{r}
+2 + 2
+
+100*100
+
+"My name is Spencer"
+```
+
+## You can store things in **variables** with `<-`
+
+```{r}
+myName <- "Spencer"
+```
+
+## R will spit it back out when you call it
+```{r}
+myName
+```
+
+## R can do operations on variables
+```{r}
+myNumber <- 10
+
+myNumber + 10
+```
 
 # Data in R
+
+`iris` is a built-in dataset that we will use today to cover some basic. It
+contains measurements of 3 different species of flower.
+
+We can look at the contents by printing it to the console (annoying for large datasets)
 ```{r}
-titanic <- as.data.frame(Titanic)
-head(titanic)
+iris
 ```
+
+The `head()` function will print the first 6 rows
+```{r}
+head(iris)
+```
+
+The `View()` function will open the dataset in Rstudio's data viewer.
+```{r, eval=F}
+View(iris)
+```
+
+Datasets can be stored in R as **data.frames**. `iris` is a data.frame. You can think of these like excel tables.
+
+What is special about data.frames is that each column contains data of a certain type. R sees numbers and words as different things. Number columns can be used in math operations, but word columns cannot.
+**Note:** We will talk in more detail about these data types later
+
+You can view the type of each column with the `str()` (Structure) function. Here you can see that `Sepal.Length` is a number (`num`), but `Species` is a type called a `Factor`.
+```{r}
+str(iris)
+```
+
+Individual columns can be referenced in R by using `$` to call a column by name.
+```{r}
+iris$Sepal.Length
+```
+
+```{r}
+iris$Species
+```
+
+R will do operations along entire columns. To multiply all `Sepal.Length` values by 2, for example:
+```{r}
+iris$Sepal.Length * 2
+```
+
+## Exercise (3 minutes):
+ - print all values of `Petal.Width` to the terminal
+ - You can ask for help in R using the `?` function. Try running `?mean` to find out what the `mean()` function does.
+ - what is the mean value of `Petal.Width`?
+ - what is the sum of all `Petal.Width`? (HINT: guess the function name, or google for it!)
+ 
+ 
+## Plotting
+
+The package `ggplot2` is used for making plots from data.frames. Load the package by calling `library(ggplot2)`. You only have to load libraries once per script.
 
 ```{r}
 library(ggplot2)
 ```
 
+
+The function `ggplot()` is used to build plots from data. By calling `ggplot` alone we build a totally empty plot.
+
 ```{r}
-ggplot(data = titanic, aes(x = Class, y = Freq)) # create the plotting space
+ggplot()
+```
+We tell ggplot to use a dataset by giving it a `data.frame` to the `data` argument.
+```{r}
+ggplot(data = iris)
+```
+Lets make a scatterplot of Sepal width vs Petal width.
+
+To do this we have to **map** the data onto the plot. Do do this we make an **aesthetic** (with `aes()`). **aesthetics** are parts of the plot that are **determined by the data**. Here we say that we want to plot the `Sepal.Width` on the x-axis, and `Petal.Width` on the y-axis.
+
+This creates a plotting area that is informed by the data in `iris`.
+```{r}
+ggplot(data = iris, mapping = aes(x = Sepal.Width, y = Petal.Width)) 
+```
+Now let's add the points. We do this by adding a `geom`. In this case `geom_point` for datapoints.
+```{r}
+ggplot(data = iris, mapping = aes(x = Sepal.Width, y = Petal.Width)) +
+  geom_point()
+```
+
+Plots can be saved to variables just like before
+```{r}
+sepal.vs.petal <- ggplot(data = iris, mapping = aes(x = Sepal.Width, y = Petal.Width)) +
+  geom_point()
 ```
 
 ```{r}
-ggplot(data = titanic, aes(x = Class, y = Freq)) +
-    geom_col()
+sepal.vs.petal
 ```
 
+We can edit the parameters of geoms. For example, you can change the color of the points by editing the `color` parameter.
 
 ```{r}
-ggplot(titanic, aes(Class, Freq)) +
-    geom_col(aes(fill = Survived))
+ggplot(data = iris, mapping = aes(x = Sepal.Width, y = Petal.Width)) +
+  geom_point(color = "red")
 ```
 
-```{r}
-ggplot(titanic, aes(Class, Freq)) +
-    geom_col(aes(fill = Survived), position = "fill")
+## Exercise:
+ - Let's make the same scatterplot but color the points by their `Species`. 
+```{r, eval=F, include =T}
+ggplot(data = iris, mapping = aes(x = Sepal.Width, y = Petal.Width)) +
+  geom_point(color = Species)
 ```
 
+
+```{r, eval=F, include =F}
+ggplot(data = iris, mapping = aes(x = Sepal.Width, y = Petal.Width)) +
+  geom_point(aes(color = Species))
+```
