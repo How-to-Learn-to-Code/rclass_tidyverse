@@ -124,10 +124,12 @@ The function `ggplot()` is used to build plots from data. By calling `ggplot` al
 ```{r}
 ggplot()
 ```
+
 We tell ggplot to use a dataset by giving it a `data.frame` to the `data` argument.
 ```{r}
 ggplot(data = iris)
 ```
+
 Lets make a scatterplot of Sepal width vs Petal width.
 
 To do this we have to **map** the data onto the plot. Do do this we make an **aesthetic** (with `aes()`). **aesthetics** are parts of the plot that are **determined by the data**. Here we say that we want to plot the `Sepal.Width` on the x-axis, and `Petal.Width` on the y-axis.
@@ -136,6 +138,7 @@ This creates a plotting area that is informed by the data in `iris`.
 ```{r}
 ggplot(data = iris, mapping = aes(x = Sepal.Width, y = Petal.Width)) 
 ```
+
 Now let's add the points. We do this by adding a `geom`. In this case `geom_point` for datapoints.
 ```{r}
 ggplot(data = iris, mapping = aes(x = Sepal.Width, y = Petal.Width)) +
@@ -161,13 +164,17 @@ ggplot(data = iris, mapping = aes(x = Sepal.Width, y = Petal.Width)) +
 
 ## Exercise:
  - Let's make the same scatterplot but color the points by their `Species`. 
+ - Run the following code. What happens?
 ```{r, eval=F, include =T}
 ggplot(data = iris, mapping = aes(x = Sepal.Width, y = Petal.Width)) +
   geom_point(color = Species)
 ```
 
-
 ```{r, eval=F, include =F}
+# Correct answer:
 ggplot(data = iris, mapping = aes(x = Sepal.Width, y = Petal.Width)) +
   geom_point(aes(color = Species))
 ```
+
+## More reading
+[R for Data Science: ggplot2 introduction](https://r4ds.had.co.nz/data-visualisation.html)

@@ -385,6 +385,7 @@ ggplot()
 ```
 
 ![](class_introduction_files/figure-gfm/unnamed-chunk-14-1.png)<!-- -->
+
 We tell ggplot to use a dataset by giving it a `data.frame` to the
 `data` argument.
 
@@ -393,6 +394,7 @@ ggplot(data = iris)
 ```
 
 ![](class_introduction_files/figure-gfm/unnamed-chunk-15-1.png)<!-- -->
+
 Lets make a scatterplot of Sepal width vs Petal width.
 
 To do this we have to **map** the data onto the plot. Do do this we make
@@ -407,6 +409,7 @@ ggplot(data = iris, mapping = aes(x = Sepal.Width, y = Petal.Width))
 ```
 
 ![](class_introduction_files/figure-gfm/unnamed-chunk-16-1.png)<!-- -->
+
 Now let’s add the points. We do this by adding a `geom`. In this case
 `geom_point` for datapoints.
 

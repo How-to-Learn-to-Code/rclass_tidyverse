@@ -381,91 +381,9 @@ $(document).ready(function () {
 <h1>Introduction to R Lessons</h1>
 <div id="spencer-nystrom-jamshaid-shahir" class="section level2">
 <h2>Spencer Nystrom &amp; Jamshaid Shahir</h2>
-<div id="plan" class="section level3">
-<h3>2019 Plan:</h3>
-<p>8 days, 1.5 hr each.</p>
-<p>Need students to use <code>?</code> function to read documentation for how things work.</p>
-<p><strong>before class</strong> students will create github account to access lessons &amp; login to rstudio cloud. - <strong>note:</strong> tell students they will need their login for class so be sure to have passwords &amp; usernames on hand</p>
-<div id="part1-data-analysis" class="section level4">
-<h4>Part1: Data analysis</h4>
-<ul>
-<li>Intro (Day 1)
-<ul>
-<li>Rstudio.cloud</li>
-<li><code>install.packages(&quot;tidyverse&quot;)</code></li>
-<li>Rstudio interface
-<ul>
-<li>configure project settings (no save environment, move console?)</li>
-</ul></li>
-<li>data.frame &amp; ggplot intro
-<ul>
-<li>View(df), str(df), df$variable</li>
-</ul></li>
-</ul></li>
-<li>Plotting (Day 2)
-<ul>
-<li>assigning plots to variables with <code>&lt;-</code></li>
-<li>adding to plots with <code>p + ggtitle('test')</code></li>
-<li>non-transforming plots</li>
-<li>aesthetic mappings (fill vs color, alpha, linetype, shape)</li>
-<li>facets</li>
-<li>xlab/ylab/ggtitle/labs(tag = “A”)</li>
-<li><a href="https://moderndive.netlify.com/images/ggplot_cheatsheet-1.png" class="uri">https://moderndive.netlify.com/images/ggplot_cheatsheet-1.png</a></li>
-</ul></li>
-<li>Data Manipulation (Day 3)
-<ul>
-<li>dplyr + pipes</li>
-<li><code>filter</code>, <code>mutate</code>, <code>select</code>
-<ul>
-<li>use these to subset data, etc. to make plots</li>
-</ul></li>
-<li>plots are good, but sometimes we want numbers out too
-<ul>
-<li><code>group_by</code>, <code>summarize</code></li>
-<li>use these to make new tables to add lines to plots or something? (ie draw vertical line &amp; mean of each group)</li>
-</ul></li>
-<li><a href="https://moderndive.netlify.com/images/dplyr_cheatsheet-1.png" class="uri">https://moderndive.netlify.com/images/dplyr_cheatsheet-1.png</a></li>
-</ul></li>
-</ul>
-<p><strong>Can we combine data import &amp; tidying?</strong> - Data import &amp; Export (Day 4) - readr::read_csv, readr::write_csv</p>
-<ul>
-<li>Alternative: Tidy data (Day 4)
-<ul>
-<li>melting/reshaping so data works better with dplyr/ggplot</li>
-<li>emphasize to students that most of their real data can be reformatted into a “tidy” structure</li>
-<li>we can use dplyr/tidyr/reshape2 functions to clean data so you can use R instead of excel</li>
-</ul></li>
-<li>Lists/vectors &amp; looping
-<ul>
-<li>list, list[[‘name’]]</li>
-<li>problem: multiple csv files in a directory, want to read them in
-<ul>
-<li>for loop w/ readr::read_csv</li>
-</ul></li>
-<li>want to make a plot of each subset of data (not facet)
-<ul>
-<li>use df %&gt;% split %&gt;% for name in names()</li>
-</ul></li>
-</ul></li>
-</ul>
-</div>
-</div>
-<div id="part-2-programing" class="section level3">
-<h3>Part 2: Programing?</h3>
-<p>Now that students feel comfortable in R environment we’ll dig into programming a bit more</p>
-<ul>
-<li>functions + if-else (Day 5)
-<ul>
-<li>write functions that subset data, etc.</li>
-<li>this way we use data as the focus for why things matter instead of making new esoteric examples</li>
-</ul></li>
-<li>loops &amp; vectors (Day 6)</li>
-<li>(Day 7)</li>
-<li>Extra day, can cover Rmd if time or old material (Day 8)</li>
-</ul>
-</div>
+<p>Classes will be run using <a href="rstudio.cloud">Rstudio.cloud</a>. Students are expected to provide their own laptop.</p>
 <div id="schedule" class="section level3">
-<h3>2018 Schedule:</h3>
+<h3>2019 Schedule:</h3>
 <table>
 <thead>
 <tr class="header">
@@ -477,48 +395,43 @@ $(document).ready(function () {
 <tbody>
 <tr class="odd">
 <td align="center">1</td>
-<td align="center">intro</td>
-<td align="center"><a href="class_introduction/class_introduction.md">Homework 1</a></td>
+<td align="center">Intro</td>
+<td align="center"><a href="class_introduction/class_introduction.md">Exercise 1</a></td>
 </tr>
 <tr class="even">
-<td align="center">2 &amp; 3</td>
-<td align="center">plotting (&amp; factors)</td>
-<td align="center"><a href="https://github.com/UNC-HLC-R-Intro/lessons/blob/master/intro_to_ggplot/HLC_intro_to_ggplot.md">Homework 2</a></td>
+<td align="center">2</td>
+<td align="center">Plotting (&amp; factors)</td>
+<td align="center"><a href></a></td>
 </tr>
 <tr class="odd">
-<td align="center">4 &amp; 5</td>
-<td align="center">dplyr &amp; pipes</td>
-<td align="center"><a href="https://github.com/UNC-HLC-R-Intro/lessons/blob/master/intro_to_dplyr/HLC_intro_to_dplyr.md">Homework 3</a></td>
+<td align="center">3</td>
+<td align="center">Data Manipulation</td>
+<td align="center"><a href></a></td>
+</tr>
+<tr class="even">
+<td align="center">4</td>
+<td align="center">Data import &amp; cleaning</td>
+<td align="center"><a href></a></td>
+</tr>
+<tr class="odd">
+<td align="center">5</td>
+<td align="center">Functions &amp; If-Else</td>
+<td align="center"><a href></a></td>
 </tr>
 <tr class="even">
 <td align="center">6</td>
-<td align="center">reshaping data</td>
-<td align="center"><a href="https://github.com/UNC-HLC-R-Intro/lessons/blob/master/reshaping_data/tidy_data_exercises_day1.md">Exercise 1</a></td>
+<td align="center">Vectors &amp; Loops</td>
+<td align="center"><a href></a></td>
 </tr>
 <tr class="odd">
 <td align="center">7</td>
-<td align="center">reshaping data 2</td>
-<td align="center"><a href="https://github.com/UNC-HLC-R-Intro/lessons/blob/master/reshaping_data/tidy_data_exercises_day2.md">Exercise 2</a></td>
+<td align="center">Extra Day</td>
+<td align="center"><a href></a></td>
 </tr>
 <tr class="even">
 <td align="center">8</td>
-<td align="center">data import &amp; cleaning</td>
-<td align="center"><a href="https://github.com/UNC-HLC-R-Intro/lessons/blob/master/data_import/data_import.md">Exercise</a></td>
-</tr>
-<tr class="odd">
-<td align="center">9</td>
-<td align="center">functions I</td>
-<td align="center"><a href="https://github.com/UNC-HLC-R-Intro/lessons/blob/master/functions/functions_day1.md">Exercise 1</a></td>
-</tr>
-<tr class="even">
-<td align="center">10</td>
-<td align="center">functions II</td>
-<td align="center"><a href="https://github.com/UNC-HLC-R-Intro/lessons/blob/master/functions/functions_day2.md">Exercise 2</a></td>
-</tr>
-<tr class="odd">
-<td align="center">11 - 12</td>
-<td align="center">Final Project</td>
-<td align="center"><a href="https://github.com/UNC-HLC-R-Intro/lessons/blob/master/mouse_project/project.md">Final Project</a></td>
+<td align="center">Extra Day</td>
+<td align="center"><a href></a></td>
 </tr>
 </tbody>
 </table>
