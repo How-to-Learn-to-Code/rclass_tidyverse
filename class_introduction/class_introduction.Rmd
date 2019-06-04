@@ -145,7 +145,7 @@ ggplot(data = iris)
 
 Lets make a scatterplot of Sepal width vs Petal width.
 
-To do this we have to **map** the data onto the plot. Do do this we make an **aesthetic** (with `aes()`). **aesthetics** are parts of the plot that are **determined by the data**. Here we say that we want to plot the `Sepal.Width` on the x-axis, and `Petal.Width` on the y-axis.
+To do this we have to **map** the data onto the plot. To do this we make an **aesthetic** (with `aes()`). **aesthetics** are parts of the plot that are **determined by the data**. Here we say that we want to plot the `Sepal.Width` on the x-axis, and `Petal.Width` on the y-axis.
 
 This creates a plotting area that is informed by the data in `iris`.
 ```{r}

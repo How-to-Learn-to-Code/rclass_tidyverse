@@ -57,7 +57,7 @@ install.packages(c("gapminder", "titanic"))
 
 ## You can store things in **variables** with `<-`
 
-You can quickly type `<-` with `Alt + -`
+You can quickly type `<-` with `Alt + -` in Rstudio
 
 ``` r
 myName <- "Spencer"
@@ -409,7 +409,7 @@ ggplot(data = iris)
 
 Lets make a scatterplot of Sepal width vs Petal width.
 
-To do this we have to **map** the data onto the plot. Do do this we make
+To do this we have to **map** the data onto the plot. To do this we make
 an **aesthetic** (with `aes()`). **aesthetics** are parts of the plot
 that are **determined by the data**. Here we say that we want to plot
 the `Sepal.Width` on the x-axis, and `Petal.Width` on the y-axis.
