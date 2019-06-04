@@ -20,8 +20,11 @@ output: github_document
  
 
 ```{r, eval=F}
+# This installs multiple packages that help manipulate & plot data:
 install.packages("tidyverse")
-install.packages("gapminder")
+
+# This installs two packages that contain example datasets we will use later in the course:
+install.packages(c("gapminder", "titanic"))
 ```
 
 ### Create new folder for day1
@@ -43,6 +46,8 @@ install.packages("gapminder")
 
 ## You can store things in **variables** with `<-`
 
+You can quickly type `<-` with `Alt + -` in Rstudio
+
 ```{r}
 myName <- "Spencer"
 ```
@@ -58,6 +63,14 @@ myNumber <- 10
 
 myNumber + 10
 ```
+
+## Comments are hidden from R
+```{r}
+# Text after a # will not be run, it is a "comment". 
+# This lets you document your scripts. Always comment your code!
+```
+
+
 
 # Data in R
 
@@ -163,18 +176,34 @@ ggplot(data = iris, mapping = aes(x = Sepal.Width, y = Petal.Width)) +
 ```
 
 ## Exercise:
- - Let's make the same scatterplot but color the points by their `Species`. 
- - Run the following code. What happens?
-```{r, eval=F, include =T}
-ggplot(data = iris, mapping = aes(x = Sepal.Width, y = Petal.Width)) +
-  geom_point(color = Species)
-```
-
+### Question 1:
+ - Try making the same scatterplot but color the points by their `Species`. 
+ - **Hints:**
+  - Try looking at the help page for `aes()` with `?aes`
+  - If this isn't helping, try googling a solution!
+  
 ```{r, eval=F, include =F}
 # Correct answer:
 ggplot(data = iris, mapping = aes(x = Sepal.Width, y = Petal.Width)) +
   geom_point(aes(color = Species))
 ```
 
+### Question 2:
+ - Make a boxplot like the one below plotting the `Petal.Width` for each `Species`
+ - **Hints:**
+  - which `geom` adds a boxplot?
+  - How do you fill-in the boxplot by species?
+  - Try googling a solution.
+
+```{r, echo=F}
+# Correct answer:
+ggplot(data = iris, mapping = aes(x = Species, y = Petal.Width)) +
+  geom_boxplot(aes(fill = Species)) 
+```
+
 ## More reading
 [R for Data Science: ggplot2 introduction](https://r4ds.had.co.nz/data-visualisation.html)
+ - Great textbook!
+
+[ggplot2 reference manual](https://ggplot2.tidyverse.org/reference/)
+ - really useful manual with pictures!

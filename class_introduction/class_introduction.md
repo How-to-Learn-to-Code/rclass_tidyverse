@@ -20,8 +20,11 @@ Spencer Nystrom & Jamshaid Shahir
 <!-- end list -->
 
 ``` r
+# This installs multiple packages that help manipulate & plot data:
 install.packages("tidyverse")
-install.packages("gapminder")
+
+# This installs two packages that contain example datasets we will use later in the course:
+install.packages(c("gapminder", "titanic"))
 ```
 
 ### Create new folder for day1
@@ -54,6 +57,8 @@ install.packages("gapminder")
 
 ## You can store things in **variables** with `<-`
 
+You can quickly type `<-` with `Alt + -`
+
 ``` r
 myName <- "Spencer"
 ```
@@ -75,6 +80,13 @@ myNumber + 10
 ```
 
     ## [1] 20
+
+## Comments are hidden from R
+
+``` r
+# Text after a # will not be run, it is a "comment". 
+# This lets you document your scripts. Always comment your code!
+```
 
 # Data in R
 
@@ -384,7 +396,7 @@ The function `ggplot()` is used to build plots from data. By calling
 ggplot()
 ```
 
-![](class_introduction_files/figure-gfm/unnamed-chunk-14-1.png)<!-- -->
+![](class_introduction_files/figure-gfm/unnamed-chunk-15-1.png)<!-- -->
 
 We tell ggplot to use a dataset by giving it a `data.frame` to the
 `data` argument.
@@ -393,7 +405,7 @@ We tell ggplot to use a dataset by giving it a `data.frame` to the
 ggplot(data = iris)
 ```
 
-![](class_introduction_files/figure-gfm/unnamed-chunk-15-1.png)<!-- -->
+![](class_introduction_files/figure-gfm/unnamed-chunk-16-1.png)<!-- -->
 
 Lets make a scatterplot of Sepal width vs Petal width.
 
@@ -408,7 +420,7 @@ This creates a plotting area that is informed by the data in `iris`.
 ggplot(data = iris, mapping = aes(x = Sepal.Width, y = Petal.Width)) 
 ```
 
-![](class_introduction_files/figure-gfm/unnamed-chunk-16-1.png)<!-- -->
+![](class_introduction_files/figure-gfm/unnamed-chunk-17-1.png)<!-- -->
 
 Now let’s add the points. We do this by adding a `geom`. In this case
 `geom_point` for datapoints.
@@ -418,7 +430,7 @@ ggplot(data = iris, mapping = aes(x = Sepal.Width, y = Petal.Width)) +
   geom_point()
 ```
 
-![](class_introduction_files/figure-gfm/unnamed-chunk-17-1.png)<!-- -->
+![](class_introduction_files/figure-gfm/unnamed-chunk-18-1.png)<!-- -->
 
 Plots can be saved to variables just like
 before
@@ -432,7 +444,7 @@ sepal.vs.petal <- ggplot(data = iris, mapping = aes(x = Sepal.Width, y = Petal.W
 sepal.vs.petal
 ```
 
-![](class_introduction_files/figure-gfm/unnamed-chunk-19-1.png)<!-- -->
+![](class_introduction_files/figure-gfm/unnamed-chunk-20-1.png)<!-- -->
 
 We can edit the parameters of geoms. For example, you can change the
 color of the points by editing the `color` parameter.
@@ -442,16 +454,34 @@ ggplot(data = iris, mapping = aes(x = Sepal.Width, y = Petal.Width)) +
   geom_point(color = "red")
 ```
 
-![](class_introduction_files/figure-gfm/unnamed-chunk-20-1.png)<!-- -->
+![](class_introduction_files/figure-gfm/unnamed-chunk-21-1.png)<!-- -->
 
 ## Exercise:
 
-  - Let’s make the same scatterplot but color the points by their
+### Question 1:
+
+  - Try making the same scatterplot but color the points by their
     `Species`.
+  - **Hints:**
+  - Try looking at the help page for `aes()` with `?aes`
+  - If this isn’t helping, try googling a solution\!
 
-<!-- end list -->
+### Question 2:
 
-``` r
-ggplot(data = iris, mapping = aes(x = Sepal.Width, y = Petal.Width)) +
-  geom_point(color = Species)
-```
+  - Make a boxplot like the one below plotting the `Petal.Width` for
+    each `Species`
+  - **Hints:**
+  - which `geom` adds a boxplot?
+  - How do you fill-in the boxplot by species?
+  - Try googling a solution.
+
+![](class_introduction_files/figure-gfm/unnamed-chunk-23-1.png)<!-- -->
+
+## More reading
+
+[R for Data Science: ggplot2
+introduction](https://r4ds.had.co.nz/data-visualisation.html) - Great
+textbook\!
+
+[ggplot2 reference manual](https://ggplot2.tidyverse.org/reference/) -
+really useful manual with pictures\!
