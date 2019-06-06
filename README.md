@@ -9,7 +9,7 @@ to provide their own laptop.
 |Day | Subject | Homework |
 |:--:|:---:|:------------:|
 |1  | Intro | [Exercise 1](class_introduction/class_introduction.md) |
-|2 |Plotting (& factors) | []() |
+|2 |Plotting (& factors) | [Exercise 2](intro_to_ggplot/intro_to_ggplot2.md) |
 |3 |Data Manipulation|[]() |
 |4  |Data import & cleaning |[]()|
 |5  |Functions & If-Else|[]()|
