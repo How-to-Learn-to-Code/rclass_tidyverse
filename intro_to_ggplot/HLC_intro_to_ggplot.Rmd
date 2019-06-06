@@ -1,6 +1,6 @@
 ---
 title: "Intro to ggplot2"
-author: "Grace Di Cecco"
+author: "Grace Di Cecco & Spencer Nystrom"
 date: "June 4, 2018"
 output: 
   github_document:
@@ -10,14 +10,6 @@ output:
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, collapse = TRUE)
 ```
-
-### Using this document
-
-* Code blocks and R code have a grey background (note, code nested in the text is not highlighted in the pdf version of this document but is a different font).
-* \# indicates a comment, and anything after a comment will not be evaluated in R
-* The comments beginning with \#\# under the code in the grey code boxes are the output from the code directly above; any comments added by us will start with a single \#
-* While you can copy and paste code into R, you will learn faster if you type out the commands yourself. 
-* Read through the document after class. This is meant to be a reference, and ideally, you should be able to understand every line of code. If there is something you do not understand please email us with questions or ask in the following class (you're probably not the only one with the same question!). 
 
 ### Expectations
 1. Understand basic `ggplot` syntax
@@ -34,53 +26,47 @@ Useful resources for this class include this document, the `ggplot2` CRAN docume
 
 In this class, we'll use a dataset provided by the Gapminder Foundation in R. This dataset contains a time series of demographic data for 142 countries from 1952 to 2007. Installing the package `gapminder` will give you the dataset. Use `install.packages`, and then try the code below:
 
+```{r, eval=F}
+# You only need to run this once
+install.packages("gapminder")
+```
+
 ```{r}
 library(gapminder)
 
 head(gapminder)
 ```
 
-You'll notice that the Gapminder dataset is called a "tibble". This is similar to a data frame, but is the format used in the tidyverse. The two main differences are in printing and subsetting. The default `print` of a tibble always contains only ten rows and the class of the data is shown underneath the name of each column (similar to `str`). When subsetting a tibble, using `[` returns another tibble, and `[[` always returns a vector.
-
-### Figures in Rmarkdown
-
-Dimensions of output from code chunks, such as plots, can be manipulated using arguments such as `fig.height` and `fig.width`. These arguments go in the first line of the code chunk within the curly brackets, and can be changed to produce appropriately proportioned figures. (e.g. `{r, fig.height = 5, fig.width = 5}`).
-
-```{r, fig.height = 5, fig.width = 5}
-# Don't worry too much about the code used to create the figure - this will all be discussed more thoroughly below.
-library(ggplot2)
-library(dplyr)
-ggplot(data = filter(gapminder, country == "China"),
-       mapping = aes(x = year, y = lifeExp, color = country)) +
-  geom_line(cex = 1) + 
-  theme(legend.position = "none") + xlab("Year") + ylab("Life expectancy")
-
-```
-
-Try changing the figure height and figure width values to get a sense for how they work on your display.
+You'll notice that the Gapminder dataset is called a "tibble". This is similar to a data frame, but is the format used in the tidyverse. The two main differences are in printing and subsetting. The default `print` of a tibble always contains only ten rows and the class of the data is shown underneath the name of each column (similar to `str`). 
 
 #### Basic ggplot grammar
 
 ```{r}
-# ggplot loads automatically with the tidyverse:
-library(tidyverse)
-
-# or it can be loaded on its own:
+# Load ggplot2
 library(ggplot2)
 ```
 
-The structure of `ggplot` code relies on a specific grammar. Plots start out with a command containing the data to use, and the mapping of the data. "Mapping" indicates which variable goes on which axis, and also can contain aesthetics such as a variable to color points or lines by. Plot attributes (points, lines, labels, etc.) are added using layers, which are strung together using the + operator to create plots. 
+The structure of `ggplot` code relies on a specific grammar. Plots start out
+with a command containing the data to use, and the mapping of the data.
+"Mapping" indicates which variable goes on which axis, and also can contain
+aesthetics such as a variable to color points or lines by. Plot attributes
+(points, lines, labels, etc.) are added using layers, which are strung together
+using the + operator to create plots.
 
-`geoms` are used to add plot layers such as points, lines, or bars (e.g. points = `geom_point`; lines = `geom_line`). Mapping from the `ggplot` function is passed to `geoms`. Local aesthetics can also be placed within `geoms` that won't apply to any other features of the plot.
+`geoms` are used to add plot layers such as points, lines, or bars (e.g. points
+= `geom_point`; lines = `geom_line`). Mapping from the `ggplot` function is
+passed to `geoms`. Local aesthetics can also be placed within `geoms` that won't
+apply to any other features of the plot.
 
 ```{r, fig.height = 5, fig.width = 5}
 # This plot subsets the gapminder data to just include China
 # We'll use a filtering function from a package called dplyr, which we'll talk about more in the next lesson
 
-ggplot(data = filter(gapminder, country == "China"), 
+#ggplot(data = filter(gapminder, country == "China"), 
+ggplot(data = gapminder, 
        mapping = aes(x = year, y = pop)) + 
-  geom_point() +
-  geom_line(color = "blue") # the color blue is only applied to the lines, not the points
+  geom_point() 
+  #geom_line(color = "blue") # the color blue is only applied to the lines, not the points
 
 ```
 
