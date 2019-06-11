@@ -204,6 +204,7 @@ resources in this document, the `ggplot2` documentation, R for Data
 Science, and Google.
 
 **Hints:**
+
  - this plot uses the following subset of the Gapminder data
  - this plot uses facets to show the different years
  - a linear trendline

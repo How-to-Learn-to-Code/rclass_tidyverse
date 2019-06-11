@@ -263,11 +263,19 @@ lesson, replicate the plot below of data from the Gapminder dataset.
 Make use of your resources in this document, the `ggplot2`
 documentation, R for Data Science, and Google.
 
-**Hints:** - this plot uses the following subset of the Gapminder data -
-this plot uses facets to show the different years - a linear trendline -
-log10 x-axis - altered transparency of the points - renamed legend
-titles - axis text is resized to 12 - axis title text is resized to 14 -
-facet titles are resized to 14
+**Hints:**
+
+  - this plot uses the following subset of the Gapminder data
+  - this plot uses facets to show the different years
+  - a linear trendline
+  - log10 x-axis
+  - altered transparency of the points
+  - renamed legend titles
+  - axis text is resized to 12
+  - axis title text is resized to 14
+  - facet titles are resized to 14
+
+<!-- end list -->
 
 ``` r
 finalExampleData <- dplyr::filter(gapminder, year %in% c(1952, 2007))

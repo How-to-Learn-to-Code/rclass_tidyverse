@@ -1,0 +1,193 @@
+---
+title: "Data Manipulation"
+output: github_document
+---
+
+```{r}
+library(gapminder)
+library(ggplot2)
+library(dplyr)
+```
+
+## Replicate this plot
+
+**Hints:**
+
+ - this plot uses the following subset of the Gapminder data
+ - this plot uses facets to show the different years
+ - a linear trendline
+ - log10 x-axis
+ - altered transparency of the points
+ - renamed legend titles
+ - axis text is resized to 12
+ - axis title text is resized to 14
+ - facet titles are resized to 14
+ 
+```{r}
+finalExampleData <- dplyr::filter(gapminder, year %in% c(1952, 2007))
+```
+
+```{r gapminder plot, fig.height= 4, fig.width= 9, echo = F}
+ggplot(finalExampleData, aes(x = gdpPercap, y = lifeExp)) + 
+  geom_point(aes(size = pop, color = continent), alpha = 0.5) + 
+  geom_smooth(method = "lm", se = FALSE, color = "black", lty = 2) +
+  facet_wrap(~year) + 
+  scale_x_log10() + 
+  ylab("Life Expectancy") + 
+  xlab("GDP per capita") + 
+  guides(color = guide_legend("Continent"), 
+         size = guide_legend("Population")) +
+  ggtitle("Life Expectancy Increases independently of GDP per cap") +
+  theme(strip.text.x = element_text(size = 14),
+        axis.text = element_text(size = 12),
+        axis.title = element_text(size = 14))
+```
+
+## select
+```{r}
+pop_by_year <- select(gapminder, country, year, pop)
+
+pop_by_year
+```
+
+## arrange
+```{r}
+arrange(pop_by_year, year)
+```
+`desc()` will sort in descending order.
+```{r}
+arrange(pop_by_year, desc(year))
+```
+
+### Exercise 1
+Which country in which year has the highest population?
+```{r, echo=F, eval=F, include=F}
+# A: China in 2007
+arrange(gapminder, desc(pop))
+```
+
+
+## filter
+ 
+| Operator | Meaning |
+|:--------:|:-------:|
+|    ==    |  Equals |
+|    !=    |  Not Equals |
+|    %in%    |  within vector |
+|    > |  greater than |
+|    >= |  greater than or equal|
+|    < |  less than |
+|    =< |  less than or equal|
+
+```{r}
+filter(gapminder, country == "United States")
+```
+
+
+```{r}
+filter(gapminder, year > 2000)
+```
+
+Multiple filters simultaneously (AND logic).
+
+It is usually a good idea to have line breaks.
+```{r}
+filter(gapminder, 
+       year > 2000, 
+       country == "United States")
+```
+
+## mutate
+gdpPercap is adjusted for population (GDP/Population). We can recompute the
+original GDP by multiplying gdpPercap by population.
+```{r}
+mutate(gapminder, GDP = pop*gdpPercap)
+```
+
+## group_by & summarize
+```{r}
+byCountry <- group_by(gapminder, country)
+
+byCountry
+```
+
+
+```{r}
+summarize(byCountry, mean(lifeExp))
+```
+
+## pipes
+Pipes send the output of 1 command to the 1st input of the next command.
+```{r}
+gapminder %>% 
+  filter(year > 2000)
+```
+
+We can string together complicated operations with pipes
+```{r}
+gapminder %>% 
+  filter(year > 2000) %>% 
+  filter(continent == "Asia") %>% 
+  group_by(country) %>% 
+  summarize(mean_pop = mean(pop)) %>% 
+  arrange(desc(mean_pop))
+  
+```
+
+## Exercise 2
+What is the mean life expectancy in each continent for the year 1967?
+```{r, echo=F, eval=F}
+# Best answer:
+gapminder %>% 
+  group_by(continent, year) %>% 
+  summarize(mean_lifeExp = mean(lifeExp)) %>% 
+  filter(year == 1967)
+
+# could also do:   
+gapminder %>% 
+  filter(year == 1967) %>% 
+  group_by(continent, year) %>% 
+  summarize(mean_lifeExp = mean(lifeExp))
+```
+
+## Exercise 3
+Make a new variable `expOver70` that determines whether lifeExpectancy is greater than 70 years old.
+
+
+
+Which country/countries was the first to have a life expectancy over 70?
+```{r, echo=F, eval=F}
+gapminder %>% 
+  mutate(expOver70 = lifeExp > 70) %>% # make new column
+  filter(expOver70 == T) %>%           # select only areas with lifeExp over 70
+  filter(year == min(year)) %>%        # select rows w/ smallest year value (these are the first)
+  arrange(desc(lifeExp))
+
+# Alternate solution
+gapminder %>% 
+  mutate(expOver70 = lifeExp > 70) %>% 
+  filter(expOver70 == T) %>%           
+  arrange(year, desc(lifeExp))
+```
+
+
+Make a bar plot showing the fraction of countries with life expectancy over 70 over time.
+
+**Bonus:** 
+
+ - Make the bar plot edges touch x axis
+ - Remove x axis ticks
+ - Resize x axis text
+```{r, echo=F}
+gapminder %>% 
+  mutate(expOver70 = lifeExp > 70) %>% 
+  ggplot(aes(factor(year))) +
+    geom_bar(aes(fill = expOver70), position = "fill") +
+    labs(x = "Year", 
+         y = "Fraction of Countries",
+         fill = "Life Expectancy > 70") +
+    scale_y_continuous(expand = expand_scale(mult = c(0, 0.05))) +
+    theme(axis.ticks.x = element_blank(),
+          axis.text.x = element_text(size = 10))
+
+```

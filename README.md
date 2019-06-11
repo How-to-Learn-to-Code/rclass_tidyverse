@@ -10,7 +10,7 @@ to provide their own laptop.
 |:--:|:---:|:------------:|
 |1  | Intro | [Exercise 1](class_introduction/class_introduction.md) |
 |2 |Plotting (& factors) | [Exercise 2](intro_to_ggplot/intro_to_ggplot2.md) |
-|3 |Data Manipulation|[]() |
+|3 |Data Manipulation|[Exercise 3](intro_to_dplyr/intro_do_dplyr2.md) |
 |4  |Data import & cleaning |[]()|
 |5  |Functions & If-Else|[]()|
 |6  | Vectors & Loops |[]()|
