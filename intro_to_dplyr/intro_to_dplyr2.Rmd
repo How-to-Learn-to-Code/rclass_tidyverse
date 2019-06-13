@@ -50,14 +50,6 @@ pop_by_year <- select(gapminder, country, year, pop)
 pop_by_year
 ```
 
-## arrange
-```{r}
-arrange(pop_by_year, year)
-```
-`desc()` will sort in descending order.
-```{r}
-arrange(pop_by_year, desc(year))
-```
 
 ### Exercise 1
 Which country in which year has the highest population?
@@ -104,18 +96,6 @@ original GDP by multiplying gdpPercap by population.
 mutate(gapminder, GDP = pop*gdpPercap)
 ```
 
-## group_by & summarize
-```{r}
-byCountry <- group_by(gapminder, country)
-
-byCountry
-```
-
-
-```{r}
-summarize(byCountry, mean(lifeExp))
-```
-
 ## pipes
 Pipes send the output of 1 command to the 1st input of the next command.
 ```{r}
@@ -126,13 +106,67 @@ gapminder %>%
 We can string together complicated operations with pipes
 ```{r}
 gapminder %>% 
+  mutate(GDP = gdpPercap * pop) %>% 
   filter(year > 2000) %>% 
   filter(continent == "Asia") %>% 
-  group_by(country) %>% 
-  summarize(mean_pop = mean(pop)) %>% 
-  arrange(desc(mean_pop))
+  select(country, GDP, year)
   
 ```
+
+## arrange
+```{r}
+gapminder %>% 
+  arrange(year)
+```
+
+`desc()` will sort in descending order.
+```{r}
+arrange(pop_by_year, desc(year))
+```
+
+## group_by & summarize
+
+Summarize creates new data frames from functions.
+```{r}
+gapminder %>% 
+  summarize(mean(lifeExp))
+```
+
+Columns can be created similar to mutate
+```{r}
+gapminder %>% 
+  summarize(mean_lifeExp = mean(lifeExp))
+```
+
+Group_by is **silent**
+```{r}
+gapminder %>% 
+  group_by(country)
+```
+
+summarize acts on groups
+```{r}
+gapminder %>% 
+  group_by(country) %>% 
+  summarize(mean(lifeExp))
+```
+
+
+
+
+```{r}
+gapminder %>% 
+  group_by(continent, year) %>% 
+  summarize(meanExp = mean(lifeExp)) 
+```
+
+## group_by & mutate
+
+```{r}
+gapminder %>% 
+  group_by()
+```
+
 
 ## Exercise 2
 What is the mean life expectancy in each continent for the year 1967?
@@ -152,8 +186,6 @@ gapminder %>%
 
 ## Exercise 3
 Make a new variable `expOver70` that determines whether lifeExpectancy is greater than 70 years old.
-
-
 
 Which country/countries was the first to have a life expectancy over 70?
 ```{r, echo=F, eval=F}
