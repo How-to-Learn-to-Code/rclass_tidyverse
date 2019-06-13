@@ -152,7 +152,7 @@ gapminder %>%
 ```
 
 
-
+Can group by multiple columns & the summary operation will be applied to these groups.
 
 ```{r}
 gapminder %>% 
