@@ -223,3 +223,19 @@ gapminder %>%
           axis.text.x = element_text(size = 10))
 
 ```
+
+## Exercise 4: 
+Retrieve country with highest GDP (hint: add a new column and name it GDP)
+```{r, echo=F, eval=F}
+gapminder %>% 
+  mutate(GDP = pop*gdpPercap) %>% 
+  filter(GDP == max(GDP))
+```
+List continents with higest overall GDP from greatest to least
+```{r, echo=F, eval=F}
+gapminder %>% 
+  mutate(GDP = pop*gdpPercap) %>% 
+  group_by(continent) %>% 
+  summarize(total_gdp = sum(GDP)) %>% 
+  arrange(desc(total_gdp))
+```
