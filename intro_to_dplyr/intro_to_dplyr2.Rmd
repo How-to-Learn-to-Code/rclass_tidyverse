@@ -184,7 +184,24 @@ gapminder %>%
   summarize(mean_lifeExp = mean(lifeExp))
 ```
 
-## Exercise 3
+
+## Exercise 3: 
+Retrieve country with highest GDP (hint: add a new column and name it GDP)
+```{r, echo=F, eval=F}
+gapminder %>% 
+  mutate(GDP = pop*gdpPercap) %>% 
+  filter(GDP == max(GDP))
+```
+List continents with higest overall GDP from greatest to least
+```{r, echo=F, eval=F}
+gapminder %>% 
+  mutate(GDP = pop*gdpPercap) %>% 
+  group_by(continent) %>% 
+  summarize(total_gdp = sum(GDP)) %>% 
+  arrange(desc(total_gdp))
+```
+
+## Exercise 4
 Make a new variable `expOver70` that determines whether lifeExpectancy is greater than 70 years old.
 
 Which country/countries was the first to have a life expectancy over 70?

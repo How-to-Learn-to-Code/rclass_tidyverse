@@ -72,48 +72,6 @@ pop_by_year
     ## 10 Afghanistan  1997 22227415
     ## # … with 1,694 more rows
 
-## arrange
-
-``` r
-arrange(pop_by_year, year)
-```
-
-    ## # A tibble: 1,704 x 3
-    ##    country      year      pop
-    ##    <fct>       <int>    <int>
-    ##  1 Afghanistan  1952  8425333
-    ##  2 Albania      1952  1282697
-    ##  3 Algeria      1952  9279525
-    ##  4 Angola       1952  4232095
-    ##  5 Argentina    1952 17876956
-    ##  6 Australia    1952  8691212
-    ##  7 Austria      1952  6927772
-    ##  8 Bahrain      1952   120447
-    ##  9 Bangladesh   1952 46886859
-    ## 10 Belgium      1952  8730405
-    ## # … with 1,694 more rows
-
-`desc()` will sort in descending order.
-
-``` r
-arrange(pop_by_year, desc(year))
-```
-
-    ## # A tibble: 1,704 x 3
-    ##    country      year       pop
-    ##    <fct>       <int>     <int>
-    ##  1 Afghanistan  2007  31889923
-    ##  2 Albania      2007   3600523
-    ##  3 Algeria      2007  33333216
-    ##  4 Angola       2007  12420476
-    ##  5 Argentina    2007  40301927
-    ##  6 Australia    2007  20434176
-    ##  7 Austria      2007   8199783
-    ##  8 Bahrain      2007    708573
-    ##  9 Bangladesh   2007 150448339
-    ## 10 Belgium      2007  10392226
-    ## # … with 1,694 more rows
-
 ### Exercise 1
 
 Which country in which year has the highest population?
@@ -209,49 +167,6 @@ mutate(gapminder, GDP = pop*gdpPercap)
     ## 10 Afghanistan Asia       1997    41.8 22227415      635. 14121995875.
     ## # … with 1,694 more rows
 
-## group\_by & summarize
-
-``` r
-byCountry <- group_by(gapminder, country)
-
-byCountry
-```
-
-    ## # A tibble: 1,704 x 6
-    ## # Groups:   country [142]
-    ##    country     continent  year lifeExp      pop gdpPercap
-    ##    <fct>       <fct>     <int>   <dbl>    <int>     <dbl>
-    ##  1 Afghanistan Asia       1952    28.8  8425333      779.
-    ##  2 Afghanistan Asia       1957    30.3  9240934      821.
-    ##  3 Afghanistan Asia       1962    32.0 10267083      853.
-    ##  4 Afghanistan Asia       1967    34.0 11537966      836.
-    ##  5 Afghanistan Asia       1972    36.1 13079460      740.
-    ##  6 Afghanistan Asia       1977    38.4 14880372      786.
-    ##  7 Afghanistan Asia       1982    39.9 12881816      978.
-    ##  8 Afghanistan Asia       1987    40.8 13867957      852.
-    ##  9 Afghanistan Asia       1992    41.7 16317921      649.
-    ## 10 Afghanistan Asia       1997    41.8 22227415      635.
-    ## # … with 1,694 more rows
-
-``` r
-summarize(byCountry, mean(lifeExp))
-```
-
-    ## # A tibble: 142 x 2
-    ##    country     `mean(lifeExp)`
-    ##    <fct>                 <dbl>
-    ##  1 Afghanistan            37.5
-    ##  2 Albania                68.4
-    ##  3 Algeria                59.0
-    ##  4 Angola                 37.9
-    ##  5 Argentina              69.1
-    ##  6 Australia              74.7
-    ##  7 Austria                73.1
-    ##  8 Bahrain                65.6
-    ##  9 Bangladesh             49.8
-    ## 10 Belgium                73.6
-    ## # … with 132 more rows
-
 ## pipes
 
 Pipes send the output of 1 command to the 1st input of the next command.
@@ -280,33 +195,201 @@ We can string together complicated operations with pipes
 
 ``` r
 gapminder %>% 
+  mutate(GDP = gdpPercap * pop) %>% 
   filter(year > 2000) %>% 
   filter(continent == "Asia") %>% 
-  group_by(country) %>% 
-  summarize(mean_pop = mean(pop)) %>% 
-  arrange(desc(mean_pop))
+  select(country, GDP, year)
 ```
 
-    ## # A tibble: 33 x 2
-    ##    country        mean_pop
-    ##    <fct>             <dbl>
-    ##  1 China       1299541548 
-    ##  2 India       1072284439 
-    ##  3 Indonesia    217303500 
-    ##  4 Pakistan     161337070.
-    ##  5 Bangladesh   143052564.
-    ##  6 Japan        127266906.
-    ##  7 Philippines   87036188.
-    ##  8 Vietnam       83085252.
-    ##  9 Iran          68180698 
-    ## 10 Thailand      63937448.
-    ## # … with 23 more rows
+    ## # A tibble: 66 x 3
+    ##    country         GDP  year
+    ##    <fct>         <dbl> <int>
+    ##  1 Afghanistan 1.84e10  2002
+    ##  2 Afghanistan 3.11e10  2007
+    ##  3 Bahrain     1.54e10  2002
+    ##  4 Bahrain     2.11e10  2007
+    ##  5 Bangladesh  1.54e11  2002
+    ##  6 Bangladesh  2.09e11  2007
+    ##  7 Cambodia    1.16e10  2002
+    ##  8 Cambodia    2.42e10  2007
+    ##  9 China       3.99e12  2002
+    ## 10 China       6.54e12  2007
+    ## # … with 56 more rows
+
+## arrange
+
+``` r
+gapminder %>% 
+  arrange(year)
+```
+
+    ## # A tibble: 1,704 x 6
+    ##    country     continent  year lifeExp      pop gdpPercap
+    ##    <fct>       <fct>     <int>   <dbl>    <int>     <dbl>
+    ##  1 Afghanistan Asia       1952    28.8  8425333      779.
+    ##  2 Albania     Europe     1952    55.2  1282697     1601.
+    ##  3 Algeria     Africa     1952    43.1  9279525     2449.
+    ##  4 Angola      Africa     1952    30.0  4232095     3521.
+    ##  5 Argentina   Americas   1952    62.5 17876956     5911.
+    ##  6 Australia   Oceania    1952    69.1  8691212    10040.
+    ##  7 Austria     Europe     1952    66.8  6927772     6137.
+    ##  8 Bahrain     Asia       1952    50.9   120447     9867.
+    ##  9 Bangladesh  Asia       1952    37.5 46886859      684.
+    ## 10 Belgium     Europe     1952    68    8730405     8343.
+    ## # … with 1,694 more rows
+
+`desc()` will sort in descending order.
+
+``` r
+arrange(pop_by_year, desc(year))
+```
+
+    ## # A tibble: 1,704 x 3
+    ##    country      year       pop
+    ##    <fct>       <int>     <int>
+    ##  1 Afghanistan  2007  31889923
+    ##  2 Albania      2007   3600523
+    ##  3 Algeria      2007  33333216
+    ##  4 Angola       2007  12420476
+    ##  5 Argentina    2007  40301927
+    ##  6 Australia    2007  20434176
+    ##  7 Austria      2007   8199783
+    ##  8 Bahrain      2007    708573
+    ##  9 Bangladesh   2007 150448339
+    ## 10 Belgium      2007  10392226
+    ## # … with 1,694 more rows
+
+## group\_by & summarize
+
+Summarize creates new data frames from functions.
+
+``` r
+gapminder %>% 
+  summarize(mean(lifeExp))
+```
+
+    ## # A tibble: 1 x 1
+    ##   `mean(lifeExp)`
+    ##             <dbl>
+    ## 1            59.5
+
+Columns can be created similar to mutate
+
+``` r
+gapminder %>% 
+  summarize(mean_lifeExp = mean(lifeExp))
+```
+
+    ## # A tibble: 1 x 1
+    ##   mean_lifeExp
+    ##          <dbl>
+    ## 1         59.5
+
+Group\_by is **silent**
+
+``` r
+gapminder %>% 
+  group_by(country)
+```
+
+    ## # A tibble: 1,704 x 6
+    ## # Groups:   country [142]
+    ##    country     continent  year lifeExp      pop gdpPercap
+    ##    <fct>       <fct>     <int>   <dbl>    <int>     <dbl>
+    ##  1 Afghanistan Asia       1952    28.8  8425333      779.
+    ##  2 Afghanistan Asia       1957    30.3  9240934      821.
+    ##  3 Afghanistan Asia       1962    32.0 10267083      853.
+    ##  4 Afghanistan Asia       1967    34.0 11537966      836.
+    ##  5 Afghanistan Asia       1972    36.1 13079460      740.
+    ##  6 Afghanistan Asia       1977    38.4 14880372      786.
+    ##  7 Afghanistan Asia       1982    39.9 12881816      978.
+    ##  8 Afghanistan Asia       1987    40.8 13867957      852.
+    ##  9 Afghanistan Asia       1992    41.7 16317921      649.
+    ## 10 Afghanistan Asia       1997    41.8 22227415      635.
+    ## # … with 1,694 more rows
+
+summarize acts on groups
+
+``` r
+gapminder %>% 
+  group_by(country) %>% 
+  summarize(mean(lifeExp))
+```
+
+    ## # A tibble: 142 x 2
+    ##    country     `mean(lifeExp)`
+    ##    <fct>                 <dbl>
+    ##  1 Afghanistan            37.5
+    ##  2 Albania                68.4
+    ##  3 Algeria                59.0
+    ##  4 Angola                 37.9
+    ##  5 Argentina              69.1
+    ##  6 Australia              74.7
+    ##  7 Austria                73.1
+    ##  8 Bahrain                65.6
+    ##  9 Bangladesh             49.8
+    ## 10 Belgium                73.6
+    ## # … with 132 more rows
+
+Can group by multiple columns & the summary operation will be applied to
+these groups.
+
+``` r
+gapminder %>% 
+  group_by(continent, year) %>% 
+  summarize(meanExp = mean(lifeExp)) 
+```
+
+    ## # A tibble: 60 x 3
+    ## # Groups:   continent [5]
+    ##    continent  year meanExp
+    ##    <fct>     <int>   <dbl>
+    ##  1 Africa     1952    39.1
+    ##  2 Africa     1957    41.3
+    ##  3 Africa     1962    43.3
+    ##  4 Africa     1967    45.3
+    ##  5 Africa     1972    47.5
+    ##  6 Africa     1977    49.6
+    ##  7 Africa     1982    51.6
+    ##  8 Africa     1987    53.3
+    ##  9 Africa     1992    53.6
+    ## 10 Africa     1997    53.6
+    ## # … with 50 more rows
+
+## group\_by & mutate
+
+``` r
+gapminder %>% 
+  group_by()
+```
+
+    ## # A tibble: 1,704 x 6
+    ##    country     continent  year lifeExp      pop gdpPercap
+    ##    <fct>       <fct>     <int>   <dbl>    <int>     <dbl>
+    ##  1 Afghanistan Asia       1952    28.8  8425333      779.
+    ##  2 Afghanistan Asia       1957    30.3  9240934      821.
+    ##  3 Afghanistan Asia       1962    32.0 10267083      853.
+    ##  4 Afghanistan Asia       1967    34.0 11537966      836.
+    ##  5 Afghanistan Asia       1972    36.1 13079460      740.
+    ##  6 Afghanistan Asia       1977    38.4 14880372      786.
+    ##  7 Afghanistan Asia       1982    39.9 12881816      978.
+    ##  8 Afghanistan Asia       1987    40.8 13867957      852.
+    ##  9 Afghanistan Asia       1992    41.7 16317921      649.
+    ## 10 Afghanistan Asia       1997    41.8 22227415      635.
+    ## # … with 1,694 more rows
 
 ## Exercise 2
 
 What is the mean life expectancy in each continent for the year 1967?
 
-## Exercise 3
+## Exercise 3:
+
+Retrieve country with highest GDP (hint: add a new column and name it
+GDP)
+
+List continents with higest overall GDP from greatest to least
+
+## Exercise 4
 
 Make a new variable `expOver70` that determines whether lifeExpectancy
 is greater than 70 years old.
@@ -321,4 +404,4 @@ over 70 over time.
   - Make the bar plot edges touch x axis
   - Remove x axis ticks
   - Resize x axis text
-    ![](intro_to_dplyr2_files/figure-gfm/unnamed-chunk-17-1.png)<!-- -->
+    ![](intro_to_dplyr2_files/figure-gfm/unnamed-chunk-23-1.png)<!-- -->
