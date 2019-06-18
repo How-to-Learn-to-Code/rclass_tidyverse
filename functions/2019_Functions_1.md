@@ -135,28 +135,18 @@ head(as.character(gapminder$continent))
 
     ## [1] "Asia" "Asia" "Asia" "Asia" "Asia" "Asia"
 
-Now try it out with the above exercise \#\#\# Apply family functions
+## For loop exercise
 
-Apply family functions similarly perform operations iteratively on
-slices of data (rows in a matrix, elements in a list). For many
-operations, the apply family can be more efficient than a for loop. You
-can read on about apply functions at [Data
-Camp](https://www.datacamp.com/community/tutorials/r-tutorial-apply-family#family).
-
-We can use `sapply`, which applies a function over a list or vector and
-returns the output as a vector, to get output as the above for loop:
+Use the following vector `years` and the function `printYear` inside a
+for loop to print a new line for each year in `years`.
 
 ``` r
 years <- c(2010,2011,2012,2013,2014,2015)
-sapply(years, function(x) paste("The year is", x))
+
+printYear <- function(year) {
+  paste("The year is", year)
+}
 ```
-
-    ## [1] "The year is 2010" "The year is 2011" "The year is 2012"
-    ## [4] "The year is 2013" "The year is 2014" "The year is 2015"
-
-### Exercise 4
-
-Repeat the prior exercise using `sapply`
 
 ### If/else statements
 
@@ -212,3 +202,52 @@ filter(gapminder, year==2002)`
 
 Write a function that takes as input a gapminder dataset from 2002 and a
 specified continent, and prints out the list of countrys
+
+### Apply family functions
+
+Apply family functions similarly perform operations iteratively on
+slices of data (rows in a matrix, elements in a list). For many
+operations, the apply family can be more efficient than a for loop. You
+can read on about apply functions at [Data
+Camp](https://www.datacamp.com/community/tutorials/r-tutorial-apply-family#family).
+
+We can use `sapply`, which applies a function over a list or vector and
+returns the output as a vector, to get output as the above for loop:
+
+``` r
+years <- c(2010,2011,2012,2013,2014,2015)
+sapply(years, function(x) paste("The year is", x))
+```
+
+    ## [1] "The year is 2010" "The year is 2011" "The year is 2012"
+    ## [4] "The year is 2013" "The year is 2014" "The year is 2015"
+
+We can use `lapply`, which applies a function over a list or vector and
+returns the output as a list.
+
+``` r
+years <- c(2010,2011,2012,2013,2014,2015)
+lapply(years, function(x) paste("The year is", x))
+```
+
+    ## [[1]]
+    ## [1] "The year is 2010"
+    ## 
+    ## [[2]]
+    ## [1] "The year is 2011"
+    ## 
+    ## [[3]]
+    ## [1] "The year is 2012"
+    ## 
+    ## [[4]]
+    ## [1] "The year is 2013"
+    ## 
+    ## [[5]]
+    ## [1] "The year is 2014"
+    ## 
+    ## [[6]]
+    ## [1] "The year is 2015"
+
+### Exercise 4
+
+Repeat the prior exercise using `sapply` and `lapply`

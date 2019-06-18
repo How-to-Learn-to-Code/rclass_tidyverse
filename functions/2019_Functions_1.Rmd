@@ -159,27 +159,20 @@ The levels tacked on make our output a little hard to read. We can suppress thos
 head(as.character(gapminder$continent))
 ```
 
-Now try it out with the above exercise
 
-### Apply family functions
+## For loop exercise
 
-Apply family functions similarly perform operations iteratively on slices of data (rows in a matrix, elements in a list). For many operations, the apply family can be more efficient than a for loop. You can read on about apply functions at [Data Camp](https://www.datacamp.com/community/tutorials/r-tutorial-apply-family#family).
-
-We can use `lapply`, which applies a function over a list or vector and returns the output as a vector, to get output as the above for loop:
+Use the following vector `years` and the function `printYear` inside a for loop to print a new line for each year in `years`.
 
 ```{r}
 years <- c(2010,2011,2012,2013,2014,2015)
-lapply(years, function(x) paste("The year is", x))
+
+printYear <- function(year) {
+  paste("The year is", year)
+}
+
 ```
 
-### Exercise 4
-
-Repeat the prior exercise using `lapply`
-```{r, echo=F, eval=F, include=F}
-us_Gapminder <- filter(gapminder, continent == "Americas" & year == 2002)
-
-lapply(us_Gapminder$country, function(x) x)
-```
 
 ### If/else statements
 
@@ -254,3 +247,31 @@ printCty(gap2002, "Africa")
 printCty(gap2002, "Asia")
 ```
 
+
+### Apply family functions
+
+Apply family functions similarly perform operations iteratively on slices of data (rows in a matrix, elements in a list). For many operations, the apply family can be more efficient than a for loop. You can read on about apply functions at [Data Camp](https://www.datacamp.com/community/tutorials/r-tutorial-apply-family#family).
+
+We can use `sapply`, which applies a function over a list or vector and returns the output as a vector, to get output as the above for loop:
+
+```{r}
+years <- c(2010,2011,2012,2013,2014,2015)
+sapply(years, function(x) paste("The year is", x))
+```
+
+We can use `lapply`, which applies a function over a list or vector and returns the output as a list.
+
+```{r}
+years <- c(2010,2011,2012,2013,2014,2015)
+lapply(years, function(x) paste("The year is", x))
+```
+
+### Exercise 4
+
+Repeat the prior exercise using `sapply` and `lapply`
+```{r, echo=F, eval=F, include=F}
+us_Gapminder <- filter(gapminder, continent == "Americas" & year == 2002)
+
+sapply(us_Gapminder$country, function(x) x)
+lapply(us_Gapminder$country, function(x) x)
+```
