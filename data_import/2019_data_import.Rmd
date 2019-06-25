@@ -140,8 +140,11 @@ library(reshape2)
 Converting data from wide to long (sometimes called "tidy") format is called a "melt" or a "pivot".
 
 The `reshape2` library allows us to melt data
-```{r}
-melt(tx_measles)
+```{r, eval = F}
+melt(tx_measles) 
+```
+```{r, echo = F}
+melt(tx_measles) %>% head
 ```
 ## Exercise 3
 Read the help documentation for `melt`. How can you set the names of the `variable` and `value` columns?
