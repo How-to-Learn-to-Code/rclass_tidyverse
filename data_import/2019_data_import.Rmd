@@ -48,19 +48,126 @@ readr::read_csv("people2.csv", comment = "#")
 ```
 
 ## People dataset
+```{r, eval=F}
+# These are 2 different data files hosted on Github. R can stream files from web links (not usually best way to get data).
+people_link <- "https://raw.githubusercontent.com/UNC-HLC-R-Intro/lessons_2019/master/data_import/people.csv"
+people2_link <- "https://raw.githubusercontent.com/UNC-HLC-R-Intro/lessons_2019/master/data_import/people2.csv"
+```
+
+```{r, echo=F}
+# This let notebook knit incase github links expire
+people_link <- "people.csv"
+people2_link <- "people2.csv"
+```
 
 ```{r}
-# These are 2 different data files hosted on Github. R can stream files from web links (not usually best way to get data).
-people <- "https://raw.githubusercontent.com/UNC-HLC-R-Intro/lessons_2019/master/data_import/people.csv"
-people2 <- "https://raw.githubusercontent.com/UNC-HLC-R-Intro/lessons_2019/master/data_import/people2.csv"
+people <- read_csv(people_link)
+
+people
+```
+
+```{r}
+read_csv(people2_link)
+```
+
+```{r, echo=F, eval=F}
+# This dataset must ignore comments & you have to give it col_names
+read_csv(people2_link, comment = "#")
 ```
 
 
+```{r, echo=F, eval=F}
+# complete version
+read_csv(people2_link, comment = "#", col_names = c("name", "age", "favorite_color"))
+```
 
-## Tycho example
+### dplyr can rename columns
+```{r}
+people_renamed <- people %>% 
+  rename(color = favorite_color)
+```
+
+### Writing files
+`readr` has several `write_<type>` functions.
 
 ```{r}
-tycho_link <- "https://raw.githubusercontent.com/UNC-HLC-R-Intro/lessons_2019/master/data/tycho_wide_timeOnly.csv"
+write_csv(people_renamed, path = "people_renamed.csv", col_names = T)
+```
+
+`write_delim` is a generic writer that allows you to set the delimiter.
+
+
+## reshaping & tidying data
+
+```{r, echo=F}
+readr::read_csv("../data/tycho_wide_timeOnly.csv") %>% 
+  dplyr::filter(state == "NORTH CAROLINA",
+                disease == "MEASLES") %>% 
+  readr::write_csv("../data/tycho_nc_measles_wide.csv")
+
+readr::read_csv("../data/tycho_wide_timeOnly.csv") %>% 
+  dplyr::filter(state == "TEXAS",
+                disease == "MEASLES") %>% 
+  readr::write_csv("../data/tycho_tx_measles_wide.csv")
+```
+
+```{r, eval=F}
+tx_measles_link <- "https://raw.githubusercontent.com/UNC-HLC-R-Intro/lessons_2019/master/data/tycho_tx_measles_wide.csv"
+```
+```{r, echo=F}
+tx_measles_link <- "../data/tycho_tx_measles_wide.csv"
+```
+
+```{r}
+tx_measles <- read_csv(tx_measles_link)
+```
+This dataset tracks disease occurrance over time
+```{r}
+tx_measles 
+```
+
+## Exercise 2
+How would you make a plot of these data?
+```{r, echo=F}
+# A: Data must be reformatted for ggplot!
+```
+
+
+```{r}
+library(reshape2)
+```
+
+Converting data from wide to long (sometimes called "tidy") format is called a "melt" or a "pivot".
+
+The `reshape2` library allows us to melt data
+```{r}
+melt(tx_measles)
+```
+## Exercise 3
+Read the help documentation for `melt`. How can you set the names of the `variable` and `value` columns?
+
+**Hint:** `melt` has different behavior for different data types, you might have to go to a second help page under "details".
+
+```{r, echo=F}
+melt(tx_measles, id.vars = c("state", "disease"), variable.name = "yearweek", value.name = "incidence") %>% head
+
+tx_measles_melt <- melt(tx_measles, id.vars = c("state", "disease"), variable.name = "yearweek", value.name = "incidence")
+```
+
+```{r, echo=F}
+tx_measles_melt %>% 
+  #dplyr::mutate(yearweek = as.numeric(yearweek)) %>% 
+  dplyr::mutate(yearweek = as.character(yearweek) %>% as.numeric) %>% 
+  ggplot(aes(yearweek, incidence)) +
+    geom_line() +
+    geom_vline(xintercept = 196301, color = "red")
+```
+
+
+## Full tycho example
+
+```{r}
+tycho_link <- "https://raw.githubusercontent.com/UNC-HLC-R-Intro/lessons_2019/master/data/tycho_wide_time-disease.csv"
 ```
 
 ```{r}
@@ -72,3 +179,13 @@ This dataset tracks diseases over time
 head(tycho)
 ```
 
+## Exercise
+Tidy this dataset with reshape2
+
+## Tidyr provides functions to manipulate data into tidy format
+
+```{r}
+library(tidyr)
+```
+
+## Exercise use tidyr to split year and disease
