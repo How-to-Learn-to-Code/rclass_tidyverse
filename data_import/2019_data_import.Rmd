@@ -1,0 +1,74 @@
+---
+title: "Data Import & Cleaning"
+date: "25 June, 2019"
+output: github_document
+---
+
+```{r}
+library(ggplot2)
+library(dplyr)
+library(readr) # Functions for importing & exporting files
+```
+
+
+R can read files from your computer, or it can use a weblink to a file. Today
+we'll read in this file I've put up on github so it's easier to distribute to
+all of you. If you wanted to read in your own data, you would give R the path to
+your file on your machine.
+
+
+
+
+
+
+
+
+
+```{r data.creation, echo=F}
+people <- tibble::tribble(~"name", ~"age", ~"favorite_color",
+                "Alice", 20, "Blue",
+                "Bob", 18, "Red",
+                "Claire", 23, "Blue",
+                "Doug", 21, "Orange",
+                "Elizabeth", 18, "Green")
+
+readr::write_csv(people, "people.csv")
+```
+
+```{bash, echo = F}
+echo "# This dataset contains information about people, their ages, and their favorite colors" > people2.csv
+```
+```{r, echo =F}
+#readr::write_csv(people, "people2.csv", append = T, col_names = T)
+readr::write_csv(people, "people2.csv", append = T)
+```
+
+```{r, echo=F}
+readr::read_csv("people2.csv", comment = "#")
+```
+
+## People dataset
+
+```{r}
+# These are 2 different data files hosted on Github. R can stream files from web links (not usually best way to get data).
+people <- "https://raw.githubusercontent.com/UNC-HLC-R-Intro/lessons_2019/master/data_import/people.csv"
+people2 <- "https://raw.githubusercontent.com/UNC-HLC-R-Intro/lessons_2019/master/data_import/people2.csv"
+```
+
+
+
+## Tycho example
+
+```{r}
+tycho_link <- "https://raw.githubusercontent.com/UNC-HLC-R-Intro/lessons_2019/master/data/tycho_wide_timeOnly.csv"
+```
+
+```{r}
+tycho <- read_csv(tycho_link)
+```
+
+This dataset tracks diseases over time 
+```{r}
+head(tycho)
+```
+
